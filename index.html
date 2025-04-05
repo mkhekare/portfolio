@@ -470,7 +470,7 @@
             color: white;
             transform: translateY(-3px);
         }
-
+        
         /* Responsive Design */
         @media (max-width: 992px) {
             .hero-content {
@@ -524,6 +524,179 @@
                 justify-content: center;
                 margin-top: 2rem;
             }
+            .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-content {
+            position: relative;
+        }
+
+        .about-highlights {
+            margin-top: 2rem;
+        }
+
+        .highlight-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1.2rem;
+            background: rgba(255,255,255,0.7);
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--primary);
+        }
+
+        .highlight-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            background: white;
+        }
+
+        .highlight-icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+            min-width: 40px;
+            text-align: center;
+            padding-top: 0.2rem;
+        }
+
+        .about-image {
+            position: relative;
+            height: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            filter: grayscale(20%) contrast(110%);
+            transition: all 0.5s ease;
+        }
+
+        .about-image:hover img {
+            filter: grayscale(0%) contrast(100%);
+            transform: scale(1.03);
+        }
+
+        /* Floating Circles Background */
+            <div class="floating-circles" id="circles"></div>
+        .floating-circles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(99, 102, 241, 0.1);
+            animation: float-circle 15s infinite linear;
+        }
+
+        @keyframes float-circle {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-1000px) rotate(720deg); }
+        }
+        function createCircles() {
+            const container = document.getElementById('circles');
+            const colors = ['rgba(99, 102, 241, 0.1)', 'rgba(16, 185, 129, 0.1)', 'rgba(236, 72, 153, 0.1)'];
+            
+            for (let i = 0; i < 15; i++) {
+                const circle = document.createElement('div');
+                circle.classList.add('circle');
+                
+                // Random properties
+                const size = Math.random() * 100 + 50;
+                const posX = Math.random() * window.innerWidth;
+                const posY = Math.random() * window.innerHeight;
+                const delay = Math.random() * 15;
+                const duration = Math.random() * 20 + 10;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                circle.style.width = `${size}px`;
+                circle.style.height = `${size}px`;
+                circle.style.left = `${posX}px`;
+                circle.style.top = `${posY}px`;
+                circle.style.background = color;
+                circle.style.animationDelay = `${delay}s`;
+                circle.style.animationDuration = `${duration}s`;
+                
+                container.appendChild(circle);
+            }
+        }
+        /* Typewriter Effect */
+            function typeWriter() {
+            const elements = document.querySelectorAll('.typewriter-text');
+            const phrases = ["🧑‍💻 Data Alchemist", "📊 BI Specialist", "☁️ Cloud Engineer", "🤖 Automation Expert"];
+            let currentPhrase = 0;
+            let currentChar = 0;
+            let isDeleting = false;
+            let isEnd = false;
+            
+            function tick() {
+                const element = elements[0]; // For simplicity, first element only
+                const fullTxt = phrases[currentPhrase];
+                
+                if (isDeleting) {
+                    element.textContent = fullTxt.substring(0, currentChar - 1);
+                    currentChar--;
+                } else {
+                    element.textContent = fullTxt.substring(0, currentChar + 1);
+                    currentChar++;
+                }
+                
+                let delta = 100;
+                
+                if (isDeleting) delta /= 2;
+                
+                if (!isDeleting && currentChar === fullTxt.length) {
+                    isEnd = true;
+                    delta = 2000;
+                    isDeleting = true;
+                } else if (isDeleting && currentChar === 0) {
+                    isDeleting = false;
+                    isEnd = false;
+                    currentPhrase = (currentPhrase + 1) % phrases.length;
+                    delta = 500;
+                }
+                
+                setTimeout(tick, delta);
+            }
+            
+            tick();
+        }
+        .typewriter {
+            display: inline-block;
+        }
+
+        .typewriter-text {
+            border-right: 3px solid var(--primary);
+            animation: blink-caret 0.75s step-end infinite;
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 0 auto;
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--primary); }
+        }
         }
     </style>
 </head>
@@ -569,15 +742,45 @@
     <!-- About Section -->
     <section id="about" class="section">
         <div class="container">
-            <h2>About Me</h2>
-            <div class="section-content">
-                <p>I am a highly skilled and detail-oriented Data Engineering professional with over 3 years of experience in designing, implementing, and optimizing data solutions. My expertise spans across Python programming, cloud computing platforms (AWS and Azure), ETL processes, and advanced analytics.</p>
-                <p>Throughout my career, I've demonstrated a strong ability to automate complex processes, significantly improve data accuracy, and deliver impactful insights that drive business decisions. My technical proficiency is complemented by strategic thinking, allowing me to bridge the gap between technical implementation and business objectives.</p>
-                <p>I have extensive experience in building scalable data pipelines, implementing data warehouses, and creating interactive dashboards that transform raw data into actionable intelligence. My work has consistently resulted in improved operational efficiency, reduced costs, and enhanced decision-making capabilities for stakeholders.</p>
+            <h2>About Me <span class="typewriter-text">🧑‍💻 Data Alchemist</span></h2>
+            <div class="about-grid">
+                <div class="about-content">
+                    <p>I transform raw data into golden insights through cutting-edge engineering and business intelligence solutions. With 3+ years of experience, I bridge the gap between complex data systems and strategic business outcomes.</p>
+                    
+                    <div class="about-highlights">
+                        <div class="highlight-item">
+                            <div class="highlight-icon">📊</div>
+                            <div>
+                                <h3>Data Engineering Expert</h3>
+                                <p>Designing robust pipelines that process millions of records daily with Python, SQL, and cloud platforms (AWS/Azure).</p>
+                            </div>
+                        </div>
+                        
+                        <div class="highlight-item">
+                            <div class="highlight-icon">🤖</div>
+                            <div>
+                                <h3>Automation Specialist</h3>
+                                <p>Developed automation frameworks that reduced manual processes by 70% while improving accuracy.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="highlight-item">
+                            <div class="highlight-icon">📈</div>
+                            <div>
+                                <h3>BI Solutions Architect</h3>
+                                <p>Created interactive dashboards that empowered executives with real-time decision-making insights.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-image">
+                    <img src="about-image.jpg" alt="Mayur working on data solutions">
+                </div>
             </div>
         </div>
     </section>
-
+    
     <!-- Experience Section -->
     <section id="experience" class="section">
         <div class="container">
@@ -775,16 +978,19 @@
                 }
             });
         };
-
-        // Set initial state for animation
-        document.querySelectorAll('.timeline-item, .skill-item, .project-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        document.addEventListener('DOMContentLoaded', () => {
+            createCircles();
+            typeWriter();
+            
+            // Add parallax effect to about image
+            const aboutImage = document.querySelector('.about-image');
+            window.addEventListener('scroll', () => {
+                if (aboutImage) {
+                    const scrollY = window.scrollY;
+                    aboutImage.style.transform = `translateY(${scrollY * 0.1}px)`;
+                }
+            });
         });
-
-        window.addEventListener('scroll', animateOnScroll);
-        animateOnScroll(); // Run once on load
     </script>
 </body>
 </html>
