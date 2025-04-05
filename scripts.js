@@ -32,13 +32,13 @@ function initSmoothScroll() {
 const projects = [
   {
     title: "Livability Index for Indian Cities",
-    description: "Developed a Livability Index for 100 Indian cities using R, Advanced Excel, and statistical modeling (linear regression, clustering) to deliver predictive insights for urban planning.",
+    description: "Developed a Livability Index for 100 Indian cities using R, Advanced Excel, and statistical modeling to deliver predictive insights for urban planning.",
     technologies: "R, Advanced Excel, Statistical Modeling",
     image: "https://via.placeholder.com/400x300?text=Livability+Index"
   },
   {
     title: "CRISP-DM on Iris & Titanic Datasets",
-    description: "Applied CRISP-DM methodology on Iris and Titanic datasets to perform data wrangling, EDA, and feature engineering, implementing ML algorithms (regression, classification, decision trees, ensembles).",
+    description: "Applied CRISP-DM methodology on Iris and Titanic datasets to perform data wrangling, EDA, and feature engineering, implementing ML algorithms.",
     technologies: "Python, Scikit-learn, Pandas, CRISP-DM",
     image: "https://via.placeholder.com/400x300?text=CRISP-DM"
   },
