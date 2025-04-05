@@ -1,119 +1,155 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mayur Khekare | Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body>
-    <!-- Header -->
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+// Set current year in footer
+document.getElementById('year').textContent = new Date().getFullYear();
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <img src="profile.jpg" alt="Mayur Khekare" class="profile-photo animated-photo">
-            <h1>Mayur Khekare</h1>
-            <h2>Data Engineering & BI Professional</h2>
-            <p class="summary">Strategic management professional experienced in data engineering, BI, and cloud computing, delivering data-driven solutions.</p>
-            <div class="hero-buttons">
-                <a href="#contact" class="btn btn-primary">Contact Me</a>
-                <a href="#projects" class="btn btn-secondary">View Projects</a>
-            </div>
-        </div>
-    </section>
+// Navbar scroll effect
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
 
-    <!-- About Section -->
-    <section id="about" class="section">
-        <h2 class="section__title">About Me</h2>
-        <p>I'm a detail-oriented data engineering professional with extensive expertise in Python programming, cloud computing (AWS and Azure), ETL, and advanced analytics. Passionate about harnessing data to address complex business challenges, I have a proven track record of automating processes, improving data accuracy, and driving impactful insights. My professional journey has involved collaborating with diverse teams to build innovative solutions, ensuring optimal performance and scalability. Continuously aiming to enhance my technical prowess and strategic business perspective, I am dedicated to creating robust, efficient, and sustainable technological solutions.</p>
-    </section>
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
 
-    <!-- Experience Section -->
-    <section id="experience" class="section">
-        <h2 class="section__title">Professional Experience</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-date">Oct 2023 - Apr 2024</div>
-                <div class="timeline-content">
-                    <h3>Cognizant Technology Solutions, Pune <span class="role">- Associate</span></h3>
-                    <ul>
-                        <li>Led data engineering for Fortune 500 insurance client; automated testing using Cypress and PostgreSQL.</li>
-                        <li>Managed on-premises to AWS Cloud migrations with integrated database and batch process testing.</li>
-                        <li>Documented comprehensive ETL processes and data migration strategies.</li>
-                    </ul>
+// Projects data
+const projects = [
+    {
+        title: "Cloud Data Migration Framework",
+        description: "Developed a comprehensive framework for migrating on-premises data infrastructure to AWS cloud with zero downtime.",
+        tags: ["AWS", "Python", "ETL", "PostgreSQL"],
+        github: "https://github.com/mkhekare/cloud-migration",
+        demo: "#"
+    },
+    {
+        title: "Automated Data Quality Dashboard",
+        description: "Created an interactive Power BI dashboard that monitors data quality metrics in real-time across multiple data sources.",
+        tags: ["Power BI", "SQL", "Python", "Data Quality"],
+        github: "https://github.com/mkhekare/data-quality-dashboard",
+        demo: "#"
+    },
+    {
+        title: "ETL Optimization Toolkit",
+        description: "Built a Python-based toolkit that analyzes and optimizes ETL workflows, reducing processing time by 45%.",
+        tags: ["Python", "ETL", "Performance", "Pandas"],
+        github: "https://github.com/mkhekare/etl-optimizer",
+        demo: "#"
+    },
+    {
+        title: "Predictive Maintenance System",
+        description: "Implemented a machine learning model that predicts equipment failures with 92% accuracy.",
+        tags: ["Machine Learning", "Python", "Azure", "IoT"],
+        github: "https://github.com/mkhekare/predictive-maintenance",
+        demo: "#"
+    }
+];
+
+// Skills data
+const skills = [
+    { icon: "fab fa-python", name: "Python", description: "Advanced" },
+    { icon: "fas fa-database", name: "SQL", description: "Expert" },
+    { icon: "fab fa-aws", name: "AWS", description: "Intermediate" },
+    { icon: "fab fa-microsoft", name: "Azure", description: "Intermediate" },
+    { icon: "fas fa-cloud", name: "ETL", description: "Expert" },
+    { icon: "fas fa-chart-line", name: "Power BI", description: "Advanced" },
+    { icon: "fas fa-chart-bar", name: "Tableau", description: "Intermediate" },
+    { icon: "fab fa-git-alt", name: "Git", description: "Advanced" },
+    { icon: "fas fa-code-branch", name: "CI/CD", description: "Intermediate" },
+    { icon: "fas fa-server", name: "Data Warehousing", description: "Advanced" },
+    { icon: "fas fa-project-diagram", name: "Data Pipelines", description: "Expert" },
+    { icon: "fas fa-robot", name: "Automation", description: "Advanced" }
+];
+
+// Load projects into DOM
+function loadProjects() {
+    const projectsGrid = document.querySelector('.projects-grid');
+    
+    projects.forEach(project => {
+        const projectCard = document.createElement('div');
+        projectCard.className = 'project-card';
+        
+        projectCard.innerHTML = `
+            <div class="project-info">
+                <h3>${project.title}</h3>
+                <p>${project.description}</p>
+                <div class="project-tags">
+                    ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+                </div>
+                <div class="project-links">
+                    <a href="${project.github}" target="_blank"><i class="fab fa-github"></i> Code</a>
+                    ${project.demo !== '#' ? `<a href="${project.demo}" target="_blank"><i class="fas fa-external-link-alt"></i> Demo</a>` : ''}
                 </div>
             </div>
-            <div class="timeline-item">
-                <div class="timeline-date">Jun 2021 - Sep 2023</div>
-                <div class="timeline-content">
-                    <h3>Cognizant Technology Solutions, Pune <span class="role">- Programmer Analyst</span></h3>
-                    <ul>
-                        <li>Executed ETL Data Analyst role, designing efficient Informatica jobs for data loads.</li>
-                        <li>Developed optimized SQL queries enhancing data retrieval efficiency.</li>
-                        <li>Oversaw DevOps scripts and CI/CD pipelines using GitHub and Jenkins.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+        `;
+        
+        projectsGrid.appendChild(projectCard);
+    });
+}
 
-    <!-- Projects Section -->
-    <section id="projects" class="section">
-        <h2 class="section__title">Projects</h2>
-        <div class="projects-grid">
-            <!-- Projects dynamically loaded from JS -->
-        </div>
-    </section>
+// Load skills into DOM
+function loadSkills() {
+    const skillsContainer = document.querySelector('.skills-container');
+    
+    skills.forEach(skill => {
+        const skillItem = document.createElement('div');
+        skillItem.className = 'skill-item';
+        
+        skillItem.innerHTML = `
+            <i class="${skill.icon}"></i>
+            <h3>${skill.name}</h3>
+            <p>${skill.description}</p>
+        `;
+        
+        skillsContainer.appendChild(skillItem);
+    });
+}
 
-    <!-- Skills Section -->
-    <section id="skills" class="section">
-        <h2 class="section__title">Skills & Technologies</h2>
-        <div class="skills-container">
-            <!-- Skills dynamically loaded from JS -->
-        </div>
-    </section>
+// Form submission
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Thank you for your message! I will get back to you soon.');
+        this.reset();
+    });
+}
 
-    <!-- Contact Section -->
-    <section id="contact" class="section">
-        <h2 class="section__title">Contact</h2>
-        <div class="contact-container">
-            <div class="contact-info">
-                <p><i class="fas fa-envelope"></i> mkhekare@gmail.com</p>
-                <p><i class="fas fa-phone"></i> +91 7768924686</p>
-                <div class="social-links">
-                    <a href="https://github.com/mkhekare" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-                    <a href="#" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                </div>
-            </div>
-            <form class="contact-form">
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <textarea placeholder="Your Message" required></textarea>
-                <button type="submit" class="btn btn-primary">Send</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; <span id="year"></span> Mayur Khekare. All rights reserved.</p>
-    </footer>
-
-    <script src="scripts.js"></script>
-</body>
-</html>
+// Initialize on DOM load
+document.addEventListener('DOMContentLoaded', () => {
+    loadProjects();
+    loadSkills();
+    
+    // Add animation to elements when they come into view
+    const animateOnScroll = () => {
+        const elements = document.querySelectorAll('.project-card, .skill-item, .timeline-item');
+        
+        elements.forEach(element => {
+            const elementPosition = element.getBoundingClientRect().top;
+            const screenPosition = window.innerHeight / 1.3;
+            
+            if (elementPosition < screenPosition) {
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+            }
+        });
+    };
+    
+    // Set initial state for animation
+    document.querySelectorAll('.project-card, .skill-item, .timeline-item').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    });
+    
+    window.addEventListener('scroll', animateOnScroll);
+    animateOnScroll(); // Run once on load
+});
