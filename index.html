@@ -3,132 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mayur Khekare | Data Engineering & Business Intelligence Professional</title>
+    <title>Mayur Khekare | Portfolio</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Header -->
     <header>
         <nav>
             <ul>
                 <li><a href="#home">Home</a></li>
-                <li><a href="#experience">Experience</a></li>
+                <li><a href="#about">About</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#skills">Skills</a></li>
-                <li><a href="#education">Education</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
-        <section id="home" class="hero">
-            <div class="hero-content">
-                <h1>Mayur Khekare</h1>
-                <h2>Data Engineering & Business Intelligence Professional</h2>
-                <p class="summary">Strategic management professional with 34 months of diverse experience in data engineering, business intelligence and cloud computing. Recognized for delivering client-focused solutions and making data-driven decisions.</p>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">Contact Me</a>
-                    <a href="#projects" class="btn btn-secondary">View Projects</a>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <img src="images/profile.jpg" alt="Mayur Khekare" class="profile-photo">
+            <h1>Mayur Khekare</h1>
+            <h2>Data Engineering & BI Professional</h2>
+            <p class="summary">Strategic management professional experienced in data engineering, BI, and cloud computing, delivering data-driven solutions.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn btn-primary">Contact Me</a>
+                <a href="#projects" class="btn btn-secondary">View Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <h2 class="section__title">About Me</h2>
+        <p>Detail-oriented data engineering professional proficient in Python, AWS, Azure, ETL, and analytics tools like Tableau and Power BI.</p>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <h2 class="section__title">Projects</h2>
+        <div class="projects-grid">
+            <!-- Projects dynamically loaded from JS -->
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <h2 class="section__title">Skills & Technologies</h2>
+        <div class="skills-container">
+            <!-- Skills dynamically loaded from JS -->
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <h2 class="section__title">Contact</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <p><i class="fas fa-envelope"></i> your.email@example.com</p>
+                <p><i class="fas fa-phone"></i> +91 XXXXX XXXXX</p>
+                <div class="social-links">
+                    <a href="https://github.com/mkhekare" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="#" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
                 </div>
             </div>
-        </section>
+            <form class="contact-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" required></textarea>
+                <button type="submit" class="btn btn-primary">Send</button>
+            </form>
+        </div>
+    </section>
 
-        <section id="experience" class="section dark-bg">
-            <h2>Professional Experience</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-date">Oct 2023 - Apr 2024</div>
-                    <div class="timeline-content">
-                        <h3>Cognizant Technology Solutions, Pune <span class="role">- Associate</span></h3>
-                        <ul>
-                            <li>Led data engineering efforts for a Fortune 500 insurance client, developed a Cypress framework and PostgreSQL scripts to automate manual testing</li>
-                            <li>Integrated database and batch process testing for on-premises to AWS Cloud migration</li>
-                            <li>Documented ETL processes and data migration strategies for cross-functional teams</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">Jun 2021 - Sep 2023</div>
-                    <div class="timeline-content">
-                        <h3>Cognizant Technology Solutions, Pune <span class="role">- Programmer Analyst</span></h3>
-                        <ul>
-                            <li>Executed ETL Data Analyst role, designed IICS (Informatica) jobs for incremental and stage loads</li>
-                            <li>Crafted complex, high-performance SQL queries boosting data retrieval efficiency</li>
-                            <li>Supervised DevOps scripts and CI/CD pipelines using GitHub and Jenkins</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="projects" class="section">
-            <h2>Academic Projects & Internship</h2>
-            <div class="projects-grid">
-                <!-- Projects will be loaded by JavaScript -->
-            </div>
-        </section>
-
-        <section id="skills" class="section dark-bg">
-            <h2>Skills & Certifications</h2>
-            <div class="skills-container">
-                <!-- Skills will be loaded by JavaScript -->
-            </div>
-            <div class="certifications">
-                <h3>Certifications</h3>
-                <ul>
-                    <li><i class="fas fa-certificate"></i> AI Python for Beginners by DeepLearning.AI</li>
-                    <li><i class="fas fa-certificate"></i> AWS Certified Cloud Practitioner (CLF-C02)</li>
-                    <li><i class="fas fa-certificate"></i> Microsoft Azure Fundamentals (AZ-900)</li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="education" class="section">
-            <h2>Education</h2>
-            <div class="education-grid">
-                <div class="education-item">
-                    <h3>PGPM</h3>
-                    <p class="institute">Great Lakes Institute of Management, Gurgaon</p>
-                    <p class="year">2025</p>
-                    <p class="grade">CGPA: 3.34</p>
-                </div>
-                <div class="education-item">
-                    <h3>B.Tech (ECE)</h3>
-                    <p class="institute">Dr. Vishwanath Karad MIT-WPU, Pune</p>
-                    <p class="year">2021</p>
-                    <p class="grade">8.42/10</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="section dark-bg">
-            <h2>Get In Touch</h2>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <p><i class="fas fa-envelope"></i> your.email@example.com</p>
-                    <p><i class="fas fa-phone"></i> +91 XXXXX XXXXX</p>
-                    <div class="social-links">
-                        <a href="https://github.com/mkhekare" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-                        <a href="#" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                        <a href="#" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
-                    </div>
-                </div>
-                <form class="contact-form">
-                    <input type="text" placeholder="Your Name" required>
-                    <input type="email" placeholder="Your Email" required>
-                    <textarea placeholder="Your Message" required></textarea>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
-                </form>
-            </div>
-        </section>
-    </main>
-
+    <!-- Footer -->
     <footer>
         <p>&copy; <span id="year"></span> Mayur Khekare. All rights reserved.</p>
     </footer>
+
     <script src="scripts.js"></script>
 </body>
 </html>
