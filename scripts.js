@@ -40,14 +40,35 @@
     <!-- About Section -->
     <section id="about" class="section">
         <h2 class="section__title">About Me</h2>
-        <p>I'm a detail-oriented data engineering professional with comprehensive experience in Python programming, cloud computing (AWS and Azure), data extraction and transformation (ETL), and advanced analytics. I am passionate about leveraging data to solve complex problems, streamline business processes, and drive strategic decision-making. Throughout my career, I've successfully implemented automated solutions that significantly reduced manual intervention, optimized processes, and improved data accuracy. My goal is to continually grow my technical skills and business acumen, enabling me to deliver impactful and sustainable solutions to real-world business challenges.</p>
+        <p>I'm a detail-oriented data engineering professional with extensive expertise in Python programming, cloud computing (AWS and Azure), ETL, and advanced analytics. Passionate about harnessing data to address complex business challenges, I have a proven track record of automating processes, improving data accuracy, and driving impactful insights. My professional journey has involved collaborating with diverse teams to build innovative solutions, ensuring optimal performance and scalability. Continuously aiming to enhance my technical prowess and strategic business perspective, I am dedicated to creating robust, efficient, and sustainable technological solutions.</p>
     </section>
 
     <!-- Experience Section -->
     <section id="experience" class="section">
         <h2 class="section__title">Professional Experience</h2>
         <div class="timeline">
-            <!-- Timeline dynamically loaded from JS or manually defined here -->
+            <div class="timeline-item">
+                <div class="timeline-date">Oct 2023 - Apr 2024</div>
+                <div class="timeline-content">
+                    <h3>Cognizant Technology Solutions, Pune <span class="role">- Associate</span></h3>
+                    <ul>
+                        <li>Led data engineering for Fortune 500 insurance client; automated testing using Cypress and PostgreSQL.</li>
+                        <li>Managed on-premises to AWS Cloud migrations with integrated database and batch process testing.</li>
+                        <li>Documented comprehensive ETL processes and data migration strategies.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Jun 2021 - Sep 2023</div>
+                <div class="timeline-content">
+                    <h3>Cognizant Technology Solutions, Pune <span class="role">- Programmer Analyst</span></h3>
+                    <ul>
+                        <li>Executed ETL Data Analyst role, designing efficient Informatica jobs for data loads.</li>
+                        <li>Developed optimized SQL queries enhancing data retrieval efficiency.</li>
+                        <li>Oversaw DevOps scripts and CI/CD pipelines using GitHub and Jenkins.</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -72,8 +93,8 @@
         <h2 class="section__title">Contact</h2>
         <div class="contact-container">
             <div class="contact-info">
-                <p><i class="fas fa-envelope"></i> your.email@example.com</p>
-                <p><i class="fas fa-phone"></i> +91 XXXXX XXXXX</p>
+                <p><i class="fas fa-envelope"></i> mkhekare@gmail.com</p>
+                <p><i class="fas fa-phone"></i> +91 7768924686</p>
                 <div class="social-links">
                     <a href="https://github.com/mkhekare" target="_blank"><i class="fab fa-github"></i> GitHub</a>
                     <a href="#" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
