@@ -831,7 +831,40 @@
     <!-- About Section -->
     <section id="about" class="section">
         <div class="container">
-            <h2>About Me <span class="typewriter-text">🧑‍💻 Consultant</span></h2>
+            <div class="section-title">
+    <h2>About Me <span class="typewriter-text">🧑‍💻 Consultant</span></h2>
+</div>
+
+<style>
+    .section-title {
+        display: flex;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+    
+    .section-title h2 {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0;
+    }
+    
+    .typewriter-text {
+        display: inline-flex;
+        align-items: center;
+        border-right: 3px solid var(--primary);
+        animation: blink-caret 0.75s step-end infinite;
+        white-space: nowrap;
+        height: 1em;
+        line-height: 1;
+    }
+    
+    @keyframes blink-caret {
+        from, to { border-color: transparent }
+        50% { border-color: var(--primary); }
+    }
+</style>
+            
             <div class="about-grid">
                 <div class="about-content">
                     <p>I transform raw data into golden insights through cutting-edge engineering and business intelligence solutions. With 3+ years of experience, I bridge the gap between complex data systems and strategic business outcomes.</p>
