@@ -3,19 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mayur Khekare | Data Engineering & BI Professional</title>
+    <title>Your Name | Portfolio</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Base Styles */
         :root {
             --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary: #10b981;
+            --secondary: #4f46e5;
             --dark: #1e293b;
             --light: #f8fafc;
             --gray: #64748b;
-            --gray-light: #e2e8f0;
         }
 
         * {
@@ -26,10 +24,10 @@
 
         body {
             font-family: 'Inter', sans-serif;
+            background: var(--light);
             color: var(--dark);
             line-height: 1.6;
             overflow-x: hidden;
-            background: linear-gradient(135deg, #f9fafb 0%, #f1f5f9 100%);
         }
 
         /* Hero Section */
@@ -39,38 +37,19 @@
             align-items: center;
             padding: 2rem;
             position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, rgba(255,255,255,0) 70%);
-            z-index: -1;
         }
 
         .hero-content {
             max-width: 1200px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .hero-text {
-            padding-right: 2rem;
+            text-align: center;
         }
 
         .profile-container {
             position: relative;
-            width: 350px;
-            height: 350px;
-            margin: 0 auto;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto 2rem;
         }
 
         .profile-photo {
@@ -78,11 +57,9 @@
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            object-position: center top;
             animation: float 6s ease-in-out infinite;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-            border: 6px solid white;
-            filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.1));
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            border: 4px solid var(--primary);
         }
 
         .profile-glare {
@@ -102,65 +79,46 @@
         }
 
         h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-            color: var(--dark);
-            line-height: 1.2;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .subtitle {
             font-size: 1.5rem;
-            color: var(--primary-dark);
-            margin-bottom: 2rem;
-            font-weight: 600;
-        }
-
-        .summary {
-            font-size: 1.1rem;
             color: var(--gray);
-            margin-bottom: 2.5rem;
-            line-height: 1.8;
+            margin-bottom: 2rem;
         }
 
-        /* Buttons */
-        .hero-buttons {
+        /* Animated Links */
+        .nav-links {
             display: flex;
-            gap: 1.5rem;
+            gap: 2rem;
+            justify-content: center;
         }
 
-        .btn {
-            padding: 0.8rem 1.8rem;
-            border-radius: 50px;
-            font-weight: 500;
+        .nav-link {
+            position: relative;
+            padding: 0.5rem 1rem;
+            color: var(--dark);
             transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
         }
 
-        .btn-primary {
-            background: linear-gradient(45deg, var(--primary), var(--primary-dark));
-            color: white;
-            box-shadow: 0 4px 6px rgba(99, 102, 241, 0.2);
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
         }
 
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 15px rgba(99, 102, 241, 0.3);
-        }
-
-        .btn-secondary {
-            background: white;
-            color: var(--primary);
-            border: 1px solid var(--gray-light);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        .nav-link:hover::before {
+            width: 100%;
         }
 
         /* Social Links */
@@ -206,69 +164,40 @@
             60% { transform: translateY(-15px); }
         }
 
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-                text-align: center;
-            }
+        /* Section Animation */
+        .section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
 
-            .hero-text {
-                padding-right: 0;
-                order: 2;
-            }
-
-            .profile-container {
-                order: 1;
-                width: 280px;
-                height: 280px;
-            }
-
-            .hero-buttons {
-                justify-content: center;
-            }
-
-            h1 {
-                font-size: 2.8rem;
-            }
-
-            .social-links {
-                position: static;
-                flex-direction: row;
-                justify-content: center;
-                margin-top: 2rem;
-            }
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
     <section class="hero">
         <div class="hero-content">
-            <div class="hero-text">
-                <h1>Mayur Khekare</h1>
-                <p class="subtitle">Data Engineering & BI Professional</p>
-                <p class="summary">Strategic management professional with extensive experience in data engineering, business intelligence, and cloud computing. Specializing in transforming complex data into actionable insights to drive business decisions and operational efficiency.</p>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">
-                        <i class="fas fa-paper-plane"></i> Contact Me
-                    </a>
-                    <a href="#projects" class="btn btn-secondary">
-                        <i class="fas fa-code"></i> View Projects
-                    </a>
-                </div>
-            </div>
-
             <div class="profile-container">
-                <img src="profile.jpg" alt="Mayur Khekare" class="profile-photo">
+                <img src="profile.jpg" alt="Your Name" class="profile-photo">
                 <div class="profile-glare"></div>
             </div>
+            <h1>Your Name</h1>
+            <p class="subtitle">Data Engineer & Cloud Specialist</p>
+            <nav class="nav-links">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
         </div>
 
         <div class="social-links">
-            <a href="https://github.com/mkhekare" class="social-link"><i class="fab fa-github"></i></a>
-            <a href="https://linkedin.com/in/mayurkhekare" class="social-link"><i class="fab fa-linkedin"></i></a>
-            <a href="https://twitter.com/mayurkhekare" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
         </div>
 
         <div class="scroll-indicator">
@@ -276,7 +205,22 @@
         </div>
     </section>
 
+    <!-- Add other sections here -->
+
     <script>
+        // Intersection Observer for section animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
