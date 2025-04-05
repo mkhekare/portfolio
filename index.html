@@ -1087,9 +1087,9 @@ class BackgroundAnimation {
                 this.canvas = document.getElementById('backgroundCanvas');
                 this.ctx = this.canvas.getContext('2d');
                 this.particles = [];
-                this.particleCount = 100; // Increased particle count
-                this.lineDistance = 120; // Increased connection distance
-                this.globalAlpha = 0.7; // More visible lines
+                this.particleCount = 90;
+                this.lineDistance = 150;
+                this.primaryColor = '99, 102, 241'; // Your primary color in RGB
 
                 this.init();
                 this.animate();
@@ -1099,14 +1099,14 @@ class BackgroundAnimation {
                 this.resize();
                 window.addEventListener('resize', () => this.resize());
 
-                // Create particles with more movement
+                // Create particles
                 for(let i = 0; i < this.particleCount; i++) {
                     this.particles.push({
                         x: Math.random() * this.canvas.width,
                         y: Math.random() * this.canvas.height,
-                        dx: (Math.random() - 0.5) * 0.5, // Faster movement
-                        dy: (Math.random() - 0.5) * 0.5,
-                        size: Math.random() * 1.2 + 0.8 // Larger dots
+                        dx: (Math.random() - 0.5) * 0.4,
+                        dy: (Math.random() - 0.5) * 0.4,
+                        size: Math.random() * 1.5 + 0.5
                     });
                 }
             }
@@ -1117,15 +1117,15 @@ class BackgroundAnimation {
             }
 
             draw() {
-                // Clear with slight blue tint
-                this.ctx.fillStyle = 'rgba(240, 244, 255, 0.2)';
+                // Clear with slight fade effect
+                this.ctx.fillStyle = 'rgba(248, 250, 252, 0.2)';
                 this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
                 
-                // Draw particles as white dots
+                // Draw blue particles
                 this.particles.forEach(particle => {
                     this.ctx.beginPath();
                     this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-                    this.ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+                    this.ctx.fillStyle = `rgba(${this.primaryColor}, 0.3)`;
                     this.ctx.fill();
 
                     // Update position
@@ -1137,7 +1137,7 @@ class BackgroundAnimation {
                     if(particle.y < 0 || particle.y > this.canvas.height) particle.dy *= -1;
                 });
 
-                // Draw white connecting lines
+                // Draw blue connecting lines
                 this.particles.forEach((a, i) => {
                     this.particles.slice(i).forEach(b => {
                         const dx = a.x - b.x;
@@ -1148,9 +1148,9 @@ class BackgroundAnimation {
                             this.ctx.beginPath();
                             this.ctx.moveTo(a.x, a.y);
                             this.ctx.lineTo(b.x, b.y);
-                            const opacity = 0.8 * (1 - dist/this.lineDistance);
-                            this.ctx.strokeStyle = `rgba(255, 255, 255, ${opacity})`;
-                            this.ctx.lineWidth = 1.2; // Thicker lines
+                            const opacity = 0.7 * (1 - dist/this.lineDistance);
+                            this.ctx.strokeStyle = `rgba(${this.primaryColor}, ${opacity})`;
+                            this.ctx.lineWidth = 1.5;
                             this.ctx.stroke();
                         }
                     });
