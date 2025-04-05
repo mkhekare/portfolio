@@ -76,31 +76,20 @@
         .profile-container {
             position: relative;
             width: 350px;
-            height: 350px;
+            height: 450px; /* Taller for portrait */
             margin: 0 auto;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            animation: float 6s ease-in-out infinite;
         }
 
         .profile-photo {
             width: 100%;
             height: 100%;
-            border-radius: 50%;
             object-fit: cover;
             object-position: center top;
-            animation: float 6s ease-in-out infinite;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-            border: 6px solid white;
             filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.1));
-        }
-
-        .profile-glare {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: radial-gradient(circle at 70% 30%, 
-                rgba(255, 255, 255, 0.4) 0%, 
-                rgba(255, 255, 255, 0) 70%);
-            pointer-events: none;
         }
 
         @keyframes float {
@@ -122,6 +111,12 @@
             color: var(--primary-dark);
         }
 
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
         .subtitle {
             font-size: 1.5rem;
             color: var(--primary-dark);
@@ -134,36 +129,6 @@
             color: var(--gray);
             margin-bottom: 2.5rem;
             line-height: 1.8;
-        }
-
-        /* Navigation */
-        .nav-links {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .nav-link {
-            position: relative;
-            padding: 0.5rem 0;
-            color: var(--dark);
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
         }
 
         /* Buttons */
@@ -207,6 +172,276 @@
             box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
         }
 
+        /* Navigation */
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 0.5rem 0;
+            color: var(--dark);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 0 1rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--gray-light);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            width: 100%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            padding-right: 50%;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            padding-left: 50%;
+            text-align: left;
+        }
+
+        .timeline-date {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 20px;
+        }
+
+        .timeline-content {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .timeline-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .role {
+            color: var(--secondary);
+            font-weight: 500;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .timeline-content ul {
+            margin-left: 1.2rem;
+        }
+
+        .timeline-content li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            list-style-type: disc;
+            color: var(--gray);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 4px solid var(--light);
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+
+        .timeline-item:nth-child(odd)::before {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even)::before {
+            left: -10px;
+        }
+
+        /* Skills */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .skill-item {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .skill-item i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .skill-item h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: var(--light);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .project-image {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .project-tag {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .project-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--gray-light);
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+        }
+
+        .contact-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: var(--light);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .footer-heart {
+            color: #ff6b6b;
+        }
+
         /* Social Links */
         .social-links {
             position: fixed;
@@ -236,27 +471,6 @@
             transform: translateY(-3px);
         }
 
-        /* Scroll Indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-30px); }
-            60% { transform: translateY(-15px); }
-        }
-
-        /* Other Sections */
-        .section-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
         /* Responsive Design */
         @media (max-width: 992px) {
             .hero-content {
@@ -273,7 +487,7 @@
             .profile-container {
                 order: 1;
                 width: 280px;
-                height: 280px;
+                height: 360px;
             }
 
             .hero-buttons, .nav-links {
@@ -286,6 +500,22 @@
 
             h2 {
                 font-size: 2rem;
+            }
+
+            .timeline::before {
+                left: 31px;
+            }
+
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                padding-left: 70px;
+                padding-right: 0;
+                text-align: left;
+            }
+
+            .timeline-item:nth-child(odd)::before,
+            .timeline-item:nth-child(even)::before {
+                left: 21px;
             }
 
             .social-links {
@@ -317,6 +547,7 @@
                     <div class="nav-links">
                         <a href="#about" class="nav-link">About</a>
                         <a href="#experience" class="nav-link">Experience</a>
+                        <a href="#skills" class="nav-link">Skills</a>
                         <a href="#projects" class="nav-link">Projects</a>
                         <a href="#contact" class="nav-link">Contact</a>
                     </div>
@@ -324,7 +555,6 @@
 
                 <div class="profile-container">
                     <img src="profile.jpg" alt="Mayur Khekare" class="profile-photo">
-                    <div class="profile-glare"></div>
                 </div>
             </div>
         </div>
@@ -334,17 +564,13 @@
             <a href="https://linkedin.com/in/mayurkhekare" class="social-link"><i class="fab fa-linkedin"></i></a>
             <a href="https://twitter.com/mayurkhekare" class="social-link"><i class="fab fa-twitter"></i></a>
         </div>
-
-        <div class="scroll-indicator">
-            <i class="fas fa-chevron-down"></i>
-        </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="section">
         <div class="container">
+            <h2>About Me</h2>
             <div class="section-content">
-                <h2>About Me</h2>
                 <p>I am a highly skilled and detail-oriented Data Engineering professional with over 3 years of experience in designing, implementing, and optimizing data solutions. My expertise spans across Python programming, cloud computing platforms (AWS and Azure), ETL processes, and advanced analytics.</p>
                 <p>Throughout my career, I've demonstrated a strong ability to automate complex processes, significantly improve data accuracy, and deliver impactful insights that drive business decisions. My technical proficiency is complemented by strategic thinking, allowing me to bridge the gap between technical implementation and business objectives.</p>
                 <p>I have extensive experience in building scalable data pipelines, implementing data warehouses, and creating interactive dashboards that transform raw data into actionable intelligence. My work has consistently resulted in improved operational efficiency, reduced costs, and enhanced decision-making capabilities for stakeholders.</p>
@@ -355,25 +581,82 @@
     <!-- Experience Section -->
     <section id="experience" class="section">
         <div class="container">
-            <div class="section-content">
-                <h2>Professional Experience</h2>
-                <div class="experience-item">
-                    <h3>Cognizant Technology Solutions, Pune</h3>
-                    <p class="role">Associate | Oct 2023 - Apr 2024</p>
-                    <ul>
-                        <li>Led end-to-end data engineering initiatives for Fortune 500 insurance client</li>
-                        <li>Spearheaded migration of on-premises data infrastructure to AWS Cloud</li>
-                        <li>Developed and maintained detailed documentation for ETL processes</li>
-                    </ul>
+            <h2>Professional Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">Oct 2023 - Apr 2024</div>
+                    <div class="timeline-content">
+                        <h3>Cognizant Technology Solutions, Pune</h3>
+                        <span class="role">Associate</span>
+                        <ul>
+                            <li>Led end-to-end data engineering initiatives for Fortune 500 insurance client</li>
+                            <li>Spearheaded migration of on-premises data infrastructure to AWS Cloud</li>
+                            <li>Developed and maintained detailed documentation for ETL processes</li>
+                            <li>Collaborated with cross-functional teams to design data validation procedures</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="experience-item">
-                    <h3>Cognizant Technology Solutions, Pune</h3>
-                    <p class="role">Programmer Analyst | Jun 2021 - Sep 2023</p>
-                    <ul>
-                        <li>Executed ETL Data Analyst role, designing and optimizing Informatica jobs</li>
-                        <li>Developed complex SQL queries that enhanced data retrieval efficiency by 60%</li>
-                        <li>Implemented and maintained DevOps scripts and CI/CD pipelines</li>
-                    </ul>
+                <div class="timeline-item">
+                    <div class="timeline-date">Jun 2021 - Sep 2023</div>
+                    <div class="timeline-content">
+                        <h3>Cognizant Technology Solutions, Pune</h3>
+                        <span class="role">Programmer Analyst</span>
+                        <ul>
+                            <li>Executed ETL Data Analyst role, designing and optimizing Informatica jobs</li>
+                            <li>Developed complex SQL queries that enhanced data retrieval efficiency by 60%</li>
+                            <li>Implemented and maintained DevOps scripts and CI/CD pipelines</li>
+                            <li>Created comprehensive data quality dashboards using Power BI</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <h2>Skills & Technologies</h2>
+            <div class="skills-container">
+                <div class="skill-item">
+                    <i class="fab fa-python"></i>
+                    <h3>Python</h3>
+                    <p>Advanced</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-database"></i>
+                    <h3>SQL</h3>
+                    <p>Expert</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-aws"></i>
+                    <h3>AWS</h3>
+                    <p>Intermediate</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-microsoft"></i>
+                    <h3>Azure</h3>
+                    <p>Intermediate</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-cloud"></i>
+                    <h3>ETL</h3>
+                    <p>Expert</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Power BI</h3>
+                    <p>Advanced</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>Tableau</h3>
+                    <p>Intermediate</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-git-alt"></i>
+                    <h3>Git</h3>
+                    <p>Advanced</p>
                 </div>
             </div>
         </div>
@@ -382,11 +665,55 @@
     <!-- Projects Section -->
     <section id="projects" class="section">
         <div class="container">
-            <div class="section-content">
-                <h2>Featured Projects</h2>
-                <div class="projects-grid">
-                    <!-- Projects would go here -->
-                    <p>Project showcase coming soon...</p>
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Cloud Migration" class="project-image">
+                    <div class="project-info">
+                        <h3>Cloud Data Migration Framework</h3>
+                        <p>Developed a comprehensive framework for migrating on-premises data infrastructure to AWS cloud with zero downtime.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">AWS</span>
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">ETL</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/mkhekare/cloud-migration" target="_blank"><i class="fab fa-github"></i> Code</a>
+                            <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1415&q=80" alt="Data Dashboard" class="project-image">
+                    <div class="project-info">
+                        <h3>Automated Data Quality Dashboard</h3>
+                        <p>Created an interactive Power BI dashboard that monitors data quality metrics in real-time across multiple data sources.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Power BI</span>
+                            <span class="project-tag">SQL</span>
+                            <span class="project-tag">Python</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/mkhekare/data-quality-dashboard" target="_blank"><i class="fab fa-github"></i> Code</a>
+                            <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="ETL Optimization" class="project-image">
+                    <div class="project-info">
+                        <h3>ETL Optimization Toolkit</h3>
+                        <p>Built a Python-based toolkit that analyzes and optimizes ETL workflows, reducing processing time by 45%.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">ETL</span>
+                            <span class="project-tag">Performance</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/mkhekare/etl-optimizer" target="_blank"><i class="fab fa-github"></i> Code</a>
+                            <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -395,19 +722,28 @@
     <!-- Contact Section -->
     <section id="contact" class="section">
         <div class="container">
-            <div class="section-content">
-                <h2>Get In Touch</h2>
-                <form class="contact-form">
-                    <input type="text" placeholder="Your Name" required>
-                    <input type="email" placeholder="Your Email" required>
-                    <textarea placeholder="Your Message" required></textarea>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
-                </form>
-            </div>
+            <h2>Get In Touch</h2>
+            <form class="contact-form" id="contactForm">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" required></textarea>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i> Send Message
+                </button>
+            </form>
         </div>
     </section>
 
+    <!-- Footer -->
+    <footer>
+        <p>&copy; <span id="year"></span> Mayur Khekare. All rights reserved.</p>
+        <p>Made with <span class="footer-heart">❤</span> by Mayur</p>
+    </footer>
+
     <script>
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
         // Smooth scroll for navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -418,12 +754,37 @@
             });
         });
 
-        // Simple form handling
-        document.querySelector('.contact-form')?.addEventListener('submit', function(e) {
+        // Form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             alert('Thank you for your message! I will get back to you soon.');
             this.reset();
         });
+
+        // Animate elements when they come into view
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.timeline-item, .skill-item, .project-card');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // Set initial state for animation
+        document.querySelectorAll('.timeline-item, .skill-item, .project-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        });
+
+        window.addEventListener('scroll', animateOnScroll);
+        animateOnScroll(); // Run once on load
     </script>
 </body>
 </html>
