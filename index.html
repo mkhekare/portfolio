@@ -3,156 +3,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mayur Khekare | Data Engineering & BI Professional</title>
-    <meta name="description" content="Portfolio of Mayur Khekare, Data Engineering & BI Professional with expertise in Python, AWS, Azure, ETL, and analytics tools.">
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Your Name | Portfolio</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #6366f1;
+            --secondary: #4f46e5;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .profile-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto 2rem;
+        }
+
+        .profile-photo {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            animation: float 6s ease-in-out infinite;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            border: 4px solid var(--primary);
+        }
+
+        .profile-glare {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle at 70% 30%, 
+                rgba(255, 255, 255, 0.4) 0%, 
+                rgba(255, 255, 255, 0) 70%);
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+
+        /* Animated Links */
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 0.5rem 1rem;
+            color: var(--dark);
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::before {
+            width: 100%;
+        }
+
+        /* Social Links */
+        .social-links {
+            position: fixed;
+            left: 2rem;
+            bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-30px); }
+            60% { transform: translateY(-15px); }
+        }
+
+        /* Section Animation */
+        .section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <nav id="navbar">
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
+    <section class="hero">
         <div class="hero-content">
-            <img src="profile.jpg" alt="Mayur Khekare" class="profile-photo">
-            <h1>Mayur Khekare</h1>
-            <h2>Data Engineering & BI Professional</h2>
-            <p class="summary">Strategic management professional with extensive experience in data engineering, business intelligence, and cloud computing. Specializing in transforming complex data into actionable insights to drive business decisions and operational efficiency.</p>
-            <div class="hero-buttons">
-                <a href="#contact" class="btn btn-primary">
-                    <i class="fas fa-paper-plane"></i> Contact Me
-                </a>
-                <a href="#projects" class="btn btn-secondary">
-                    <i class="fas fa-code"></i> View Projects
-                </a>
+            <div class="profile-container">
+                <img src="profile.jpg" alt="Your Name" class="profile-photo">
+                <div class="profile-glare"></div>
             </div>
+            <h1>Your Name</h1>
+            <p class="subtitle">Data Engineer & Cloud Specialist</p>
+            <nav class="nav-links">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+        </div>
+
+        <div class="social-links">
+            <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+        </div>
+
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="section">
-        <div class="container">
-            <h2 class="section__title">About Me</h2>
-            <div class="about-content">
-                <p>I am a highly skilled and detail-oriented Data Engineering professional with over 3 years of experience in designing, implementing, and optimizing data solutions. My expertise spans across Python programming, cloud computing platforms (AWS and Azure), ETL processes, and advanced analytics.</p>
-                
-                <p>Throughout my career, I've demonstrated a strong ability to automate complex processes, significantly improve data accuracy, and deliver impactful insights that drive business decisions. My technical proficiency is complemented by strategic thinking, allowing me to bridge the gap between technical implementation and business objectives.</p>
-                
-                <p>I have extensive experience in building scalable data pipelines, implementing data warehouses, and creating interactive dashboards that transform raw data into actionable intelligence. My work has consistently resulted in improved operational efficiency, reduced costs, and enhanced decision-making capabilities for stakeholders.</p>
-                
-                <p>What sets me apart is my ability to collaborate effectively with cross-functional teams, translating business requirements into technical solutions. I'm passionate about continuous learning and staying at the forefront of data technologies, which enables me to implement innovative solutions that address complex business challenges.</p>
-                
-                <p>When I'm not working with data, you can find me exploring new technologies, contributing to open-source projects, or mentoring aspiring data professionals. I'm always excited about new opportunities to leverage data for meaningful impact.</p>
-            </div>
-        </div>
-    </section>
+    <!-- Add other sections here -->
 
-    <!-- Experience Section -->
-    <section id="experience" class="section">
-        <div class="container">
-            <h2 class="section__title">Professional Experience</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-date">Oct 2023 - Apr 2024</div>
-                    <div class="timeline-content">
-                        <h3>Cognizant Technology Solutions, Pune <span class="role">- Associate</span></h3>
-                        <ul>
-                            <li>Led end-to-end data engineering initiatives for Fortune 500 insurance client, implementing automated testing frameworks using Cypress and PostgreSQL that reduced testing time by 40%.</li>
-                            <li>Spearheaded migration of on-premises data infrastructure to AWS Cloud, ensuring seamless transition with comprehensive database and batch process testing protocols.</li>
-                            <li>Developed and maintained detailed documentation for ETL processes and data migration strategies, improving team onboarding and knowledge transfer efficiency.</li>
-                            <li>Collaborated with cross-functional teams to design and implement data validation procedures that improved data accuracy by 35%.</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">Jun 2021 - Sep 2023</div>
-                    <div class="timeline-content">
-                        <h3>Cognizant Technology Solutions, Pune <span class="role">- Programmer Analyst</span></h3>
-                        <ul>
-                            <li>Executed ETL Data Analyst role, designing and optimizing Informatica jobs for efficient data loads that processed over 2TB of data daily.</li>
-                            <li>Developed complex SQL queries that enhanced data retrieval efficiency by 60%, significantly reducing report generation times.</li>
-                            <li>Implemented and maintained DevOps scripts and CI/CD pipelines using GitHub and Jenkins, automating deployment processes and reducing manual errors.</li>
-                            <li>Created comprehensive data quality dashboards using Power BI that provided real-time insights into data integrity issues.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <script>
+        // Intersection Observer for section animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
 
-    <!-- Projects Section -->
-    <section id="projects" class="section">
-        <div class="container">
-            <h2 class="section__title">Featured Projects</h2>
-            <div class="projects-grid">
-                <!-- Projects will be loaded dynamically from scripts.js -->
-            </div>
-        </div>
-    </section>
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
 
-    <!-- Skills Section -->
-    <section id="skills" class="section">
-        <div class="container">
-            <h2 class="section__title">Skills & Technologies</h2>
-            <div class="skills-container">
-                <!-- Skills will be loaded dynamically from scripts.js -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section">
-        <div class="container">
-            <h2 class="section__title">Get In Touch</h2>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <p><i class="fas fa-envelope"></i> mkhekare@gmail.com</p>
-                    <p><i class="fas fa-phone"></i> +91 7768924686</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Pune, India</p>
-                    <div class="social-links">
-                        <a href="https://github.com/mkhekare" target="_blank">
-                            <i class="fab fa-github"></i> GitHub
-                        </a>
-                        <a href="https://linkedin.com/in/mayurkhekare" target="_blank">
-                            <i class="fab fa-linkedin"></i> LinkedIn
-                        </a>
-                        <a href="https://twitter.com/mayurkhekare" target="_blank">
-                            <i class="fab fa-twitter"></i> Twitter
-                        </a>
-                    </div>
-                </div>
-                <form class="contact-form" id="contactForm">
-                    <input type="text" placeholder="Your Name" required>
-                    <input type="email" placeholder="Your Email" required>
-                    <textarea placeholder="Your Message" required></textarea>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-paper-plane"></i> Send Message
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; <span id="year"></span> Mayur Khekare. All rights reserved.</p>
-        <p>Designed with <i class="fas fa-heart" style="color: #ff6b6b;"></i> by Mayur</p>
-    </footer>
-
-    <script src="scripts.js"></script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
