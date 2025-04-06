@@ -1,5 +1,8 @@
 # Mayur Khekare - Professional Portfolio
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/9150efda-a73d-4008-843f-94abdbc1c15f/deploy-status)](https://app.netlify.com/sites/mayurkhekare/deploys)
+[https://mkhekare.github.io/portfolio](https://mkhekare.github.io/portfolio)
+
 <img width="1428" alt="Screenshot 2025-04-06 at 2 04 02 AM" src="https://github.com/user-attachments/assets/95ba175c-53bc-4ffb-aa3c-63133e9943e6" />
 
 
