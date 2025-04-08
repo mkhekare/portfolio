@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mkhekare.github.io/sitemap.xml
