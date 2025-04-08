@@ -1,1447 +1,1371 @@
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mayur Khekare | Data Engineering & BI Professional</title>
-    <meta name="description" content="Mayur Khekare - Data Engineering & Business Intelligence Professional. Transforming complex data into actionable insights." />
-    <meta name="author" content="Mayur Khekare" />
-
-    <meta property="og:title" content="Mayur Khekare | Data Engineering & BI Professional" />
-    <meta property="og:description" content="Mayur Khekare - Data Engineering & Business Intelligence Professional. Transforming complex data into actionable insights." />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@mayurkhekare" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-    
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" sizes="any">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-      /* Base styles */
-      :root {
-        --background: 0 0% 100%;
-        --foreground: 240 10% 3.9%;
-        --card: 0 0% 100%;
-        --card-foreground: 240 10% 3.9%;
-        --popover: 0 0% 100%;
-        --popover-foreground: 240 10% 3.9%;
-        --primary: 240 5.9% 10%;
-        --primary-foreground: 0 0% 98%;
-        --secondary: 240 4.8% 95.9%;
-        --secondary-foreground: 240 5.9% 10%;
-        --muted: 240 4.8% 95.9%;
-        --muted-foreground: 240 3.8% 46.1%;
-        --accent: 240 4.8% 95.9%;
-        --accent-foreground: 240 5.9% 10%;
-        --destructive: 0 84.2% 60.2%;
-        --destructive-foreground: 0 0% 98%;
-        --border: 240 5.9% 90%;
-        --input: 240 5.9% 90%;
-        --ring: 240 5.9% 10%;
-        --primary-color: #6366f1;
-      }
+        /* Base Styles */
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #10b981;
+            --accent: #ec4899;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --gray-light: #e2e8f0;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
 
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-      html {
-        scroll-behavior: smooth;
-      }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #f9fafb 0%, #f1f5f9 100%);
+            scroll-behavior: smooth;
+        }
 
-      body {
-        font-family: 'Inter', sans-serif;
-        color: hsl(var(--foreground));
-        background-color: hsl(var(--background));
-        line-height: 1.6;
-      }
+        section {
+            min-height: 100vh;
+            padding: 6rem 2rem;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
 
-      /* Animation classes */
-      @keyframes float {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-20px); }
-      }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 0 1.5rem;
+        }
 
-      @keyframes fade-in {
-        0% { opacity: 0; transform: translateY(10px); }
-        100% { opacity: 1; transform: translateY(0); }
-      }
-      
-      @keyframes pulse-slow {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.5; }
-      }
+        /* Floating Circles Background */
+        .canvas-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+            background: #f8fafc;
+        }
 
-      @keyframes bounce-sm {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-5px); }
-      }
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(99, 102, 241, 0.1);
+            animation: float-circle 15s infinite linear;
+        }
 
-      @keyframes blink {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0; }
-      }
+        @keyframes float-circle {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-1000px) rotate(720deg); }
+        }
 
-      @keyframes typing {
-        from { width: 0 }
-        to { width: 100% }
-      }
+        /* Hero Section */
+        .hero {
+            position: relative;
+            overflow: hidden;
+        }
 
-      @keyframes blink-caret {
-        from, to { border-color: transparent }
-        50% { border-color: var(--primary-color); }
-      }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, rgba(255,255,255,0) 70%);
+            z-index: -1;
+        }
 
-      .animate-float {
-        animation: float 6s ease-in-out infinite;
-      }
-
-      .animate-fade-in {
-        animation: fade-in 0.5s ease-out;
-      }
-
-      .animate-pulse-slow {
-        animation: pulse-slow 3s ease-in-out infinite;
-      }
-
-      .animate-bounce-sm {
-        animation: bounce-sm 2s ease-in-out infinite;
-      }
-
-      .animate-blink {
-        animation: blink 0.75s step-end infinite;
-      }
-
-      .typewriter {
-        overflow: hidden;
-        border-right: 3px solid var(--primary-color);
-        white-space: nowrap;
-        margin: 0;
-        animation: typing 3.5s steps(30, end), blink-caret 0.75s step-end infinite;
-      }
-
-      .animate-on-scroll {
-        opacity: 0;
-        transform: translateY(30px);
-        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-      }
-
-      .animate-on-scroll.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      /* Utility classes */
-      .container {
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 0 2rem;
-      }
-
-      .glass-card {
-        background: rgba(255, 255, 255, 0.7);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 1rem;
-        transition: all 0.3s ease;
-      }
-
-      .gradient-text {
-        background: linear-gradient(to right, #6366f1, #4f46e5);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
-      .skill-badge {
-        background: rgba(99, 102, 241, 0.1);
-        color: #6366f1;
-        padding: 0.5rem 1rem;
-        border-radius: 9999px;
-        font-size: 0.875rem;
-        font-weight: 500;
-        transition: all 0.3s ease;
-      }
-
-      .skill-badge:hover {
-        background: rgba(99, 102, 241, 0.2);
-        transform: translateY(-2px);
-      }
-
-      .social-button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 2.5rem;
-        height: 2.5rem;
-        border-radius: 9999px;
-        background: rgba(99, 102, 241, 0.1);
-        color: #6366f1;
-        transition: all 0.3s ease;
-      }
-
-      .social-button:hover {
-        background: #6366f1;
-        color: white;
-        transform: translateY(-3px);
-      }
-
-      .contact-input {
-        width: 100%;
-        padding: 0.75rem 1rem;
-        border: 1px solid hsl(var(--input));
-        border-radius: 0.5rem;
-        background: white;
-        transition: all 0.3s ease;
-      }
-
-      .contact-input:focus {
-        outline: none;
-        border-color: #6366f1;
-        box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
-      }
-
-      .nav-link {
-        position: relative;
-        padding: 0.5rem 0;
-        color: hsl(var(--foreground));
-        font-weight: 500;
-        transition: all 0.3s ease;
-      }
-
-      .nav-link::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background: #6366f1;
-        transition: all 0.3s ease;
-      }
-
-      .nav-link:hover {
-        color: #6366f1;
-      }
-
-      .nav-link:hover::after {
-        width: 100%;
-      }
-
-      .timeline-dot {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        background: #6366f1;
-        border: 4px solid white;
-      }
-
-      .timeline-line {
-        position: absolute;
-        left: 10px;
-        top: 20px;
-        bottom: 0;
-        width: 2px;
-        background: rgba(99, 102, 241, 0.2);
-      }
-
-      .project-card {
-        background: white;
-        border-radius: 0.75rem;
-        overflow: hidden;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
-      }
-
-      .project-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      }
-
-      .project-image-container {
-        height: 200px;
-        overflow: hidden;
-      }
-
-      .project-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.5s ease;
-      }
-
-      .project-card:hover .project-image {
-        transform: scale(1.05);
-      }
-
-      .project-tag {
-        display: inline-block;
-        background: rgba(99, 102, 241, 0.1);
-        color: #6366f1;
-        padding: 0.25rem 0.75rem;
-        border-radius: 9999px;
-        font-size: 0.75rem;
-        font-weight: 500;
-        margin-right: 0.5rem;
-        margin-bottom: 0.5rem;
-      }
-
-      .project-link {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.375rem;
-        color: rgba(0, 0, 0, 0.7);
-        font-size: 0.875rem;
-        font-weight: 500;
-        transition: color 0.3s ease;
-      }
-
-      .project-link:hover {
-        color: #6366f1;
-      }
-
-      /* Responsive styles */
-      @media (max-width: 768px) {
         .hero-content {
-          flex-direction: column-reverse;
-          text-align: center;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
         }
-        
-        .project-image-container {
-          height: 180px;
-        }
-      }
 
-      @media (max-width: 640px) {
+        .hero-text {
+            padding-right: 2rem;
+        }
+
+        .profile-container {
+            position: relative;
+            width: 350px;
+            height: 450px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            animation: float 6s ease-in-out infinite;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .profile-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.1));
+            transition: var(--transition);
+        }
+
+        .profile-container:hover .profile-photo {
+            transform: scale(1.03) rotateY(5deg);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            line-height: 1.2;
+            background: linear-gradient(45deg, var(--primary), var(--primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary-dark);
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .summary {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        /* Buttons */
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            border: none;
+            outline: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 1px solid var(--gray-light);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Navigation */
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 0.5rem 0;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Social Links */
+        .social-links {
+            position: fixed;
+            left: 2rem;
+            bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 100;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px) scale(1.1);
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-content {
+            position: relative;
+        }
+
+        .about-highlights {
+            margin-top: 2rem;
+        }
+
+        .highlight-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1.2rem;
+            background: rgba(255,255,255,0.7);
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border-left: 4px solid var(--primary);
+        }
+
+        .highlight-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            background: white;
+        }
+
+        .highlight-icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+            min-width: 40px;
+            text-align: center;
+            padding-top: 0.2rem;
+        }
+
+        .about-image {
+            position: relative;
+            height: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            filter: grayscale(20%) contrast(110%);
+            transition: var(--transition);
+        }
+
+        .about-image:hover img {
+            filter: grayscale(0%) contrast(100%);
+            transform: scale(1.03);
+        }
+
+        /* Typewriter Effect */
+        .typewriter {
+            display: inline-block;
+        }
+
+        .typewriter-text {
+            border-right: 3px solid var(--primary);
+            animation: blink-caret 0.75s step-end infinite;
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 0 auto;
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--primary); }
+        }
+
+        /* Extracurricular Section */
+        .extracurricular {
+            background: rgba(16, 185, 129, 0.05);
+        }
+
+        .extracurricular-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .case-competitions {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .case-image {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+        }
+
+        .case-image:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .case-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .sports-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .sport-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .sport-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            background: linear-gradient(45deg, var(--light), white);
+        }
+
+        .sport-icon {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 0 1rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--gray-light);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            width: 100%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            padding-right: 50%;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            padding-left: 50%;
+            text-align: left;
+        }
+
+        .timeline-date {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 20px;
+        }
+
+        .timeline-content {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .timeline-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .role {
+            color: var(--secondary);
+            font-weight: 500;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .timeline-content ul {
+            margin-left: 1.2rem;
+        }
+
+        .timeline-content li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            list-style-type: disc;
+            color: var(--gray);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 4px solid var(--light);
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+
+        .timeline-item:nth-child(odd)::before {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even)::before {
+            left: -10px;
+        }
+
+        /* Skills */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .skill-item {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .skill-item i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .skill-item h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
         .project-card {
-          margin-bottom: 2rem;
+            background: var(--light);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
-      }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .project-image-container {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+
+        .project-info {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-description {
+            color: var(--gray);
+            margin-bottom: 1rem;
+            flex: 1;
+            line-height: 1.6;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .project-tag {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: auto;
+        }
+
+        .project-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-weight: 500;
+            color: var(--primary);
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .project-links a:hover {
+            color: var(--primary-dark);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--gray-light);
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition);
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+        }
+
+        .contact-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: var(--light);
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .footer-heart {
+            color: #ff6b6b;
+            animation: heartbeat 1.5s infinite;
+            display: inline-block;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            section {
+                padding: 4rem 1.5rem;
+            }
+
+            .hero-content, .about-grid, .extracurricular-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+            }
+
+            .hero-text {
+                padding-right: 0;
+                order: 2;
+            }
+
+            .profile-container, .about-image {
+                order: 1;
+                width: 280px;
+                height: 360px;
+                margin: 0 auto;
+            }
+
+            .hero-buttons, .nav-links {
+                justify-content: center;
+            }
+
+            h1 {
+                font-size: 2.8rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            h2::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .timeline::before {
+                left: 31px;
+            }
+
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                padding-left: 70px;
+                padding-right: 0;
+                text-align: left;
+            }
+
+            .timeline-item:nth-child(odd)::before,
+            .timeline-item:nth-child(even)::before {
+                left: 21px;
+            }
+
+            .social-links {
+                position: static;
+                flex-direction: row;
+                justify-content: center;
+                margin-top: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .highlight-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .highlight-icon {
+                margin-bottom: 0.5rem;
+            }
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .section-title h2 {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0;
+        }
+        
+        .typewriter-text {
+            display: inline-flex;
+            align-items: center;
+            border-right: 3px solid var(--primary);
+            animation: blink-caret 0.75s step-end infinite;
+            white-space: nowrap;
+            height: 1em;
+            line-height: 1;
+        }
     </style>
-  </head>
-  <body>
-    <div id="root">
-      <!-- AnimatedBackground -->
-      <canvas class="fixed top-0 left-0 w-full h-full -z-10 opacity-30" style="background: transparent;"></canvas>
-      
-      <!-- Header -->
-      <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300 py-6 bg-transparent">
-        <div class="container max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between">
-          <a href="#home" class="text-xl font-bold tracking-tight gradient-text">
-            Mayur Khekare
-          </a>
-          
-          <!-- Desktop Navigation -->
-          <nav class="hidden md:flex items-center space-x-8">
-            <a href="#home" class="nav-link">Home</a>
-            <a href="#about" class="nav-link">About</a>
-            <a href="#experience" class="nav-link">Experience</a>
-            <a href="#skills" class="nav-link">Skills</a>
-            <a href="#projects" class="nav-link">Projects</a>
-            <a href="#contact" class="nav-link">Contact</a>
-          </nav>
-          
-          <!-- Mobile Menu Button -->
-          <button class="md:hidden text-foreground focus:outline-none" aria-label="Toggle menu">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="3" y1="12" x2="21" y2="12"></line>
-              <line x1="3" y1="6" x2="21" y2="6"></line>
-              <line x1="3" y1="18" x2="21" y2="18"></line>
-            </svg>
-          </button>
-        </div>
-      </header>
+</head>
+<body>
+    <!-- Floating Circles Background -->
+    <canvas class="canvas-background" id="backgroundCanvas"></canvas>
+    <div class="floating-circles" id="circles"></div>
 
-      <!-- Hero Section -->
-      <section id="home" class="min-h-screen pt-32 pb-16 relative flex items-center">
-        <div class="container max-w-7xl mx-auto px-4 md:px-6">
-          <div class="grid md:grid-cols-2 gap-12 items-center">
-            <div class="space-y-6 animate-fade-in">
-              <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-                <span class="gradient-text">Mayur Khekare</span>
-              </h1>
-              <h2 class="text-xl md:text-2xl font-medium text-foreground/80">
-                <span class="typewriter inline-block overflow-hidden whitespace-nowrap animate-blink">
-                  Data Engineering & BI Professional
-                </span>
-              </h2>
-              <p class="text-lg text-foreground/70 max-w-lg">
-                Strategic management professional with extensive experience in data engineering, 
-                business intelligence, and cloud computing. Transforming complex data into actionable insights.
-              </p>
-              
-              <div class="flex flex-wrap gap-4 pt-2">
-                <a href="#contact" class="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-full font-medium hover:bg-primary/90 transition-colors" style="background-color: #6366f1;">
-                  Contact Me 
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
-                  </svg>
-                </a>
-                <a href="#projects" class="inline-flex items-center gap-2 bg-muted text-foreground px-6 py-3 rounded-full font-medium hover:bg-muted/80 transition-colors" style="background-color: rgba(240, 240, 245, 0.8);">
-                  View Projects 
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
-                  </svg>
-                </a>
-              </div>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Mayur Khekare</h1>
+                    <p class="subtitle">Data Engineering & BI Professional</p>
+                    <p class="summary">Strategic management professional with extensive experience in data engineering, business intelligence, and cloud computing. Specializing in transforming complex data into actionable insights to drive business decisions and operational efficiency.</p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Contact Me
+                        </a>
+                        <a href="#projects" class="btn btn-secondary">
+                            <i class="fas fa-code"></i> View Projects
+                        </a>
+                    </div>
+                    <div class="nav-links">
+                        <a href="#about" class="nav-link">About</a>
+                        <a href="#extracurricular" class="nav-link">Achievements</a>
+                        <a href="#experience" class="nav-link">Experience</a>
+                        <a href="#skills" class="nav-link">Skills</a>
+                        <a href="#projects" class="nav-link">Projects</a>
+                        <a href="#contact" class="nav-link">Contact</a>
+                    </div>
+                </div>
+
+                <div class="profile-container">
+                    <img src="profile.jpg" alt="Mayur Khekare" class="profile-photo">
+                </div>
+            </div>
+        </div>
+
+        <div class="social-links">
+            <a href="https://github.com/mkhekare" class="social-link"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/mayurkhekare" class="social-link"><i class="fab fa-linkedin"></i></a>
+            <a href="https://twitter.com/mayurkhekare" class="social-link"><i class="fab fa-twitter"></i></a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me <span class="typewriter-text">🧑‍💻 Consultant</span></h2>
             </div>
             
-            <div class="flex justify-center">
-              <div class="relative w-[280px] h-[350px] md:w-[350px] md:h-[450px] overflow-hidden rounded-2xl shadow-2xl animate-float">
-                <img src="profile.jpg" alt="Mayur Khekare" class="w-full h-full object-cover object-center transform transition-transform duration-500 hover:scale-105">
-                <div class="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent opacity-60" style="background: linear-gradient(to top, rgba(99, 102, 241, 0.4), transparent);"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Social Links -->
-        <div class="hidden md:flex fixed left-8 bottom-0 flex-col gap-5 items-center">
-          <a href="https://github.com/mkhekare" target="_blank" rel="noopener noreferrer" class="social-button" aria-label="GitHub">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-            </svg>
-          </a>
-          <a href="https://linkedin.com/in/mayurkhekare" target="_blank" rel="noopener noreferrer" class="social-button" aria-label="LinkedIn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-              <rect x="2" y="9" width="4" height="12"></rect>
-              <circle cx="4" cy="4" r="2"></circle>
-            </svg>
-          </a>
-          <a href="https://twitter.com/mayurkhekare" target="_blank" rel="noopener noreferrer" class="social-button" aria-label="Twitter">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
-            </svg>
-          </a>
-          <a href="mailto:example@example.com" class="social-button" aria-label="Email">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-              <polyline points="22,6 12,13 2,6"></polyline>
-            </svg>
-          </a>
-          <div class="h-24 w-[1px] bg-muted" style="background-color: rgba(240, 240, 245, 0.8);"></div>
-        </div>
-        
-        <!-- Scroll Indicator -->
-        <a href="#about" class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-foreground/50 hover:text-primary transition-colors">
-          <span class="text-sm font-medium mb-2">Scroll Down</span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="animate-bounce-sm">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
-        </a>
-      </section>
-
-      <!-- About Section -->
-      <section id="about" class="py-24 relative bg-muted/30" style="background-color: rgba(240, 240, 245, 0.3);">
-        <div class="container max-w-7xl mx-auto px-4 md:px-6">
-          <div class="mb-12 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">
-              About Me <span class="text-primary/80" style="color: rgba(99, 102, 241, 0.8);">🧑‍💻</span>
-            </h2>
-            <div class="mx-auto w-24 h-1 bg-primary rounded-full mb-6" style="background-color: #6366f1;"></div>
-            <p class="text-foreground/70 max-w-2xl mx-auto" style="color: rgba(0, 0, 0, 0.7);">
-              Discovering insights through data is my passion. Here's what drives my professional journey.
-            </p>
-          </div>
-          
-          <div class="grid md:grid-cols-2 gap-12 items-center">
-            <div class="space-y-6 animate-on-scroll">
-              <p class="text-lg">
-                I transform raw data into golden insights through cutting-edge engineering and business 
-                intelligence solutions. With 3+ years of experience, I bridge the gap between complex 
-                data systems and strategic business outcomes.
-              </p>
-              
-              <div class="space-y-6 mt-8">
-                <div class="glass-card rounded-xl p-6 transition-all hover:shadow-lg hover:-translate-y-1">
-                  <div class="flex items-start gap-4">
-                    <div class="bg-primary/10 p-3 rounded-lg" style="background-color: rgba(99, 102, 241, 0.1);">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary h-6 w-6">
-                        <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
-                        <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
-                        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
-                      </svg>
+            <div class="about-grid">
+                <div class="about-content">
+                    <p>I transform raw data into golden insights through cutting-edge engineering and business intelligence solutions. With 3+ years of experience, I bridge the gap between complex data systems and strategic business outcomes.</p>
+                    
+                    <div class="about-highlights">
+                        <div class="highlight-item">
+                            <div class="highlight-icon">📊</div>
+                            <div>
+                                <h3>Data Engineering Expert</h3>
+                                <p>Designing robust pipelines that process millions of records daily with Python, SQL, and cloud platforms (AWS/Azure).</p>
+                            </div>
+                        </div>
+                        
+                        <div class="highlight-item">
+                            <div class="highlight-icon">🤖</div>
+                            <div>
+                                <h3>Automation Specialist</h3>
+                                <p>Developed automation frameworks that reduced manual processes by 70% while improving accuracy.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="highlight-item">
+                            <div class="highlight-icon">📈</div>
+                            <div>
+                                <h3>BI Solutions Architect</h3>
+                                <p>Created interactive dashboards that empowered executives with real-time decision-making insights.</p>
+                            </div>
+                        </div>
                     </div>
+                </div>
+                
+                <div class="about-image">
+                    <img src="about-image.jpg" alt="Mayur working on data solutions">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Extracurricular Section -->
+    <section id="extracurricular" class="section extracurricular">
+        <div class="container">
+            <h2>Beyond Tech: Achievements & Interests</h2>
+            <div class="extracurricular-grid">
+                <div class="case-competitions">
                     <div>
-                      <h3 class="text-xl font-semibold mb-2">Data Engineering Expert</h3>
-                      <p class="text-foreground/70" style="color: rgba(0, 0, 0, 0.7);">
-                        Designing robust pipelines that process millions of records daily with Python, 
-                        SQL, and cloud platforms (AWS/Azure).
-                      </p>
+                        <h3>🏆 Case Competition Champion</h3>
+                        <p>Secured multiple podium finishes at prestigious institutions including IIT Delhi, Masters Union, IIM Lucknow, BITS Pilani - Goa, and IIT BHU in analytics, consulting, strategy, and marketing competitions.</p>
                     </div>
-                  </div>
-                </div>
-                
-                <div class="glass-card rounded-xl p-6 transition-all hover:shadow-lg hover:-translate-y-1">
-                  <div class="flex items-start gap-4">
-                    <div class="bg-primary/10 p-3 rounded-lg" style="background-color: rgba(99, 102, 241, 0.1);">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary h-6 w-6">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
-                      </svg>
+                    <div class="case-image">
+                        <img src="case.jpg" alt="Mayur winning case competitions">
                     </div>
-                    <div>
-                      <h3 class="text-xl font-semibold mb-2">Automation Specialist</h3>
-                      <p class="text-foreground/70" style="color: rgba(0, 0, 0, 0.7);">
-                        Developed automation frameworks that reduced manual processes by 70% while 
-                        improving accuracy.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="glass-card rounded-xl p-6 transition-all hover:shadow-lg hover:-translate-y-1">
-                  <div class="flex items-start gap-4">
-                    <div class="bg-primary/10 p-3 rounded-lg" style="background-color: rgba(99, 102, 241, 0.1);">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary h-6 w-6">
-                        <line x1="18" y1="20" x2="18" y2="10"></line>
-                        <line x1="12" y1="20" x2="12" y2="4"></line>
-                        <line x1="6" y1="20" x2="6" y2="14"></line>
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 class="text-xl font-semibold mb-2">BI Solutions Architect</h3>
-                      <p class="text-foreground/70" style="color: rgba(0, 0, 0, 0.7);">
-                        Created interactive dashboards that empowered executives with real-time 
-                        decision-making insights.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="relative animate-on-scroll">
-              <div class="relative overflow-hidden rounded-2xl shadow-xl">
-                <img src="about-image.jpg" alt="Mayur working on data solutions" class="w-full h-auto object-cover transition-transform duration-700 hover:scale-105 filter hover:brightness-110">
-                <div class="absolute inset-0 bg-gradient-to-tr from-primary/30 to-transparent opacity-60" style="background: linear-gradient(to top right, rgba(99, 102, 241, 0.3), transparent);"></div>
-              </div>
-              
-              <!-- Floating shapes for visual interest -->
-              <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-secondary/20 rounded-2xl -z-10" style="background-color: rgba(240, 240, 245, 0.2);"></div>
-              <div class="absolute -top-6 -right-6 w-32 h-32 bg-primary/20 rounded-full -z-10" style="background-color: rgba(99, 102, 241, 0.2);"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Experience Section -->
-      <section id="experience" class="py-24">
-        <div class="container max-w-7xl mx-auto px-4 md:px-6">
-          <div class="mb-16 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4 flex items-center justify-center gap-3">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
-                <path d="M22 20V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H2a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2h7"></path>
-                <rect x="12" y="12" width="10" height="8" rx="2"></rect>
-              </svg>
-              Professional Experience
-            </h2>
-            <div class="mx-auto w-24 h-1 bg-primary rounded-full mb-6" style="background-color: #6366f1;"></div>
-            <p class="text-foreground/70 max-w-2xl mx-auto" style="color: rgba(0, 0, 0, 0.7);">
-              My professional journey in the world of data engineering and business intelligence.
-            </p>
-          </div>
-          
-          <div class="max-w-3xl mx-auto">
-            <div class="relative pl-10 pb-10 animate-on-scroll">
-              <div class="timeline-dot"></div>
-              <div class="timeline-line"></div>
-              
-              <div class="glass-card rounded-xl p-6 hover:shadow-lg transition-all">
-                <span class="inline-block px-3 py-1 bg-primary/10 text-primary text-sm font-medium rounded-full mb-3" style="background-color: rgba(99, 102, 241, 0.1); color: #6366f1;">
-                  Oct 2023 - Apr 2024
-                </span>
-                <h3 class="text-xl font-semibold text-foreground">Cognizant Technology Solutions, Pune</h3>
-                <p class="text-secondary font-medium mb-4" style="color: rgba(0, 0, 0, 0.6);">Associate</p>
-                <ul class="space-y-2">
-                  <li class="flex items-start gap-2 text-foreground/70" style="color: rgba(0, 0, 0, 0.7);">
-                    <span class="text-primary mt-1" style="color: #6366f1;">•</span>
-                    <span>Led end-to-end data engineering initiatives for Fortune 500 insurance client</span>
-                  </li>
-                  <li class="flex items-start gap-2 text-foreground/70" style="color: rgba(0, 0, 0, 0.7);">
-                    <span class="text-primary mt-1" style="color: #6366f1;">•</span>
-                    <span>Spearheaded migration of on-premises data infrastructure to AWS Cloud</span>
-                  </li>
-                  <li class="flex items-start gap-2 text-foreground/70" style="color: rgba(0, 0, 0, 0.7);">
-                    <span class="text-primary mt-1" style="color: #6366f1;">•</span>
-                    <span>Developed and maintained detailed documentation for ETL processes</span>
-                  </li>
-                  <li class="flex items-start gap-2 text-foreground/70" style="color: rgba(0, 0, 0, 0.7);">
-                    <span class="text-primary mt-1" style="color: #6366f1;">•</span>
-                    <span>Collaborated with cross-functional teams to design data validation procedures</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            
-            <div class="relative pl-10 pb-10 animate-on-scroll">
-              <div class="timeline-dot"></div>
-              <div class="timeline-line"></div>
-              
-              <div class="glass-card rounded-xl p-6 hover:shadow-lg transition-all">
-                <span class="inline-block px-3 py-1 bg-primary/10 text-primary text-sm font-medium rounded-full mb-3" style="background-color: rgba(99, 102, 241, 0.1); color: #6366f1;">
-                  Jun 2021 - Sep 2023
-                </span>
-                <h3 class="text-xl font-semibold text-foreground">Cognizant Technology Solutions, Pune</h3>
-                <p class="text-secondary font-medium mb-4" style="color: rgba(0, 0, 0, 0.6);">Programmer Analyst</p>
-                <ul class="space-y-2">
-                  <li class="flex items-start gap-2 text-foreground/70" style="color: rgba(0, 0, 0, 0.7);">
-                    <span class="text-primary mt-1" style="color: #6366f1;">•</span>
-                    <span>Executed ETL Data Analyst role, designing and optimizing Informatica jobs</span>
-                  </li>
-                  <li class="flex items-start gap-2 text-foreground/70" style="color: rgba(0, 0, 0, 0.7);">
-                    <span class="text-primary mt-1" style="color: #6366f1;">•</span>
-                    <span>Developed complex SQL queries that enhanced data retrieval efficiency by 60%</span>
-                  </li>
-                  <li class="flex items-start gap-2 text-foreground/70" style="color: rgba(0, 0, 0, 0.7);">
-                    <span class="text-primary mt-1" style="color: #6366f1;">•</span>
-                    <span>Implemented and maintained DevOps scripts and CI/CD pipelines</span>
-                  </li>
-                  <li class="flex items-start gap-2 text-foreground/70" style="color: rgba(0, 0, 0, 0.7);">
-                    <span class="text-primary mt-1" style="color: #6366f1;">•</span>
-                    <span>Created comprehensive data quality dashboards using Power BI</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Skills Section -->
-      <section id="skills" class="py-24 bg-muted/30" style="background-color: rgba(240, 240, 245, 0.3);">
-        <div class="container max-w-7xl mx-auto px-4 md:px-6">
-          <div class="mb-16 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">Skills & Technologies</h2>
-            <div class="mx-auto w-24 h-1 bg-primary rounded-full mb-6" style="background-color: #6366f1;"></div>
-            <p class="text-foreground/70 max-w-2xl mx-auto" style="color: rgba(0, 0, 0, 0.7);">
-              The tools and technologies I use to bring data solutions to life.
-            </p>
-          </div>
-          
-          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            <div class="glass-card rounded-xl p-6 text-center hover:shadow-lg hover:-translate-y-2 transition-all duration-300 animate-on-scroll">
-              <div class="inline-flex items-center justify-center w-16 h-16 bg-primary/10 text-primary rounded-full mb-4" style="background-color: rgba(99, 102, 241, 0.1); color: #6366f1;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M18 16.8a7.14 7.14 0 0 0 2.24-3.22 8.36 8.36 0 0 0 .25-2.77c.04-3.67-2.76-6.8-6.4-7.05C10.4 3.5 6.95 6.15 6.4 10.17c-.29 2.29.06 4.83 1.79 6.56a8.55 8.55 0 0 0 3.22 1.94 4 4 0 0 0 2.8 2.15 3.9 3.9 0 0 0 4.1-1.55"></path>
-                  <path d="m21 21-4.35-4.35"></path>
-                </svg>
-              </div>
-              <h3 class="text-lg font-semibold mb-1">Python</h3>
-              <p class="text-foreground/60 text-sm" style="color: rgba(0, 0, 0, 0.6);">Advanced</p>
-            </div>
-            
-            <div class="glass-card rounded-xl p-6 text-center hover:shadow-lg hover:-translate-y-2 transition-all duration-300 animate-on-scroll">
-              <div class="inline-flex items-center justify-center w-16 h-16 bg-primary/10 text-primary rounded-full mb-4" style="background-color: rgba(99, 102, 241, 0.1); color: #6366f1;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
-                  <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
-                  <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
-                </svg>
-              </div>
-              <h3 class="text-lg font-semibold mb-1">SQL</h3>
-              <p class="text-foreground/60 text-sm" style="color: rgba(0, 0, 0, 0.6);">Expert</p>
-            </div>
-            
-            <div class="glass-card rounded-xl p-6 text-center hover:shadow-lg hover:-translate-y-2 transition-all duration-300 animate-on-scroll">
-              <div class="inline-flex items-center justify-center w-16 h-16 bg-primary/10 text-primary rounded-full mb-4" style="background-color: rgba(99, 102, 241, 0.1); color: #6366f1;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"></path>
-                  <path d="M9 18h6"></path>
-                  <path d="M10 22h4"></path>
-                </svg>
-              </div>
-              <h3 class="text-lg font-semibold mb-1">AWS</h3>
-              <p class="text-foreground/60 text-sm" style="color: rgba(0, 0, 0, 0.6);">Intermediate</p>
-            </div>
-            
-            <div class="glass-card rounded-xl p-6 text-center hover:shadow-lg hover:-translate-y-2 transition-all duration-300 animate-on-scroll">
-              <div class="inline-flex items-center justify-center w-16 h-16 bg-primary/10 text-primary rounded-full mb-4" style="background-color: rgba(99, 102, 241, 0.1); color: #6366f1;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M2 18h1.4c1.3 0 2.5-.5 3.5-1.4l9.2-9.2c1.8-1.8 4.6-2 6.7-.3l.3.3c1.7 2.1 1.5 5-.3 6.7l-9.2 9.2a5 5 0 0 1-3.5 1.4H2"></path>
-                  <path d="m13.4 6.854 3.746 3.746"></path>
-                  <path d="M4 20v-6a1 1 0 0 1 1-1h5"></path>
-                </svg>
-              </div>
-              <h3 class="text-lg font-semibold mb-1">Azure</h3>
-              <p class="text-foreground/60 text-sm" style="color: rgba(0, 0, 0, 0.6);">Intermediate</p>
-            </div>
-            
-            <div class="glass-card rounded-xl p-6 text-center hover:shadow-lg hover:-translate-y-2 transition-all duration-300 animate-on-scroll">
-              <div class="inline-flex items-center justify-center w-16 h-16 bg-primary/10 text-primary rounded-full mb-4" style="background-color: rgba(99, 102, 241, 0.1); color: #6366f1;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
-                  <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
-                  <line x1="6" y1="6" x2="6.01" y2="6"></line>
-                  <line x1="6" y1="18" x2="6.01" y2="18"></line>
-                </svg>
-              </div>
-              <h3 class="text-lg font-semibold mb-1">ETL</h3>
-              <p class="text-foreground/60 text-sm" style="color: rgba(0, 0, 0, 0.6);">Expert</p>
-            </div>
-            
-            <div class="glass-card rounded-xl p-6 text-center hover:shadow-lg hover:-translate-y-2 transition-all duration-300 animate-on-scroll">
-              <div class="inline-flex items-center justify-center w-16 h-16 bg-primary/10 text-primary rounded-full mb-4" style="background-color: rgba(99, 102, 241, 0.1); color: #6366f1;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="18" y1="20" x2="18" y2="10"></line>
-                  <line x1="12" y1="20" x2="12" y2="4"></line>
-                  <line x1="6" y1="20" x2="6" y2="14"></line>
-                </svg>
-              </div>
-              <h3 class="text-lg font-semibold mb-1">Power BI</h3>
-              <p class="text-foreground/60 text-sm" style="color: rgba(0, 0, 0, 0.6);">Advanced</p>
-            </div>
-            
-            <div class="glass-card rounded-xl p-6 text-center hover:shadow-lg hover:-translate-y-2 transition-all duration-300 animate-on-scroll">
-              <div class="inline-flex items-center justify-center w-16 h-16 bg-primary/10 text-primary rounded-full mb-4" style="background-color: rgba(99, 102, 241, 0.1); color: #6366f1;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="3" width="18" height="18" rx="2"></rect>
-                  <path d="M3 9h18"></path>
-                  <path d="M3 15h18"></path>
-                  <path d="M9 3v18"></path>
-                  <path d="M15 3v18"></path>
-                </svg>
-              </div>
-              <h3 class="text-lg font-semibold mb-1">Tableau</h3>
-              <p class="text-foreground/60 text-sm" style="color: rgba(0, 0, 0, 0.6);">Intermediate</p>
-            </div>
-            
-            <div class="glass-card rounded-xl p-6 text-center hover:shadow-lg hover:-translate-y-2 transition-all duration-300 animate-on-scroll">
-              <div class="inline-flex items-center justify-center w-16 h-16 bg-primary/10 text-primary rounded-full mb-4" style="background-color: rgba(99, 102, 241, 0.1); color: #6366f1;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
-                  <path d="M9 18c-4.51 2-5-2-7-2"></path>
-                </svg>
-              </div>
-              <h3 class="text-lg font-semibold mb-1">Git</h3>
-              <p class="text-foreground/60 text-sm" style="color: rgba(0, 0, 0, 0.6);">Advanced</p>
-            </div>
-          </div>
-          
-          <div class="mt-16">
-            <h3 class="text-2xl font-semibold mb-6 text-center">Other Skills</h3>
-            <div class="flex flex-wrap justify-center gap-3">
-              <span class="skill-badge">Data Modeling</span>
-              <span class="skill-badge">Data Warehousing</span>
-              <span class="skill-badge">Machine Learning</span>
-              <span class="skill-badge">Big Data</span>
-              <span class="skill-badge">CI/CD</span>
-              <span class="skill-badge">Docker</span>
-              <span class="skill-badge">REST APIs</span>
-              <span class="skill-badge">Agile Methodologies</span>
-              <span class="skill-badge">Data Visualization</span>
-              <span class="skill-badge">Cloud Computing</span>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      <!-- Achievements Section -->
-      <section id="extracurricular" class="py-24 bg-muted/30" style="background-color: rgba(240, 240, 245, 0.3);">
-        <div class="container max-w-7xl mx-auto px-4 md:px-6">
-          <div class="mb-12 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">Beyond Tech: Achievements & Interests</h2>
-            <div class="mx-auto w-24 h-1 bg-primary rounded-full mb-6" style="background-color: #6366f1;"></div>
-            <p class="text-foreground/70 max-w-2xl mx-auto" style="color: rgba(0, 0, 0, 0.7);">
-              My life extends beyond code and databases. Here's what I'm passionate about.
-            </p>
-          </div>
-          
-          <div class="grid md:grid-cols-2 gap-12">
-            <div class="space-y-6 animate-on-scroll">
-              <div class="flex items-start gap-4">
-                <div class="bg-primary/10 p-3 rounded-lg mt-1" style="background-color: rgba(99, 102, 241, 0.1);">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary h-6 w-6">
-                    <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
-                    <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
-                    <path d="M4 22h16"></path>
-                    <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
-                    <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
-                    <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
-                  </svg>
                 </div>
                 <div>
-                  <h3 class="text-xl font-semibold mb-3">Case Competition Champion</h3>
-                  <p class="text-foreground/70 mb-4" style="color: rgba(0, 0, 0, 0.7);">
-                    Secured multiple podium finishes at prestigious institutions including IIT Delhi, 
-                    Masters Union, IIM Lucknow, BITS Pilani - Goa, and IIT BHU in analytics, consulting, 
-                    strategy, and marketing competitions.
-                  </p>
+                    <h3>🎾 Sports Enthusiast & Strategist</h3>
+                    <p>Active in badminton, table tennis, volleyball, and football. Chess enthusiast with an Elo rating of 2000 in bullet chess - proving strategic thinking extends beyond the board.</p>
+                    <div class="sports-list">
+                        <div class="sport-item">
+                            <div class="sport-icon">🏸</div>
+                            <h4>Badminton</h4>
+                            <p>Competitive player</p>
+                        </div>
+                        <div class="sport-item">
+                            <div class="sport-icon">♟️</div>
+                            <h4>Chess</h4>
+                            <p>2000 Elo (Bullet)</p>
+                        </div>
+                        <div class="sport-item">
+                            <div class="sport-icon">🏓</div>
+                            <h4>Table Tennis</h4>
+                            <p>University level</p>
+                        </div>
+                        <div class="sport-item">
+                            <div class="sport-icon">⚽</div>
+                            <h4>Football</h4>
+                            <p>Avid player</p>
+                        </div>
+                    </div>
+                    <div class="case-image" style="margin-top: 2rem;">
+                        <img src="extra.jpg" alt="Mayur in sports activities">
+                    </div>
                 </div>
-              </div>
-              
-              <div class="relative overflow-hidden rounded-xl shadow-lg">
-                <img src="case.jpg" alt="Mayur winning case competitions" class="w-full h-auto object-cover transition-transform duration-700 hover:scale-105">
-                <div class="absolute inset-0 bg-gradient-to-tr from-primary/30 to-transparent opacity-60" style="background: linear-gradient(to top right, rgba(99, 102, 241, 0.3), transparent);"></div>
-              </div>
             </div>
-            
-            <div class="space-y-6 animate-on-scroll">
-              <div class="flex items-start gap-4">
-                <div class="bg-primary/10 p-3 rounded-lg mt-1" style="background-color: rgba(99, 102, 241, 0.1);">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary h-6 w-6">
-                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="text-xl font-semibold mb-3">Sports Enthusiast & Strategist</h3>
-                  <p class="text-foreground/70 mb-4" style="color: rgba(0, 0, 0, 0.7);">
-                    Active in badminton, table tennis, volleyball, and football. Chess enthusiast 
-                    with an Elo rating of 2000 in bullet chess - proving strategic thinking extends 
-                    beyond the board.
-                  </p>
-                </div>
-              </div>
-              
-              <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                <div class="glass-card rounded-xl p-4 text-center hover:shadow-lg hover:-translate-y-1 transition-all">
-                  <div class="text-3xl mb-2">🏸</div>
-                  <h4 class="font-medium">Badminton</h4>
-                  <p class="text-sm text-foreground/60" style="color: rgba(0, 0, 0, 0.6);">Competitive player</p>
-                </div>
-                <div class="glass-card rounded-xl p-4 text-center hover:shadow-lg hover:-translate-y-1 transition-all">
-                  <div class="text-3xl mb-2">♟️</div>
-                  <h4 class="font-medium">Chess</h4>
-                  <p class="text-sm text-foreground/60" style="color: rgba(0, 0, 0, 0.6);">2000 Elo (Bullet)</p>
-                </div>
-                <div class="glass-card rounded-xl p-4 text-center hover:shadow-lg hover:-translate-y-1 transition-all">
-                  <div class="text-3xl mb-2">🏓</div>
-                  <h4 class="font-medium">Table Tennis</h4>
-                  <p class="text-sm text-foreground/60" style="color: rgba(0, 0, 0, 0.6);">University level</p>
-                </div>
-                <div class="glass-card rounded-xl p-4 text-center hover:shadow-lg hover:-translate-y-1 transition-all">
-                  <div class="text-3xl mb-2">⚽</div>
-                  <h4 class="font-medium">Football</h4>
-                  <p class="text-sm text-foreground/60" style="color: rgba(0, 0, 0, 0.6);">Avid player</p>
-                </div>
-              </div>
-              
-              <div class="relative overflow-hidden rounded-xl shadow-lg mt-4">
-                <img src="extra.jpg" alt="Mayur in sports activities" class="w-full h-auto object-cover transition-transform duration-700 hover:scale-105">
-                <div class="absolute inset-0 bg-gradient-to-tr from-primary/30 to-transparent opacity-60" style="background: linear-gradient(to top right, rgba(99, 102, 241, 0.3), transparent);"></div>
-              </div>
-            </div>
-          </div>
         </div>
-      </section>
+    </section>
 
-      <!-- Projects Section -->
-      <section id="projects" class="py-24">
-        <div class="container max-w-7xl mx-auto px-4 md:px-6">
-          <div class="mb-16 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">Featured Projects</h2>
-            <div class="mx-auto w-24 h-1 bg-primary rounded-full mb-6" style="background-color: #6366f1;"></div>
-            <p class="text-foreground/70 max-w-2xl mx-auto" style="color: rgba(0, 0, 0, 0.7);">
-              Showcase of my recent work and projects in data engineering, analysis, and machine learning.
-            </p>
-          </div>
-          
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Project 1: City Livability Index -->
-            <div class="project-card animate-on-scroll">
-              <div class="project-image-container">
-                <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="City Livability Index" class="project-image">
-              </div>
-              <div class="p-6">
-                <h3 class="text-xl font-semibold mb-2">City Livability Index</h3>
-                <p class="text-foreground/70 mb-4" style="color: rgba(0, 0, 0, 0.7);">
-                  Developed a comprehensive livability index for 100 Indian cities using statistical modeling, including linear regression and clustering algorithms to deliver predictive insights for urban planning.
-                </p>
-                
-                <div class="flex flex-wrap gap-2 mb-4">
-                  <span class="project-tag">R</span>
-                  <span class="project-tag">Excel</span>
-                  <span class="project-tag">Statistical Modeling</span>
-                  <span class="project-tag">Clustering</span>
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+        <div class="container">
+            <h2>Professional Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">Oct 2023 - Apr 2024</div>
+                    <div class="timeline-content">
+                        <h3>Cognizant Technology Solutions, Pune</h3>
+                        <span class="role">Associate</span>
+                        <ul>
+                            <li>Led end-to-end data engineering initiatives for Fortune 500 insurance client</li>
+                            <li>Spearheaded migration of on-premises data infrastructure to AWS Cloud</li>
+                            <li>Developed and maintained detailed documentation for ETL processes</li>
+                            <li>Collaborated with cross-functional teams to design data validation procedures</li>
+                        </ul>
+                    </div>
                 </div>
-                
-                <div class="flex gap-4">
-                  <a href="https://github.com/mkhekare/urban-analytics" target="_blank" rel="noopener noreferrer" class="project-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
-                      <path d="M9 18c-4.51 2-5-2-7-2"></path>
-                    </svg> 
-                    Code
-                  </a>
+                <div class="timeline-item">
+                    <div class="timeline-date">Jun 2021 - Sep 2023</div>
+                    <div class="timeline-content">
+                        <h3>Cognizant Technology Solutions, Pune</h3>
+                        <span class="role">Programmer Analyst</span>
+                        <ul>
+                            <li>Executed ETL Data Analyst role, designing and optimizing Informatica jobs</li>
+                            <li>Developed complex SQL queries that enhanced data retrieval efficiency by 60%</li>
+                            <li>Implemented and maintained DevOps scripts and CI/CD pipelines</li>
+                            <li>Created comprehensive data quality dashboards using Power BI</li>
+                        </ul>
+                    </div>
                 </div>
-              </div>
             </div>
-            
-            <!-- Project 2: Data Analysis Assistant -->
-            <div class="project-card animate-on-scroll">
-              <div class="project-image-container">
-                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Data Analysis Assistant" class="project-image">
-              </div>
-              <div class="p-6">
-                <h3 class="text-xl font-semibold mb-2">Data Analysis Assistant</h3>
-                <p class="text-foreground/70 mb-4" style="color: rgba(0, 0, 0, 0.7);">
-                  Created an interactive data analysis application using Streamlit and Python that helps users explore datasets, visualize trends, and generate statistical insights without coding knowledge.
-                </p>
-                
-                <div class="flex flex-wrap gap-2 mb-4">
-                  <span class="project-tag">Python</span>
-                  <span class="project-tag">Streamlit</span>
-                  <span class="project-tag">Pandas</span>
-                  <span class="project-tag">Data Visualization</span>
-                </div>
-                
-                <div class="flex gap-4">
-                  <a href="https://github.com/mkhekare/data-analysis-app" target="_blank" rel="noopener noreferrer" class="project-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
-                      <path d="M9 18c-4.51 2-5-2-7-2"></path>
-                    </svg> 
-                    Code
-                  </a>
-                  <a href="https://huggingface.co/spaces/mkhekare/DataAnalyst" target="_blank" rel="noopener noreferrer" class="project-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                      <polyline points="15 3 21 3 21 9"></polyline>
-                      <line x1="10" y1="14" x2="21" y2="3"></line>
-                    </svg> 
-                    Live Demo
-                  </a>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Project 3: Machine Learning Portfolio -->
-            <div class="project-card animate-on-scroll">
-              <div class="project-image-container">
-                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Machine Learning Portfolio" class="project-image">
-              </div>
-              <div class="p-6">
-                <h3 class="text-xl font-semibold mb-2">Machine Learning Portfolio</h3>
-                <p class="text-foreground/70 mb-4" style="color: rgba(0, 0, 0, 0.7);">
-                  Applied CRISP-DM methodology on Iris and Titanic datasets to perform data wrangling, exploratory data analysis, and feature engineering while implementing various ML algorithms.
-                </p>
-                
-                <div class="flex flex-wrap gap-2 mb-4">
-                  <span class="project-tag">Python</span>
-                  <span class="project-tag">Scikit-learn</span>
-                  <span class="project-tag">EDA</span>
-                  <span class="project-tag">Classification</span>
-                </div>
-                
-                <div class="flex gap-4">
-                  <a href="https://github.com/mkhekare/ml-models" target="_blank" rel="noopener noreferrer" class="project-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
-                      <path d="M9 18c-4.51 2-5-2-7-2"></path>
-                    </svg> 
-                    Code
-                  </a>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Project 4: ETL Pipeline Automation -->
-            <div class="project-card animate-on-scroll">
-              <div class="project-image-container">
-                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="ETL Pipeline Automation" class="project-image">
-              </div>
-              <div class="p-6">
-                <h3 class="text-xl font-semibold mb-2">ETL Pipeline Automation</h3>
-                <p class="text-foreground/70 mb-4" style="color: rgba(0, 0, 0, 0.7);">
-                  Built an automated ETL pipeline that processes data from multiple sources, performs transformations, and loads it into a data warehouse, improving processing efficiency by 65%.
-                </p>
-                
-                <div class="flex flex-wrap gap-2 mb-4">
-                  <span class="project-tag">Python</span>
-                  <span class="project-tag">SQL</span>
-                  <span class="project-tag">AWS</span>
-                  <span class="project-tag">Data Engineering</span>
-                </div>
-                
-                <div class="flex gap-4">
-                  <a href="https://github.com/mkhekare/etl-automation" target="_blank" rel="noopener noreferrer" class="project-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
-                      <path d="M9 18c-4.51 2-5-2-7-2"></path>
-                    </svg> 
-                    Code
-                  </a>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Project 5: Financial Data Analysis Dashboard -->
-            <div class="project-card animate-on-scroll">
-              <div class="project-image-container">
-                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Financial Data Analysis Dashboard" class="project-image">
-              </div>
-              <div class="p-6">
-                <h3 class="text-xl font-semibold mb-2">Financial Data Analysis Dashboard</h3>
-                <p class="text-foreground/70 mb-4" style="color: rgba(0, 0, 0, 0.7);">
-                  Created an interactive dashboard that visualizes financial data, identifies patterns, and provides insights for investment decisions using Power BI and Python integration.
-                </p>
-                
-                <div class="flex flex-wrap gap-2 mb-4">
-                  <span class="project-tag">Power BI</span>
-                  <span class="project-tag">Python</span>
-                  <span class="project-tag">Financial Analysis</span>
-                </div>
-                
-                <div class="flex gap-4">
-                  <a href="https://github.com/mkhekare/financial-dashboard" target="_blank" rel="noopener noreferrer" class="project-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
-                      <path d="M9 18c-4.51 2-5-2-7-2"></path>
-                    </svg> 
-                    Code
-                  </a>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Project 6: Sentiment Analysis Tool -->
-            <div class="project-card animate-on-scroll">
-              <div class="project-image-container">
-                <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Sentiment Analysis Tool" class="project-image">
-              </div>
-              <div class="p-6">
-                <h3 class="text-xl font-semibold mb-2">Sentiment Analysis Tool</h3>
-                <p class="text-foreground/70 mb-4" style="color: rgba(0, 0, 0, 0.7);">
-                  Developed a natural language processing application that analyzes customer feedback and reviews, extracts sentiments, and generates actionable insights for product improvements.
-                </p>
-                
-                <div class="flex flex-wrap gap-2 mb-4">
-                  <span class="project-tag">NLP</span>
-                  <span class="project-tag">Python</span>
-                  <span class="project-tag">NLTK</span>
-                  <span class="project-tag">Machine Learning</span>
-                </div>
-                
-                <div class="flex gap-4">
-                  <a href="https://github.com/mkhekare/sentiment-analyzer" target="_blank" rel="noopener noreferrer" class="project-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
-                      <path d="M9 18c-4.51 2-5-2-7-2"></path>
-                    </svg> 
-                    Code
-                  </a>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Project 7: Predictive Maintenance System -->
-            <div class="project-card animate-on-scroll">
-              <div class="project-image-container">
-                <img src="https://images.unsplash.com/photo-1581092921461-39b10f61b9d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Predictive Maintenance System" class="project-image">
-              </div>
-              <div class="p-6">
-                <h3 class="text-xl font-semibold mb-2">Predictive Maintenance System</h3>
-                <p class="text-foreground/70 mb-4" style="color: rgba(0, 0, 0, 0.7);">
-                  Implemented a system that predicts equipment failures before they occur using IoT sensor data and machine learning algorithms, reducing downtime and maintenance costs.
-                </p>
-                
-                <div class="flex flex-wrap gap-2 mb-4">
-                  <span class="project-tag">IoT</span>
-                  <span class="project-tag">Machine Learning</span>
-                  <span class="project-tag">Time Series Analysis</span>
-                </div>
-                
-                <div class="flex gap-4">
-                  <a href="https://github.com/mkhekare/predictive-maintenance" target="_blank" rel="noopener noreferrer" class="project-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
-                      <path d="M9 18c-4.51 2-5-2-7-2"></path>
-                    </svg> 
-                    Code
-                  </a>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Project 8: Cloud Data Migration Framework -->
-            <div class="project-card animate-on-scroll">
-              <div class="project-image-container">
-                <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Cloud Data Migration Framework" class="project-image">
-              </div>
-              <div class="p-6">
-                <h3 class="text-xl font-semibold mb-2">Cloud Data Migration Framework</h3>
-                <p class="text-foreground/70 mb-4" style="color: rgba(0, 0, 0, 0.7);">
-                  Created a comprehensive framework for migrating on-premises data infrastructure to AWS cloud with zero downtime, ensuring data integrity and business continuity.
-                </p>
-                
-                <div class="flex flex-wrap gap-2 mb-4">
-                  <span class="project-tag">AWS</span>
-                  <span class="project-tag">Python</span>
-                  <span class="project-tag">ETL</span>
-                  <span class="project-tag">Cloud Computing</span>
-                </div>
-                
-                <div class="flex gap-4">
-                  <a href="https://github.com/mkhekare/cloud-migration" target="_blank" rel="noopener noreferrer" class="project-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
-                      <path d="M9 18c-4.51 2-5-2-7-2"></path>
-                    </svg> 
-                    Code
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-      </section>
+    </section>
 
-      <!-- Contact Section -->
-      <section id="contact" class="py-24">
-        <div class="container max-w-7xl mx-auto px-4 md:px-6">
-          <div class="mb-12 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
-            <div class="mx-auto w-24 h-1 bg-primary rounded-full mb-6" style="background-color: #6366f1;"></div>
-            <p class="text-foreground/70 max-w-2xl mx-auto" style="color: rgba(0, 0, 0, 0.7);">
-              Have a project in mind or want to discuss potential opportunities? I'd love to hear from you!
-            </p>
-          </div>
-          
-          <div class="max-w-3xl mx-auto">
-            <form class="glass-card rounded-xl p-8 shadow-md animate-on-scroll">
-              <div class="grid md:grid-cols-2 gap-6 mb-6">
-                <div>
-                  <label for="name" class="block mb-2 text-sm font-medium">
-                    Your Name
-                  </label>
-                  <input type="text" id="name" class="contact-input" placeholder="Enter your name" required />
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <h2>Skills & Technologies</h2>
+            <div class="skills-container">
+                <div class="skill-item">
+                    <i class="fab fa-python"></i>
+                    <h3>Python</h3>
+                    <p>Advanced</p>
                 </div>
-                <div>
-                  <label for="email" class="block mb-2 text-sm font-medium">
-                    Your Email
-                  </label>
-                  <input type="email" id="email" class="contact-input" placeholder="Enter your email" required />
+                <div class="skill-item">
+                    <i class="fas fa-database"></i>
+                    <h3>SQL</h3>
+                    <p>Expert</p>
                 </div>
-              </div>
-              
-              <div class="mb-6">
-                <label for="subject" class="block mb-2 text-sm font-medium">
-                  Subject
-                </label>
-                <input type="text" id="subject" class="contact-input" placeholder="How can I help you?" />
-              </div>
-              
-              <div class="mb-6">
-                <label for="message" class="block mb-2 text-sm font-medium">
-                  Your Message
-                </label>
-                <textarea id="message" rows="5" class="contact-input" placeholder="Type your message here..." required></textarea>
-              </div>
-              
-              <button type="submit" class="w-full bg-primary text-white py-3 px-6 rounded-lg font-medium hover:bg-primary/90 transition-colors" style="background-color: #6366f1;">
-                Send Message
-              </button>
+                <div class="skill-item">
+                    <i class="fab fa-aws"></i>
+                    <h3>AWS</h3>
+                    <p>Intermediate</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-microsoft"></i>
+                    <h3>Azure</h3>
+                    <p>Intermediate</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-cloud"></i>
+                    <h3>ETL</h3>
+                    <p>Expert</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Power BI</h3>
+                    <p>Advanced</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>Tableau</h3>
+                    <p>Intermediate</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-git-alt"></i>
+                    <h3>Git</h3>
+                    <p>Advanced</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-image-container">
+                        <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="City Livability Index" class="project-image">
+                    </div>
+                    <div class="project-info">
+                        <h3>City Livability Index</h3>
+                        <p class="project-description">Developed a comprehensive livability index for 100 Indian cities using statistical modeling, including linear regression and clustering algorithms to deliver predictive insights for urban planning.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">R</span>
+                            <span class="project-tag">Excel</span>
+                            <span class="project-tag">Statistical Modeling</span>
+                            <span class="project-tag">Clustering</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/mkhekare/urban-analytics" target="_blank"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-image-container">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Data Analysis Assistant" class="project-image">
+                    </div>
+                    <div class="project-info">
+                        <h3>Data Analysis Assistant</h3>
+                        <p class="project-description">Created an interactive data analysis application using Streamlit and Python that helps users explore datasets, visualize trends, and generate statistical insights without coding knowledge.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">Streamlit</span>
+                            <span class="project-tag">Pandas</span>
+                            <span class="project-tag">Data Visualization</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/mkhekare/data-analysis-app" target="_blank"><i class="fab fa-github"></i> Code</a>
+                            <a href="https://huggingface.co/spaces/mkhekare/DataAnalyst" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-image-container">
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="ML Portfolio" class="project-image">
+                    </div>
+                    <div class="project-info">
+                        <h3>ML Portfolio: CRISP-DM Implementation</h3>
+                        <p class="project-description">Applied CRISP-DM methodology on Iris and Titanic datasets to perform data wrangling, EDA, and feature engineering, implementing ML algorithms (regression, classification, decision trees, ensembles).</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">Scikit-learn</span>
+                            <span class="project-tag">EDA</span>
+                            <span class="project-tag">Classification</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/mkhekare/ml-portfolio" target="_blank"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="project-card">
+                    <div class="project-image-container">
+                        <img src="https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Weather Data Analysis" class="project-image">
+                    </div>
+                    <div class="project-info">
+                        <h3>Weather Data Analysis</h3>
+                        <p class="project-description">Developed a Python application to analyze weather patterns and predict temperature trends using historical data, identifying seasonal patterns and anomalies.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">Pandas</span>
+                            <span class="project-tag">Time Series Analysis</span>
+                            <span class="project-tag">Data Visualization</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/mkhekare/weather-analysis" target="_blank"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 5 -->
+                <div class="project-card">
+                    <div class="project-image-container">
+                        <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Resume Parser" class="project-image">
+                    </div>
+                    <div class="project-info">
+                        <h3>Resume Parser</h3>
+                        <p class="project-description">Created an NLP-based resume parser that extracts key information from resumes, helping HR professionals efficiently process applications by identifying skills, experience, and qualifications.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">NLP</span>
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">spaCy</span>
+                            <span class="project-tag">Text Processing</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/mkhekare/resume-parser" target="_blank"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 6 -->
+                <div class="project-card">
+                    <div class="project-image-container">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Customer Segmentation Tool" class="project-image">
+                    </div>
+                    <div class="project-info">
+                        <h3>Customer Segmentation Tool</h3>
+                        <p class="project-description">Implemented a customer segmentation solution using K-means clustering to identify distinct customer groups based on purchasing behavior, enabling targeted marketing strategies.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">Clustering</span>
+                            <span class="project-tag">Data Analysis</span>
+                            <span class="project-tag">Marketing</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/mkhekare/customer-segmentation" target="_blank"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 7 -->
+                <div class="project-card">
+                    <div class="project-image-container">
+                        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Healthcare Data Analytics" class="project-image">
+                    </div>
+                    <div class="project-info">
+                        <h3>Healthcare Data Analytics</h3>
+                        <p class="project-description">Built a comprehensive analytics solution for healthcare data, including patient outcome prediction, treatment effectiveness analysis, and resource optimization recommendations.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">R</span>
+                            <span class="project-tag">Statistical Analysis</span>
+                            <span class="project-tag">Healthcare</span>
+                            <span class="project-tag">Predictive Modeling</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/mkhekare/healthcare-analytics" target="_blank"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 8 -->
+                <div class="project-card">
+                    <div class="project-image-container">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Sales Forecasting System" class="project-image">
+                    </div>
+                    <div class="project-info">
+                        <h3>Sales Forecasting System</h3>
+                        <p class="project-description">Developed a time series forecasting system that predicts future sales based on historical data, seasonal trends, and external factors, helping businesses optimize inventory management.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">Time Series</span>
+                            <span class="project-tag">Forecasting</span>
+                            <span class="project-tag">Business Intelligence</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/mkhekare/sales-forecasting" target="_blank"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <form class="contact-form" id="contactForm">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" required></textarea>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i> Send Message
+                </button>
             </form>
-            
-            <div class="mt-12 flex justify-center md:hidden">
-              <div class="flex gap-5">
-                <a href="https://github.com/mkhekare" target="_blank" rel="noopener noreferrer" class="social-button" aria-label="GitHub">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
-                    <path d="M9 18c-4.51 2-5-2-7-2"></path>
-                  </svg>
-                </a>
-                <a href="https://linkedin.com/in/mayurkhekare" target="_blank" rel="noopener noreferrer" class="social-button" aria-label="LinkedIn">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                    <rect x="2" y="9" width="4" height="12"></rect>
-                    <circle cx="4" cy="4" r="2"></circle>
-                  </svg>
-                </a>
-                <a href="https://twitter.com/mayurkhekare" target="_blank" rel="noopener noreferrer" class="social-button" aria-label="Twitter">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
-                  </svg>
-                </a>
-                <a href="mailto:example@example.com" class="social-button" aria-label="Email">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                    <polyline points="22,6 12,13 2,6"></polyline>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
         </div>
-      </section>
+    </section>
 
-      <!-- Footer -->
-      <footer class="py-8 bg-primary/5" style="background-color: rgba(99, 102, 241, 0.05);">
-        <div class="container max-w-7xl mx-auto px-4 md:px-6 text-center">
-          <p class="mb-2">
-            &copy; 2025 Mayur Khekare. All rights reserved.
-          </p>
-          <p class="text-foreground/70 flex items-center justify-center gap-1" style="color: rgba(0, 0, 0, 0.7);">
-            Made with 
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#ec4899" stroke="#ec4899" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent animate-pulse-slow">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"></path>
-            </svg>
-            by Mayur
-          </p>
-        </div>
-      </footer>
-    </div>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; <span id="year"></span> Mayur Khekare. All rights reserved.</p>
+        <p>Made with <span class="footer-heart">❤</span> by Mayur</p>
+    </footer>
 
     <script>
-      // Animated background
-      document.addEventListener('DOMContentLoaded', () => {
-        const canvas = document.querySelector('canvas');
-        const ctx = canvas.getContext('2d');
-        const particles = [];
-        const particleCount = 80;
-        const lineDistance = 150;
-        const primaryColor = '99, 102, 241'; // Primary color in RGB
-        
-        function resize() {
-          canvas.width = window.innerWidth;
-          canvas.height = window.innerHeight;
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        class BackgroundAnimation {
+            constructor() {
+                this.canvas = document.getElementById('backgroundCanvas');
+                this.ctx = this.canvas.getContext('2d');
+                this.particles = [];
+                this.particleCount = 90;
+                this.lineDistance = 150;
+                this.primaryColor = '99, 102, 241'; // Your primary color in RGB
+
+                this.init();
+                this.animate();
+            }
+
+            init() {
+                this.resize();
+                window.addEventListener('resize', () => this.resize());
+
+                // Create particles
+                for(let i = 0; i < this.particleCount; i++) {
+                    this.particles.push({
+                        x: Math.random() * this.canvas.width,
+                        y: Math.random() * this.canvas.height,
+                        dx: (Math.random() - 0.5) * 0.4,
+                        dy: (Math.random() - 0.5) * 0.4,
+                        size: Math.random() * 1.5 + 0.5
+                    });
+                }
+            }
+
+            resize() {
+                this.canvas.width = window.innerWidth;
+                this.canvas.height = window.innerHeight;
+            }
+
+            draw() {
+                // Clear with slight fade effect
+                this.ctx.fillStyle = 'rgba(248, 250, 252, 0.2)';
+                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+                
+                // Draw blue particles
+                this.particles.forEach(particle => {
+                    this.ctx.beginPath();
+                    this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                    this.ctx.fillStyle = `rgba(${this.primaryColor}, 0.3)`;
+                    this.ctx.fill();
+
+                    // Update position
+                    particle.x += particle.dx;
+                    particle.y += particle.dy;
+
+                    // Bounce off edges
+                    if(particle.x < 0 || particle.x > this.canvas.width) particle.dx *= -1;
+                    if(particle.y < 0 || particle.y > this.canvas.height) particle.dy *= -1;
+                });
+
+                // Draw blue connecting lines
+                this.particles.forEach((a, i) => {
+                    this.particles.slice(i).forEach(b => {
+                        const dx = a.x - b.x;
+                        const dy = a.y - b.y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+
+                        if(dist < this.lineDistance) {
+                            this.ctx.beginPath();
+                            this.ctx.moveTo(a.x, a.y);
+                            this.ctx.lineTo(b.x, b.y);
+                            const opacity = 0.7 * (1 - dist/this.lineDistance);
+                            this.ctx.strokeStyle = `rgba(${this.primaryColor}, ${opacity})`;
+                            this.ctx.lineWidth = 1.5;
+                            this.ctx.stroke();
+                        }
+                    });
+                });
+            }
+
+            animate() {
+                this.draw();
+                requestAnimationFrame(() => this.animate());
+            }
         }
-        
-        function init() {
-          resize();
-          
-          // Create particles
-          for (let i = 0; i < particleCount; i++) {
-            particles.push({
-              x: Math.random() * canvas.width,
-              y: Math.random() * canvas.height,
-              dx: (Math.random() - 0.5) * 0.4,
-              dy: (Math.random() - 0.5) * 0.4,
-              size: Math.random() * 1.5 + 0.5
+
+        document.addEventListener('DOMContentLoaded', () => {
+            new BackgroundAnimation();
+            
+            // Scroll animation for project cards
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = "1";
+                        entry.target.style.transform = "translateY(0)";
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.project-card').forEach(card => {
+                card.style.opacity = "0";
+                card.style.transform = "translateY(20px)";
+                card.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+                observer.observe(card);
             });
-          }
-        }
-        
-        function draw() {
-          // Clear with slight fade effect
-          ctx.fillStyle = 'rgba(248, 250, 252, 0.2)';
-          ctx.fillRect(0, 0, canvas.width, canvas.height);
-          
-          // Draw particles
-          particles.forEach(particle => {
-            ctx.beginPath();
-            ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(${primaryColor}, 0.3)`;
-            ctx.fill();
             
-            // Update position
-            particle.x += particle.dx;
-            particle.y += particle.dy;
-            
-            // Bounce off edges
-            if (particle.x < 0 || particle.x > canvas.width) particle.dx *= -1;
-            if (particle.y < 0 || particle.y > canvas.height) particle.dy *= -1;
-          });
-          
-          // Draw connecting lines
-          particles.forEach((a, i) => {
-            particles.slice(i).forEach(b => {
-              const dx = a.x - b.x;
-              const dy = a.y - b.y;
-              const dist = Math.sqrt(dx * dx + dy * dy);
-              
-              if (dist < lineDistance) {
-                ctx.beginPath();
-                ctx.moveTo(a.x, a.y);
-                ctx.lineTo(b.x, b.y);
-                const opacity = 0.7 * (1 - dist / lineDistance);
-                ctx.strokeStyle = `rgba(${primaryColor}, ${opacity})`;
-                ctx.lineWidth = 1;
-                ctx.stroke();
-              }
+            // Simple form submission prevention
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your message! This form is not connected to a backend yet.');
+                this.reset();
             });
-          });
-          
-          requestAnimationFrame(draw);
-        }
-        
-        init();
-        draw();
-        
-        window.addEventListener('resize', resize);
-      });
-      
-      // Scroll animations
-      document.addEventListener('DOMContentLoaded', () => {
-        const animateElements = () => {
-          const elements = document.querySelectorAll('.animate-on-scroll');
-          
-          elements.forEach(element => {
-            const elementTop = element.getBoundingClientRect().top;
-            const windowHeight = window.innerHeight;
-            
-            if (elementTop < windowHeight * 0.9) {
-              element.classList.add('visible');
-            }
-          });
-        };
-        
-        // Run on page load
-        animateElements();
-        
-        // Run on scroll
-        window.addEventListener('scroll', animateElements);
-      });
-      
-      // Header scroll effect
-      document.addEventListener('DOMContentLoaded', () => {
-        const header = document.querySelector('header');
-        
-        window.addEventListener('scroll', () => {
-          if (window.scrollY > 20) {
-            header.classList.remove('py-6', 'bg-transparent');
-            header.classList.add('py-3', 'bg-background/80', 'backdrop-blur-md', 'shadow-sm');
-            header.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
-            header.style.backdropFilter = 'blur(8px)';
-            header.style.boxShadow = '0 1px 2px rgba(0, 0, 0, 0.1)';
-          } else {
-            header.classList.add('py-6', 'bg-transparent');
-            header.classList.remove('py-3', 'bg-background/80', 'backdrop-blur-md', 'shadow-sm');
-            header.style.backgroundColor = 'transparent';
-            header.style.backdropFilter = 'none';
-            header.style.boxShadow = 'none';
-          }
         });
-      });
-      
-      // Mobile menu toggle
-      document.addEventListener('DOMContentLoaded', () => {
-        const menuButton = document.querySelector('button[aria-label="Toggle menu"]');
-        const mobileMenu = document.createElement('div');
-        mobileMenu.className = 'md:hidden absolute top-full left-0 w-full bg-background/95 backdrop-blur-md shadow-md transition-all duration-300 max-h-0 py-0 opacity-0 overflow-hidden';
-        mobileMenu.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
-        mobileMenu.style.backdropFilter = 'blur(8px)';
-        mobileMenu.innerHTML = `
-          <nav class="flex flex-col space-y-4 px-6">
-            <a href="#home" class="py-2">Home</a>
-            <a href="#about" class="py-2">About</a>
-            <a href="#experience" class="py-2">Experience</a>
-            <a href="#skills" class="py-2">Skills</a>
-            <a href="#projects" class="py-2">Projects</a>
-            <a href="#contact" class="py-2">Contact</a>
-          </nav>
-        `;
-        
-        document.querySelector('header').appendChild(mobileMenu);
-        
-        menuButton.addEventListener('click', () => {
-          if (mobileMenu.classList.contains('max-h-0')) {
-            mobileMenu.classList.remove('max-h-0', 'py-0', 'opacity-0');
-            mobileMenu.classList.add('max-h-screen', 'py-4', 'opacity-100');
-            menuButton.innerHTML = `
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-              </svg>
-            `;
-          } else {
-            mobileMenu.classList.add('max-h-0', 'py-0', 'opacity-0');
-            mobileMenu.classList.remove('max-h-screen', 'py-4', 'opacity-100');
-            menuButton.innerHTML = `
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="3" y1="12" x2="21" y2="12"></line>
-                <line x1="3" y1="6" x2="21" y2="6"></line>
-                <line x1="3" y1="18" x2="21" y2="18"></line>
-              </svg>
-            `;
-          }
-        });
-        
-        // Close menu when clicking links
-        const mobileLinks = mobileMenu.querySelectorAll('a');
-        mobileLinks.forEach(link => {
-          link.addEventListener('click', () => {
-            mobileMenu.classList.add('max-h-0', 'py-0', 'opacity-0');
-            mobileMenu.classList.remove('max-h-screen', 'py-4', 'opacity-100');
-            menuButton.innerHTML = `
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="3" y1="12" x2="21" y2="12"></line>
-                <line x1="3" y1="6" x2="21" y2="6"></line>
-                <line x1="3" y1="18" x2="21" y2="18"></line>
-              </svg>
-            `;
-          });
-        });
-      });
-      
-      // Form submission handling
-      document.addEventListener('DOMContentLoaded', () => {
-        const contactForm = document.querySelector('form');
-        if (contactForm) {
-          contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-            
-            // In a real implementation, you would send this data to a server
-            console.log('Form submitted:', { name, email, subject, message });
-            
-            // Show success message
-            alert('Thank you for your message! I will get back to you soon.');
-            
-            // Reset form
-            contactForm.reset();
-          });
-        }
-      });
-      
-      // Smooth scrolling for anchor links
-      document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-          anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-              window.scrollTo({
-                top: targetElement.offsetTop - 80, // Adjust for header height
-                behavior: 'smooth'
-              });
-            }
-          });
-        });
-      });
-      
-      // Typewriter effect enhancement
-      document.addEventListener('DOMContentLoaded', () => {
-        const typewriterElement = document.querySelector('.typewriter');
-        if (typewriterElement) {
-          const text = typewriterElement.textContent.trim();
-          typewriterElement.textContent = '';
-          
-          let i = 0;
-          const speed = 100; // Typing speed in milliseconds
-          
-          function typeWriter() {
-            if (i < text.length) {
-              typewriterElement.textContent += text.charAt(i);
-              i++;
-              setTimeout(typeWriter, speed);
-            }
-          }
-          
-          // Start the typing effect
-          setTimeout(typeWriter, 1000);
-        }
-      });
     </script>
-  </body>
+</body>
 </html>
