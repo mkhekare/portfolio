@@ -2371,7 +2371,145 @@
             </div>
         </div>
     </section>
+    <!-- Certifications Section -->
+<section id="certifications" class="section">
+    <div class="container">
+        <div class="section-title animate-on-scroll">
+            <h2><i class="fas fa-certificate"></i> Certifications</h2>
+            <p class="section-subtitle">My verified credentials and professional certifications</p>
+        </div>
 
+        <div class="certifications-grid">
+            <!-- AWS Certification -->
+            <div class="certification-card animate-on-scroll">
+                <div class="certification-header">
+                    <div class="certification-icon">
+                        <i class="fab fa-aws"></i>
+                    </div>
+                    <div class="certification-title">
+                        <h3>AWS Cloud Practitioner</h3>
+                        <p class="issuer">Amazon Web Services (AWS)</p>
+                    </div>
+                </div>
+                <div class="certification-details">
+                    <p class="credential-id">Credential ID: ZYYN9ZHK9BQQQECD</p>
+                    <div class="skills">
+                        <span class="skill-tag">Cloud Computing</span>
+                        <span class="skill-tag">AWS Fundamentals</span>
+                        <span class="skill-tag">Cloud Architecture</span>
+                    </div>
+                    <a href="https://www.credly.com/badges/YOUR_BADGE_ID" target="_blank" class="btn btn-secondary">
+                        <i class="fas fa-external-link-alt"></i> Verify Credential
+                    </a>
+                </div>
+            </div>
+
+            <!-- Azure Certification -->
+            <div class="certification-card animate-on-scroll">
+                <div class="certification-header">
+                    <div class="certification-icon">
+                        <i class="fab fa-microsoft"></i>
+                    </div>
+                    <div class="certification-title">
+                        <h3>Azure AZ-900</h3>
+                        <p class="issuer">Microsoft</p>
+                    </div>
+                </div>
+                <div class="certification-details">
+                    <p class="credential-id">Credential ID: 994779864</p>
+                    <div class="skills">
+                        <span class="skill-tag">Cloud Computing</span>
+                        <span class="skill-tag">Microsoft Azure</span>
+                        <span class="skill-tag">Cloud Concepts</span>
+                    </div>
+                    <a href="https://learn.microsoft.com/en-us/users/YOUR_PROFILE/certifications" target="_blank" class="btn btn-secondary">
+                        <i class="fas fa-external-link-alt"></i> Verify Credential
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Certifications Section Styles */
+    .certifications-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 2rem;
+    }
+
+    .certification-card {
+        background: white;
+        border-radius: 16px;
+        padding: 1.5rem;
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+        border-left: 4px solid var(--primary);
+    }
+
+    .certification-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .certification-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .certification-icon {
+        width: 60px;
+        height: 60px;
+        background: rgba(99, 102, 241, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary);
+        font-size: 1.8rem;
+    }
+
+    .certification-title h3 {
+        margin-bottom: 0.3rem;
+        color: var(--dark);
+    }
+
+    .issuer {
+        color: var(--gray);
+        font-size: 0.9rem;
+    }
+
+    .credential-id {
+        color: var(--gray);
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+    }
+
+    .skills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .skill-tag {
+        background: rgba(16, 185, 129, 0.1);
+        color: var(--secondary);
+        padding: 0.3rem 0.8rem;
+        border-radius: 50px;
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+        .certifications-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
     <!-- Projects Section -->
     <section id="projects" class="section">
         <div class="container">
