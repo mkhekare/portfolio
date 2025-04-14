@@ -49,45 +49,6 @@
             --gradient-bg: linear-gradient(45deg, rgba(99, 102, 241, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%);
         }
 
-        /* Grain Overlay Effect */
-        .grain-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
-            opacity: 0.05;
-            background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noise)"/></svg>');
-            animation: grain 8s steps(10) infinite;
-        }
-
-        @keyframes grain {
-            0%, 100% { transform: translate(0, 0); }
-            10% { transform: translate(-5%, -10%); }
-            20% { transform: translate(-15%, 5%); }
-            30% { transform: translate(7%, -25%); }
-            40% { transform: translate(-5%, 25%); }
-            50% { transform: translate(-15%, 10%); }
-            60% { transform: translate(15%, 0%); }
-            70% { transform: translate(0%, 15%); }
-            80% { transform: translate(3%, 35%); }
-            90% { transform: translate(-10%, 10%); }
-        }
-
-        /* Floating Circles Background */
-        .floating-circles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            opacity: 0.3;
-            background: #f8fafc;
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -136,6 +97,30 @@
 
         ul {
             list-style: none;
+        }
+
+        /* Floating Circles Background */
+        .canvas-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+            background: #f8fafc;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(99, 102, 241, 0.1);
+            animation: float-circle 15s infinite linear;
+        }
+
+        @keyframes float-circle {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-1000px) rotate(720deg); }
         }
 
         /* Header & Navigation */
@@ -1821,185 +1806,11 @@
                 gap: 0.5rem;
             }
         }
-
-        /* Parallel Timeline Styles */
-        .parallel-timeline {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-        
-        .timeline-column {
-            position: relative;
-        }
-        
-        .column-title {
-            font-size: 1.5rem;
-            color: var(--primary-dark);
-            margin-bottom: 2rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--gray-light);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .timeline-column .timeline {
-            position: relative;
-            padding-left: 2rem;
-        }
-        
-        .timeline-column .timeline::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 2px;
-            height: 100%;
-            background: var(--gray-light);
-        }
-        
-        .timeline-column .timeline-item {
-            position: relative;
-            margin-bottom: 2rem;
-            padding-left: 1.5rem;
-        }
-        
-        .timeline-column .timeline-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -7px;
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background: var(--primary);
-            border: 3px solid var(--light);
-            box-shadow: 0 0 0 2px var(--primary);
-        }
-        
-        .timeline-column .timeline-date {
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-            display: inline-block;
-            padding: 0.3rem 1rem;
-            background: rgba(99, 102, 241, 0.1);
-            border-radius: 20px;
-        }
-        
-        .timeline-column .timeline-content {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-        }
-        
-        .timeline-column .timeline-content:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .timeline-column .role {
-            color: var(--secondary);
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-            display: block;
-        }
-        
-        @media (max-width: 992px) {
-            .parallel-timeline {
-                grid-template-columns: 1fr;
-            }
-            
-            .timeline-column:not(:last-child) {
-                margin-bottom: 3rem;
-            }
-        }
-
-        /* Certifications Section Styles */
-        .certifications-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .certification-card {
-            background: white;
-            border-radius: 16px;
-            padding: 1.5rem;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-            border-left: 4px solid var(--primary);
-        }
-
-        .certification-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .certification-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .certification-icon {
-            width: 60px;
-            height: 60px;
-            background: rgba(99, 102, 241, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            font-size: 1.8rem;
-        }
-
-        .certification-title h3 {
-            margin-bottom: 0.3rem;
-            color: var(--dark);
-        }
-
-        .issuer {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        .credential-id {
-            color: var(--gray);
-            font-size: 0.85rem;
-            margin-bottom: 1rem;
-        }
-
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .skill-tag {
-            background: rgba(16, 185, 129, 0.1);
-            color: var(--secondary);
-            padding: 0.3rem 0.8rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-        @media (max-width: 768px) {
-            .certifications-grid {
-                grid-template-columns: 1fr;
-            }
-        }
     </style>
 </head>
 <body>
-    <!-- Grain Overlay Effect -->
-    <div class="grain-overlay"></div>
+    <!-- Floating Circles Background -->
+    <canvas class="canvas-background" id="backgroundCanvas"></canvas>
 
     <!-- Header -->
     <header class="header" id="header">
@@ -2359,6 +2170,104 @@
     </div>
 </section>
 
+<style>
+    /* Parallel Timeline Styles */
+    .parallel-timeline {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+    
+    .timeline-column {
+        position: relative;
+    }
+    
+    .column-title {
+        font-size: 1.5rem;
+        color: var(--primary-dark);
+        margin-bottom: 2rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--gray-light);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .timeline-column .timeline {
+        position: relative;
+        padding-left: 2rem;
+    }
+    
+    .timeline-column .timeline::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 2px;
+        height: 100%;
+        background: var(--gray-light);
+    }
+    
+    .timeline-column .timeline-item {
+        position: relative;
+        margin-bottom: 2rem;
+        padding-left: 1.5rem;
+    }
+    
+    .timeline-column .timeline-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -7px;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--primary);
+        border: 3px solid var(--light);
+        box-shadow: 0 0 0 2px var(--primary);
+    }
+    
+    .timeline-column .timeline-date {
+        font-weight: 600;
+        color: var(--primary);
+        margin-bottom: 0.5rem;
+        display: inline-block;
+        padding: 0.3rem 1rem;
+        background: rgba(99, 102, 241, 0.1);
+        border-radius: 20px;
+    }
+    
+    .timeline-column .timeline-content {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 12px;
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+    }
+    
+    .timeline-column .timeline-content:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+    }
+    
+    .timeline-column .role {
+        color: var(--secondary);
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+    
+    @media (max-width: 992px) {
+        .parallel-timeline {
+            grid-template-columns: 1fr;
+        }
+        
+        .timeline-column:not(:last-child) {
+            margin-bottom: 3rem;
+        }
+    }
+</style>
+
     <!-- Skills Section -->
     <section id="skills" class="section">
         <div class="container">
@@ -2521,6 +2430,86 @@
         </div>
     </div>
 </section>
+
+<style>
+    /* Certifications Section Styles */
+    .certifications-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 2rem;
+    }
+
+    .certification-card {
+        background: white;
+        border-radius: 16px;
+        padding: 1.5rem;
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+        border-left: 4px solid var(--primary);
+    }
+
+    .certification-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .certification-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .certification-icon {
+        width: 60px;
+        height: 60px;
+        background: rgba(99, 102, 241, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary);
+        font-size: 1.8rem;
+    }
+
+    .certification-title h3 {
+        margin-bottom: 0.3rem;
+        color: var(--dark);
+    }
+
+    .issuer {
+        color: var(--gray);
+        font-size: 0.9rem;
+    }
+
+    .credential-id {
+        color: var(--gray);
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+    }
+
+    .skills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .skill-tag {
+        background: rgba(16, 185, 129, 0.1);
+        color: var(--secondary);
+        padding: 0.3rem 0.8rem;
+        border-radius: 50px;
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+        .certifications-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
     <!-- Projects Section -->
     <section id="projects" class="section">
         <div class="container">
@@ -2942,21 +2931,12 @@
         // Background animation
         class BackgroundAnimation {
             constructor() {
-                this.canvas = document.createElement('canvas');
-                this.canvas.className = 'floating-circles';
-                this.canvas.style.position = 'fixed';
-                this.canvas.style.top = '0';
-                this.canvas.style.left = '0';
-                this.canvas.style.width = '100%';
-                this.canvas.style.height = '100%';
-                this.canvas.style.zIndex = '-2';
-                this.canvas.style.opacity = '0.3';
-                document.body.appendChild(this.canvas);
-                
+                this.canvas = document.getElementById('backgroundCanvas');
                 this.ctx = this.canvas.getContext('2d');
                 this.particles = [];
-                this.particleCount = 20;
-                this.primaryColor = '99, 102, 241';
+                this.particleCount = 90;
+                this.lineDistance = 150;
+                this.primaryColor = '99, 102, 241'; // Your primary color in RGB
 
                 this.init();
                 this.animate();
@@ -2971,10 +2951,9 @@
                     this.particles.push({
                         x: Math.random() * this.canvas.width,
                         y: Math.random() * this.canvas.height,
-                        dx: (Math.random() - 0.5) * 0.2,
-                        dy: (Math.random() - 0.5) * 0.2,
-                        size: Math.random() * 100 + 50,
-                        alpha: Math.random() * 0.1 + 0.05
+                        dx: (Math.random() - 0.5) * 0.4,
+                        dy: (Math.random() - 0.5) * 0.4,
+                        size: Math.random() * 1.5 + 0.5
                     });
                 }
             }
@@ -2985,14 +2964,15 @@
             }
 
             draw() {
-                // Clear canvas
-                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                // Clear with slight fade effect
+                this.ctx.fillStyle = 'rgba(248, 250, 252, 0.2)';
+                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
                 
-                // Draw floating circles
+                // Draw blue particles
                 this.particles.forEach(particle => {
                     this.ctx.beginPath();
                     this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-                    this.ctx.fillStyle = `rgba(${this.primaryColor}, ${particle.alpha})`;
+                    this.ctx.fillStyle = `rgba(${this.primaryColor}, 0.3)`;
                     this.ctx.fill();
 
                     // Update position
@@ -3000,8 +2980,27 @@
                     particle.y += particle.dy;
 
                     // Bounce off edges
-                    if(particle.x < -particle.size || particle.x > this.canvas.width + particle.size) particle.dx *= -1;
-                    if(particle.y < -particle.size || particle.y > this.canvas.height + particle.size) particle.dy *= -1;
+                    if(particle.x < 0 || particle.x > this.canvas.width) particle.dx *= -1;
+                    if(particle.y < 0 || particle.y > this.canvas.height) particle.dy *= -1;
+                });
+
+                // Draw blue connecting lines
+                this.particles.forEach((a, i) => {
+                    this.particles.slice(i).forEach(b => {
+                        const dx = a.x - b.x;
+                        const dy = a.y - b.y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+
+                        if(dist < this.lineDistance) {
+                            this.ctx.beginPath();
+                            this.ctx.moveTo(a.x, a.y);
+                            this.ctx.lineTo(b.x, b.y);
+                            const opacity = 0.7 * (1 - dist/this.lineDistance);
+                            this.ctx.strokeStyle = `rgba(${this.primaryColor}, ${opacity})`;
+                            this.ctx.lineWidth = 1.5;
+                            this.ctx.stroke();
+                        }
+                    });
                 });
             }
 
