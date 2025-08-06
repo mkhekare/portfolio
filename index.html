@@ -11,2050 +11,621 @@
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:title" content="Mayur Khekare | Data Engineering & Business Intelligence Professional">
     <meta property="og:description" content="Portfolio of Mayur Khekare - Data Engineer & BI Specialist with expertise in AWS, Python, SQL, Power BI, and cloud computing.">
-    <meta property="og:image" content="https://mkhekare.github.io/profile.jpg">
-    <meta property="og:url" content="https://mkhekare.github.io/portfolio/">
+    <meta property="og:image" content="https://mkhekare.github.io/assets/images/profile.jpg">
+    <meta property="og:url" content="https://mkhekare.github.io/">
     <meta property="og:type" content="website">
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Mayur Khekare | Data Engineering & Business Intelligence Professional">
     <meta name="twitter:description" content="Portfolio of Mayur Khekare - Data Engineer & BI Specialist with expertise in AWS, Python, SQL, Power BI, and cloud computing.">
-    <meta name="twitter:image" content="https://mkhekare.github.io/profile.jpg">
+    <meta name="twitter:image" content="https://mkhekare.github.io/assets/images/profile.jpg">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://mkhekare.github.io/portfolio/#">
+    <link rel="canonical" href="https://mkhekare.github.io/">
     
     <!-- Favicon -->
-    <link rel="icon" href="favicon.ico" sizes="any">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="icon" href="favicon.ico" sizes="any">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="icon" href="assets/images/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="assets/images/favicon.ico">
+    
+    <!-- External Resources -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <style>
-        /* Base Styles */
-        :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary: #10b981;
-            --accent: #ec4899;
-            --dark: #1e293b;
-            --light: #f8fafc;
-            --gray: #64748b;
-            --gray-light: #e2e8f0;
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
-            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
-            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
-            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            --gradient-bg: linear-gradient(45deg, rgba(99, 102, 241, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 5rem;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            color: var(--dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-            background: linear-gradient(135deg, #f9fafb 0%, #f1f5f9 100%);
-        }
-
-        section {
-            min-height: 100vh;
-            padding: 6rem 2rem;
-            display: flex;
-            align-items: center;
-            position: relative;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            width: 100%;
-            padding: 0 1.5rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        /* Floating Circles Background */
-        .canvas-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.3;
-            background: #f8fafc;
-        }
-
-        .circle {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(99, 102, 241, 0.1);
-            animation: float-circle 15s infinite linear;
-        }
-
-        @keyframes float-circle {
-            0% { transform: translateY(0) rotate(0deg); }
-            100% { transform: translateY(-1000px) rotate(720deg); }
-        }
-
-        /* Header & Navigation */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 1.2rem 0;
-            z-index: 1000;
-            transition: var(--transition);
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        .header.scrolled {
-            padding: 0.8rem 0;
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary-dark);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .logo span {
-            font-weight: 400;
-            font-size: 1.2rem;
-            color: var(--gray);
-        }
-
-        .nav-menu {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .nav-link {
-            position: relative;
-            padding: 0.5rem 0;
-            color: var(--dark);
-            font-weight: 500;
-            transition: var(--transition);
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: var(--transition);
-        }
-
-        .nav-link:hover, .nav-link.active {
-            color: var(--primary);
-        }
-
-        .nav-link:hover::after, .nav-link.active::after {
-            width: 100%;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--dark);
-        }
-
-        /* Hero Section */
-        .hero {
-            position: relative;
-            overflow: hidden;
-            padding-top: 10rem;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, rgba(255,255,255,0) 70%);
-            z-index: -1;
-        }
-
-        .hero-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .hero-text {
-            padding-right: 2rem;
-        }
-
-        .greeting {
-            font-size: 1.2rem;
-            color: var(--secondary);
-            margin-bottom: 1rem;
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background: rgba(16, 185, 129, 0.1);
-            border-radius: 50px;
-            font-weight: 600;
-        }
-
-        .profile-container {
-            position: relative;
-            width: 350px;
-            height: 450px;
-            margin: 0 auto;
-            overflow: hidden;
-            border-radius: 20px;
-            box-shadow: var(--shadow-lg);
-            animation: float 6s ease-in-out infinite;
-            transform-style: preserve-3d;
-            perspective: 1000px;
-            background: linear-gradient(45deg, var(--primary), var(--accent));
-            padding: 8px;
-        }
-
-        .profile-container::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            z-index: -1;
-            border-radius: 20px;
-            background: linear-gradient(45deg, var(--primary), var(--accent));
-            opacity: 0.7;
-            animation: gradient-rotate 10s linear infinite;
-        }
-
-        @keyframes gradient-rotate {
-            0% { filter: hue-rotate(0deg); }
-            100% { filter: hue-rotate(360deg); }
-        }
-
-        .profile-photo-wrapper {
-            width: 100%;
-            height: 100%;
-            border-radius: 16px;
-            overflow: hidden;
-            background: white;
-        }
-
-        .profile-photo {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center top;
-            filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.1));
-            transition: var(--transition);
-        }
-
-        .profile-container:hover .profile-photo {
-            transform: scale(1.03) rotateY(5deg);
-        }
-
-        .shape {
-            position: absolute;
-            z-index: -1;
-            opacity: 0.5;
-        }
-
-        .shape-1 {
-            top: -50px;
-            right: -50px;
-            width: 200px;
-            height: 200px;
-            border-radius: 34% 66% 70% 30% / 30% 30% 70% 70%;
-            background: rgba(236, 72, 153, 0.2);
-            animation: morph 6s linear infinite alternate;
-        }
-
-        .shape-2 {
-            bottom: -50px;
-            left: -50px;
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            background: rgba(99, 102, 241, 0.2);
-            animation: float 8s ease-in-out infinite;
-        }
-
-        @keyframes morph {
-            0% { border-radius: 34% 66% 70% 30% / 30% 30% 70% 70%; }
-            100% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 800;
-            color: var(--dark);
-            line-height: 1.2;
-            background: linear-gradient(45deg, var(--primary), var(--primary-dark));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: var(--primary-dark);
-            position: relative;
-            display: inline-block;
-            font-weight: 700;
-        }
-
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 60px;
-            height: 4px;
-            background: var(--secondary);
-            border-radius: 2px;
-        }
-
-        h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-            font-weight: 600;
-        }
-
-        .subtitle {
-            font-size: 1.5rem;
-            color: var(--primary-dark);
-            margin-bottom: 2rem;
-            font-weight: 600;
-        }
-
-        .highlighted-text {
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        .summary {
-            font-size: 1.1rem;
-            color: var(--gray);
-            margin-bottom: 2.5rem;
-            line-height: 1.8;
-        }
-
-        /* Buttons */
-        .hero-buttons {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .btn {
-            padding: 0.8rem 1.8rem;
-            border-radius: 50px;
-            font-weight: 500;
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            cursor: pointer;
-            border: none;
-            outline: none;
-            text-align: center;
-        }
-
-        .btn-primary {
-            background: linear-gradient(45deg, var(--primary), var(--primary-dark));
-            color: white;
-            box-shadow: var(--shadow-md);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .btn-secondary {
-            background: white;
-            color: var(--primary);
-            border: 1px solid var(--gray-light);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-md);
-        }
-
-        /* Social Links */
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .social-link {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: rgba(99, 102, 241, 0.1);
-            color: var(--primary);
-            transition: var(--transition);
-            font-size: 1.2rem;
-        }
-
-        .social-link:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-3px) scale(1.1);
-        }
-
-        /* Stats Bar */
-        .stats-bar {
-            margin-top: 5rem;
-            background: white;
-            border-radius: 16px;
-            padding: 2rem;
-            box-shadow: var(--shadow-lg);
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-            text-align: center;
-        }
-
-        .stat-item {
-            padding: 1rem;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.3rem;
-        }
-
-        .stat-icon {
-            color: var(--secondary);
-            font-size: 1.5rem;
-        }
-
-        .stat-label {
-            color: var(--gray);
-            font-weight: 500;
-        }
-
-        /* About Section */
-        .about {
-            background: var(--gradient-bg);
-        }
-
-        .section-title {
-            display: flex;
-            align-items: center;
-            margin-bottom: 3rem;
-            flex-direction: column;
-            text-align: center;
-        }
-
-        .section-title h2 {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .section-title h2::after {
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .section-subtitle {
-            font-size: 1.1rem;
-            color: var(--gray);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-content {
-            position: relative;
-        }
-
-        .about-highlights {
-            margin-top: 2rem;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-
-        .highlight-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            padding: 1.5rem;
-            background: white;
-            border-radius: 16px;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-            border-left: 4px solid var(--primary);
-        }
-
-        .highlight-item:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .highlight-icon {
-            font-size: 1.5rem;
-            color: var(--primary);
-            min-width: 40px;
-            text-align: center;
-            padding-top: 0.2rem;
-        }
-
-        .about-image {
-            position: relative;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-            transition: var(--transition);
-            height: 100%;
-        }
-
-        .about-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            filter: grayscale(20%) contrast(110%);
-            transition: var(--transition);
-        }
-
-        .about-image:hover img {
-            filter: grayscale(0%) contrast(100%);
-            transform: scale(1.03);
-        }
-
-        /* Typewriter Effect */
-        .typewriter {
-            display: inline-block;
-        }
-
-        .typewriter-text {
-            border-right: 3px solid var(--primary);
-            animation: blink-caret 0.75s step-end infinite;
-            display: inline-block;
-            overflow: hidden;
-            white-space: nowrap;
-            margin: 0 auto;
-        }
-
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: var(--primary); }
-        }
-
-        /* Services Section */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            background: white;
-            border-radius: 16px;
-            padding: 2rem;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-            border-bottom: 4px solid transparent;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--primary);
-        }
-
-        .service-icon {
-            width: 60px;
-            height: 60px;
-            background: rgba(99, 102, 241, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            color: var(--primary);
-            font-size: 1.5rem;
-        }
-
-        .service-title {
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .service-description {
-            color: var(--gray);
-            flex-grow: 1;
-        }
-
-        .service-link {
-            margin-top: 1.5rem;
-            color: var(--primary);
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-            transition: var(--transition);
-        }
-
-        .service-link:hover {
-            gap: 0.5rem;
-        }
-
-        /* Achievements Section */
-        .achievements {
-            background: var(--gradient-bg);
-        }
-
-        .achievements-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: start;
-        }
-
-        .case-competitions {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .achievement-card {
-            background: white;
-            border-radius: 16px;
-            padding: 2rem;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-        }
-
-        .achievement-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .achievement-icon {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .case-image {
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-            transition: var(--transition);
-            margin-top: 1.5rem;
-        }
-
-        .case-image:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-        }
-
-        .case-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .sports-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .sport-item {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-            text-align: center;
-        }
-
-        .sport-item:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
-            background: linear-gradient(45deg, var(--light), white);
-            border-bottom: 3px solid var(--secondary);
-        }
-
-        .sport-icon {
-            font-size: 2rem;
-            color: var(--secondary);
-            margin-bottom: 1rem;
-        }
-
-        /* Timeline */
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 3rem auto;
-            padding: 0 1rem;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 100%;
-            background: var(--gray-light);
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 3rem;
-            width: 100%;
-        }
-
-        .timeline-item:nth-child(odd) {
-            padding-right: 50%;
-            text-align: right;
-        }
-
-        .timeline-item:nth-child(even) {
-            padding-left: 50%;
-            text-align: left;
-        }
-
-        .timeline-date {
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-            display: inline-block;
-            padding: 0.3rem 1rem;
-            background: rgba(99, 102, 241, 0.1);
-            border-radius: 20px;
-        }
-
-        .timeline-content {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: var(--shadow-sm);
-            position: relative;
-            transition: var(--transition);
-        }
-
-        .timeline-content:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .timeline-content h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-
-        .role {
-            color: var(--secondary);
-            font-weight: 500;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .timeline-content ul {
-            margin-left: 1.2rem;
-        }
-
-        .timeline-content li {
-            margin-bottom: 0.5rem;
-            position: relative;
-            list-style-type: disc;
-            color: var(--gray);
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: var(--primary);
-            border: 4px solid var(--light);
-            box-shadow: 0 0 0 2px var(--primary);
-        }
-
-        .timeline-item:nth-child(odd)::before {
-            right: -10px;
-        }
-
-        .timeline-item:nth-child(even)::before {
-            left: -10px;
-        }
-
-        /* Skills Section */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .skills-category {
-            background: white;
-            border-radius: 16px;
-            padding: 2rem;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-        }
-
-        .skills-category:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .category-title {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary-dark);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .skills-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .skill-tag {
-            background: rgba(99, 102, 241, 0.1);
-            color: var(--primary);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-
-        .skill-tag:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        .skill-level {
-            margin-top: 1rem;
-        }
-
-        .level-bar {
-            height: 8px;
-            background: var(--gray-light);
-            border-radius: 4px;
-            margin-top: 0.5rem;
-            overflow: hidden;
-        }
-
-        .level-progress {
-            height: 100%;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            border-radius: 4px;
-        }
-
-        /* Projects Section */
-        .projects-filter {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 2.5rem;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            padding: 0.6rem 1.5rem;
-            border-radius: 50px;
-            background: white;
-            color: var(--gray);
-            font-weight: 500;
-            cursor: pointer;
-            transition: var(--transition);
-            border: 1px solid var(--gray-light);
-        }
-
-        .filter-btn:hover, .filter-btn.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 2.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .project-card {
-            background: white;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .project-image-container {
-            height: 220px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .project-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .project-card:hover .project-image {
-            transform: scale(1.05);
-        }
-
-        .project-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .project-card:hover .project-overlay {
-            opacity: 1;
-        }
-
-        .view-project {
-            padding: 0.7rem 1.5rem;
-            background: white;
-            color: var(--primary);
-            border-radius: 50px;
-            font-weight: 500;
-            transform: translateY(20px);
-            transition: var(--transition);
-        }
-
-        .project-card:hover .view-project {
-            transform: translateY(0);
-        }
-
-        .project-info {
-            padding: 1.5rem;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-title {
-            font-size: 1.3rem;
-            margin-bottom: 0.8rem;
-            color: var(--dark);
-        }
-
-        .project-description {
-            color: var(--gray);
-            margin-bottom: 1.2rem;
-            flex: 1;
-            line-height: 1.6;
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin: 1rem 0;
-        }
-
-        .project-tag {
-            background: rgba(99, 102, 241, 0.1);
-            color: var(--primary);
-            padding: 0.3rem 0.8rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: auto;
-        }
-
-        .project-links a {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-            font-weight: 500;
-            color: var(--primary);
-            transition: var(--transition);
-            text-decoration: none;
-        }
-
-        .project-links a:hover {
-            color: var(--primary-dark);
-        }
-
-        /* Testimonials Section */
-        .testimonials {
-            background: var(--gradient-bg);
-        }
-
-        .testimonials-container {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .testimonial-slider {
-            overflow: hidden;
-            position: relative;
-            padding: 2rem 0;
-        }
-
-        .testimonials-track {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-
-        .testimonial-slide {
-            min-width: 100%;
-            padding: 0 1rem;
-        }
-
-        .testimonial-card {
-            background: white;
-            border-radius: 16px;
-            padding: 2.5rem;
-            box-shadow: var(--shadow-md);
-            position: relative;
-        }
-
-        .testimonial-card::before {
-            content: '"';
-            position: absolute;
-            top: 1rem;
-            left: 1.5rem;
-            font-size: 6rem;
-            font-family: Georgia, serif;
-            color: rgba(99, 102, 241, 0.1);
-            line-height: 1;
-        }
-
-        .testimonial-content {
-            font-style: italic;
-            color: var(--gray);
-            margin-bottom: 1.5rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .author-image {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        .author-info h4 {
-            font-weight: 600;
-            margin-bottom: 0.2rem;
-        }
-
-        .author-info p {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        .testimonial-nav {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .nav-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--gray-light);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .nav-dot.active, .nav-dot:hover {
-            background: var(--primary);
-        }
-
-        .slider-arrows {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            transform: translateY(-50%);
-            display: flex;
-            justify-content: space-between;
-            z-index: 10;
-            pointer-events: none;
-        }
-
-        .slider-arrow {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: white;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: var(--shadow-md);
-            transition: var(--transition);
-            pointer-events: auto;
-        }
-
-        .slider-arrow:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        /* Blog Section */
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .blog-card {
-            background: white;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .blog-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .blog-image-container {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .blog-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .blog-card:hover .blog-image {
-            transform: scale(1.05);
-        }
-
-        .blog-category {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            background: var(--primary);
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            z-index: 1;
-        }
-
-        .blog-info {
-            padding: 1.5rem;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .blog-date {
-            color: var(--gray);
-            font-size: 0.9rem;
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-
-        .blog-title {
-            font-size: 1.3rem;
-            margin-bottom: 0.8rem;
-            color: var(--dark);
-            line-height: 1.4;
-        }
-
-        .blog-excerpt {
-            color: var(--gray);
-            flex: 1;
-            margin-bottom: 1.2rem;
-        }
-
-        .read-more {
-            color: var(--primary);
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-            transition: var(--transition);
-            margin-top: auto;
-        }
-
-        .read-more:hover {
-            gap: 0.5rem;
-        }
-
-        /* Contact Section */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-        }
-
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(99, 102, 241, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            font-size: 1.3rem;
-            flex-shrink: 0;
-        }
-
-        .contact-text h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .contact-text p, .contact-text a {
-            color: var(--gray);
-            transition: var(--transition);
-        }
-
-        .contact-text a:hover {
-            color: var(--primary);
-        }
-
-        .contact-form {
-            background: white;
-            border-radius: 16px;
-            padding: 2.5rem;
-            box-shadow: var(--shadow-md);
-        }
-
-        .form-title {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary-dark);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: var(--dark);
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 1rem;
-            border-radius: 8px;
-            border: 1px solid var(--gray-light);
-            font-family: 'Inter', sans-serif;
-            transition: var(--transition);
-            background: rgba(248, 250, 252, 0.5);
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
-        }
-
-        .form-control::placeholder {
-            color: var(--gray);
-            opacity: 0.7;
-        }
-
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        /* Map */
-        .map-container {
-            margin-top: 3rem;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: var(--shadow-md);
-        }
-
-        .google-map {
-            width: 100%;
-            height: 400px;
-            border: none;
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--dark);
-            color: var(--light);
-            padding: 4rem 0 2rem;
-            position: relative;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 3rem;
-        }
-
-        .footer-logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 1rem;
-            display: inline-block;
-        }
-
-        .footer-text {
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .footer-social-link {
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            transition: var(--transition);
-        }
-
-        .footer-social-link:hover {
-            background: var(--primary);
-            transform: translateY(-3px);
-        }
-
-        .footer-title {
-            font-size: 1.2rem;
-            color: white;
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-        }
-
-        .footer-links, .footer-contact {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .footer-link {
-            color: rgba(255, 255, 255, 0.7);
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .footer-link:hover {
-            color: white;
-            transform: translateX(5px);
-        }
-
-        .footer-contact-item {
-            display: flex;
-            gap: 0.8rem;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .footer-contact-icon {
-            color: var(--primary);
-        }
-
-        .copyright {
-            text-align: center;
-            color: rgba(255, 255, 255, 0.7);
-            padding-top: 2rem;
-            margin-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .footer-heart {
-            color: #ff6b6b;
-            animation: heartbeat 1.5s infinite;
-            display: inline-block;
-        }
-
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            25% { transform: scale(1.1); }
-            50% { transform: scale(1); }
-            75% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-
-        /* Back to Top Button */
-        .back-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: var(--shadow-md);
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-            z-index: 99;
-        }
-
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .back-to-top:hover {
-            background: var(--primary-dark);
-            transform: translateY(-5px);
-        }
-
-        /* Scroll Animation */
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        .animate-on-scroll.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Mobile Menu */
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: -300px;
-            width: 300px;
-            height: 100vh;
-            background: white;
-            z-index: 1001;
-            padding: 2rem;
-            transition: var(--transition);
-            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-            overflow-y: auto;
-        }
-
-        .mobile-menu.active {
-            right: 0;
-        }
-
-        .menu-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            font-size: 1.5rem;
-            color: var(--gray);
-            cursor: pointer;
-        }
-
-        .menu-header {
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--gray-light);
-        }
-
-        .mobile-nav {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .mobile-nav-link {
-            padding: 0.8rem 0;
-            font-weight: 500;
-            border-bottom: 1px solid var(--gray-light);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .mobile-social {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-        }
-
-        .overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1200px) {
-            .footer-content {
-                grid-template-columns: 1fr 1fr;
-                gap: 2rem;
-            }
-        }
-
-        @media (max-width: 992px) {
-            section {
-                padding: 4rem 1.5rem;
-            }
-
-            .hero-content, .about-grid, .contact-grid, .achievements-grid {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .hero-text {
-                padding-right: 0;
-                order: 2;
-                text-align: center;
-            }
-
-            .profile-container {
-                order: 1;
-                width: 280px;
-                height: 360px;
-                margin: 0 auto;
-            }
-
-            .hero-buttons, .social-links {
-                justify-content: center;
-            }
-
-            .stats-bar {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .nav-menu {
-                display: none;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            h1 {
-                font-size: 2.8rem;
-            }
-
-            h2 {
-                font-size: 2rem;
-            }
-
-            .section-title {
-                text-align: center;
-            }
-
-            h2::after {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-
-            .about-image, .case-image {
-                margin: 0 auto;
-                max-width: 500px;
-            }
-
-            .highlight-item {
-                flex-direction: column;
-                text-align: center;
-                align-items: center;
-            }
-
-            .highlight-icon {
-                margin-bottom: 1rem;
-            }
-
-            .timeline::before {
-                left: 31px;
-            }
-
-            .timeline-item:nth-child(odd),
-            .timeline-item:nth-child(even) {
-                padding-left: 70px;
-                padding-right: 0;
-                text-align: left;
-            }
-
-            .timeline-item:nth-child(odd)::before,
-            .timeline-item:nth-child(even)::before {
-                left: 21px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .projects-grid, .services-grid, .blog-grid {
-                grid-template-columns: 1fr;
-                max-width: 500px;
-                margin: 0 auto;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-
-            h1 {
-                font-size: 2.2rem;
-            }
-            
-            .subtitle {
-                font-size: 1.2rem;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .btn {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .footer-social {
-                justify-content: center;
-            }
-
-            .footer-contact-item {
-                justify-content: center;
-            }
-
-            .contact-form {
-                padding: 1.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .stats-bar {
-                grid-template-columns: 1fr;
-            }
-
-            .project-tags {
-                flex-wrap: wrap;
-            }
-
-            .project-links {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-        }
-    </style>
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    
+    <!-- Three.js for 3D Background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
-    <!-- Floating Circles Background -->
-    <canvas class="canvas-background" id="backgroundCanvas"></canvas>
+    <!-- 3D Background Canvas -->
+    <canvas id="backgroundCanvas" class="background-canvas"></canvas>
+    
+    <!-- Mouse Follower -->
+    <div class="mouse-follower" id="mouseFollower"></div>
+    
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <span>MK</span>
+            </div>
+            <div class="loading-bar">
+                <div class="loading-progress" id="loadingProgress"></div>
+            </div>
+            <p>Loading Portfolio...</p>
+        </div>
+    </div>
 
     <!-- Header -->
     <header class="header" id="header">
         <div class="container">
             <nav class="navbar">
                 <a href="#" class="logo">
-                    Personal Portfolio<span> { Mayur Khekare } </span>
+                    <span class="logo-text">MK</span>
+                    <span class="logo-subtitle">Mayur Khekare</span>
                 </a>
                 <ul class="nav-menu">
-                    <li><a href="#home" class="nav-link active">Home</a></li>
-                    <li><a href="#about" class="nav-link">About</a></li>
-                    <li><a href="#services" class="nav-link">Services</a></li>
-                    <li><a href="#experience" class="nav-link">Experience</a></li>
-                    <li><a href="#skills" class="nav-link">Skills</a></li>
-                    <li><a href="#projects" class="nav-link">Projects</a></li>
-                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                    <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
+                    <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+                    <li><a href="#services" class="nav-link" data-section="services">Services</a></li>
+                    <li><a href="#experience" class="nav-link" data-section="experience">Experience</a></li>
+                    <li><a href="#skills" class="nav-link" data-section="skills">Skills</a></li>
+                    <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
+                    <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
                 </ul>
                 <div class="mobile-menu-btn" id="menuBtn">
-                    <i class="fas fa-bars"></i>
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
             </nav>
         </div>
     </header>
 
     <!-- Mobile Menu -->
-    <div class="overlay" id="overlay"></div>
     <div class="mobile-menu" id="mobileMenu">
-        <div class="menu-close" id="menuClose">
-            <i class="fas fa-times"></i>
-        </div>
-        <div class="menu-header">
-            <a href="#" class="logo">Mayur<span>Khekare</span></a>
+        <div class="mobile-menu-header">
+            <div class="mobile-logo">MK</div>
+            <button class="mobile-close" id="mobileClose">
+                <i class="fas fa-times"></i>
+            </button>
         </div>
         <ul class="mobile-nav">
-            <li><a href="#home" class="mobile-nav-link">Home <i class="fas fa-chevron-right"></i></a></li>
-            <li><a href="#about" class="mobile-nav-link">About <i class="fas fa-chevron-right"></i></a></li>
-            <li><a href="#services" class="mobile-nav-link">Services <i class="fas fa-chevron-right"></i></a></li>
-            <li><a href="#experience" class="mobile-nav-link">Experience <i class="fas fa-chevron-right"></i></a></li>
-            <li><a href="#skills" class="mobile-nav-link">Skills <i class="fas fa-chevron-right"></i></a></li>
-            <li><a href="#projects" class="mobile-nav-link">Projects <i class="fas fa-chevron-right"></i></a></li>
-            <li><a href="#contact" class="mobile-nav-link">Contact <i class="fas fa-chevron-right"></i></a></li>
+            <li><a href="#home" class="mobile-nav-link">Home</a></li>
+            <li><a href="#about" class="mobile-nav-link">About</a></li>
+            <li><a href="#services" class="mobile-nav-link">Services</a></li>
+            <li><a href="#experience" class="mobile-nav-link">Experience</a></li>
+            <li><a href="#skills" class="mobile-nav-link">Skills</a></li>
+            <li><a href="#projects" class="mobile-nav-link">Projects</a></li>
+            <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
         </ul>
         <div class="mobile-social">
-            <a href="https://github.com/mkhekare" class="social-link"><i class="fab fa-github"></i></a>
-            <a href="https://linkedin.com/in/mayurkhekare" class="social-link"><i class="fab fa-linkedin"></i></a>
-            <a href="https://twitter.com/mayurkhekare" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="https://github.com/mkhekare" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/mayurkhekare" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://twitter.com/mayurkhekare" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="mailto:mkhekare@gmail.com"><i class="fas fa-envelope"></i></a>
         </div>
     </div>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text animate-on-scroll">
-                    <p class="greeting"><i class="fas fa-wave-square"></i> Hello, I'm</p>
-                    <h1>Mayur Khekare</h1>
-                    <p class="subtitle"> Data Analytics Consultant </p>
-                    <p class="summary">Strategic management professional with extensive experience in <span class="highlighted-text">data engineering</span>, <span class="highlighted-text">business intelligence</span>, and <span class="highlighted-text">cloud computing</span>. Specializing in transforming complex data into actionable insights to drive business decisions and operational efficiency.</p>
-                    <div class="hero-buttons">
-                        <a href="#contact" class="btn btn-primary">
-                            <i class="fas fa-paper-plane"></i> Contact Me
-                        </a>
-                        <a href="#projects" class="btn btn-secondary">
-                            <i class="fas fa-code"></i> View Projects
-                        </a>
-                    </div>
-                    <div class="social-links">
-                        <a href="https://github.com/mkhekare" class="social-link" target="_blank"><i class="fab fa-github"></i></a>
-                        <a href="https://linkedin.com/in/mayurkhekare" class="social-link" target="_blank"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://twitter.com/mayurkhekare" class="social-link" target="_blank"><i class="fab fa-twitter"></i></a>
-                        <a href="mailto:mkhekare@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
-                    </div>
-                </div>
-
-                <div class="profile-container animate-on-scroll">
-                    <div class="shape shape-1"></div>
-                    <div class="shape shape-2"></div>
-                    <div class="profile-photo-wrapper">
-                        <img src="profile.jpg" alt="Mayur Khekare" class="profile-photo">
-                    </div>
-                </div>
-            </div>
-
-            <div class="stats-bar animate-on-scroll">
-                <div class="stat-item">
-                    <div class="stat-number">3<span>+</span></div>
-                    <div class="stat-label">Years of Experience</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">12<span>+</span></div>
-                    <div class="stat-label">Projects Completed(Corporate + Personal)</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">3<span>+</span></div>
-                    <div class="stat-label">Happy Clients</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">5<span>+</span></div>
-                    <div class="stat-label">Awards Won</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="section about">
-        <div class="container">
-            <div class="section-title animate-on-scroll">
-                <h2><i class="fas fa-user"></i> About Me</h2>
-                <p class="section-subtitle">Learn more about my journey, skills, and passion for data engineering and business intelligence.</p>
-            </div>
-            
-            <div class="about-grid">
-                <div class="about-content animate-on-scroll">
-                    <p>I transform raw data into golden insights through cutting-edge engineering and business intelligence solutions. With 3+ years of experience, I bridge the gap between complex data systems and strategic business outcomes.</p>
-                    
-                    <div class="about-highlights">
-                        <div class="highlight-item">
-                            <div class="highlight-icon"><i class="fas fa-database"></i></div>
-                            <div>
-                                <h3>Data Engineering Expert</h3>
-                                <p>Designing robust pipelines that process millions of records daily with Python, SQL, and cloud platforms (AWS/Azure).</p>
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <div class="greeting">
+                            <span class="greeting-text">Hello, I'm</span>
+                            <div class="greeting-emoji">👋</div>
+                        </div>
+                        <h1 class="hero-title">
+                            <span class="title-line">Mayur</span>
+                            <span class="title-line">Khekare</span>
+                        </h1>
+                        <p class="hero-subtitle">Data Analytics Consultant</p>
+                        <p class="hero-description">
+                            Strategic management professional with extensive experience in 
+                            <span class="highlight">data engineering</span>, 
+                            <span class="highlight">business intelligence</span>, and 
+                            <span class="highlight">cloud computing</span>. 
+                            Specializing in transforming complex data into actionable insights.
+                        </p>
+                        <div class="hero-buttons">
+                            <a href="#contact" class="btn btn-primary">
+                                <span>Get In Touch</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                            <a href="#projects" class="btn btn-secondary">
+                                <span>View Projects</span>
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                        <div class="hero-stats">
+                            <div class="stat-item">
+                                <div class="stat-number" data-target="3">0</div>
+                                <div class="stat-label">Years Experience</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number" data-target="12">0</div>
+                                <div class="stat-label">Projects Completed</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number" data-target="5">0</div>
+                                <div class="stat-label">Awards Won</div>
                             </div>
                         </div>
-                        
-                        <div class="highlight-item">
-                            <div class="highlight-icon"><i class="fas fa-robot"></i></div>
-                            <div>
-                                <h3>Automation Specialist</h3>
-                                <p>Developed automation frameworks that reduced manual processes by 70% while improving accuracy.</p>
+                    </div>
+                    <div class="hero-visual">
+                        <div class="profile-container">
+                            <div class="profile-image-wrapper">
+                                <img src="assets/images/profile.jpg" alt="Mayur Khekare" class="profile-image">
+                                <div class="profile-overlay"></div>
                             </div>
-                        </div>
-                        
-                        <div class="highlight-item">
-                            <div class="highlight-icon"><i class="fas fa-chart-line"></i></div>
-                            <div>
-                                <h3>BI Solutions Architect</h3>
-                                <p>Created interactive dashboards that empowered executives with real-time decision-making insights.</p>
+                            <div class="floating-elements">
+                                <div class="float-element" data-speed="0.5">
+                                    <i class="fas fa-database"></i>
+                                </div>
+                                <div class="float-element" data-speed="0.3">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="float-element" data-speed="0.7">
+                                    <i class="fab fa-python"></i>
+                                </div>
+                                <div class="float-element" data-speed="0.4">
+                                    <i class="fab fa-aws"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="about-image animate-on-scroll">
-                    <img src="about-image.jpg" alt="Mayur working on data solutions">
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">About Me</h2>
+                    <p class="section-subtitle">Passionate about transforming data into insights</p>
+                </div>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p class="about-description">
+                            I transform raw data into golden insights through cutting-edge engineering and business intelligence solutions. 
+                            With 3+ years of experience, I bridge the gap between complex data systems and strategic business outcomes.
+                        </p>
+                        <div class="about-highlights">
+                            <div class="highlight-card">
+                                <div class="highlight-icon">
+                                    <i class="fas fa-database"></i>
+                                </div>
+                                <div class="highlight-content">
+                                    <h3>Data Engineering Expert</h3>
+                                    <p>Designing robust pipelines that process millions of records daily with Python, SQL, and cloud platforms.</p>
+                                </div>
+                            </div>
+                            <div class="highlight-card">
+                                <div class="highlight-icon">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <div class="highlight-content">
+                                    <h3>Automation Specialist</h3>
+                                    <p>Developed automation frameworks that reduced manual processes by 70% while improving accuracy.</p>
+                                </div>
+                            </div>
+                            <div class="highlight-card">
+                                <div class="highlight-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="highlight-content">
+                                    <h3>BI Solutions Architect</h3>
+                                    <p>Created interactive dashboards that empowered executives with real-time decision-making insights.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-image">
+                        <img src="assets/images/about-image.jpg" alt="Mayur working on data solutions">
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Services Section -->
-    <section id="services" class="section">
-        <div class="container">
-            <div class="section-title animate-on-scroll">
-                <h2><i class="fas fa-cogs"></i> My Services</h2>
-                <p class="section-subtitle">Specialized services I offer to help businesses leverage their data for better decision making and growth.</p>
-            </div>
-
-            <div class="services-grid">
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
-                        <i class="fas fa-database"></i>
-                    </div>
-                    <h3 class="service-title">Data Engineering</h3>
-                    <p class="service-description">Building robust data pipelines and infrastructure that process, transform, and store data efficiently for analytics and AI applications.</p>
-                    <a href="#contact" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
+        <!-- Services Section -->
+        <section id="services" class="services-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">My Services</h2>
+                    <p class="section-subtitle">Specialized services to help businesses leverage their data</p>
                 </div>
-
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
-                        <i class="fas fa-chart-pie"></i>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3>Data Engineering</h3>
+                        <p>Building robust data pipelines and infrastructure that process, transform, and store data efficiently.</p>
                     </div>
-                    <h3 class="service-title">Business Intelligence</h3>
-                    <p class="service-description">Creating interactive dashboards and reports that visualize key metrics and provide actionable insights for executive decision-making.</p>
-                    <a href="#contact" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
-                        <i class="fas fa-cloud"></i>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h3>Business Intelligence</h3>
+                        <p>Creating interactive dashboards and reports that visualize key metrics and provide actionable insights.</p>
                     </div>
-                    <h3 class="service-title">Cloud Migration</h3>
-                    <p class="service-description">Seamlessly migrating data infrastructure from on-premises to cloud platforms (AWS, Azure) with minimal downtime and maximum security.</p>
-                    <a href="#contact" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
-                        <i class="fas fa-robot"></i>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <h3>Cloud Migration</h3>
+                        <p>Seamlessly migrating data infrastructure from on-premises to cloud platforms with minimal downtime.</p>
                     </div>
-                    <h3 class="service-title">Process Automation</h3>
-                    <p class="service-description">Automating repetitive data workflows using Python, SQL, and ETL tools to increase efficiency and reduce manual errors.</p>
-                    <a href="#contact" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
-                        <i class="fas fa-code"></i>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3>Process Automation</h3>
+                        <p>Automating repetitive data workflows using Python, SQL, and ETL tools to increase efficiency.</p>
                     </div>
-                    <h3 class="service-title">Custom Data Solutions</h3>
-                    <p class="service-description">Developing tailored data applications and tools that address specific business needs and challenges.</p>
-                    <a href="#contact" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
-                        <i class="fas fa-graduation-cap"></i>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>Custom Data Solutions</h3>
+                        <p>Developing tailored data applications and tools that address specific business needs and challenges.</p>
                     </div>
-                    <h3 class="service-title">Data Strategy Consulting</h3>
-                    <p class="service-description">Advising organizations on data governance, architecture, and analytics strategy to maximize the value of their data assets.</p>
-                    <a href="#contact" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>Data Strategy Consulting</h3>
+                        <p>Advising organizations on data governance, architecture, and analytics strategy to maximize value.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Achievements Section -->
-    <section id="achievements" class="section achievements">
-        <div class="container">
-            <div class="section-title animate-on-scroll">
-                <h2><i class="fas fa-trophy"></i> Achievements & Interests</h2>
-                <p class="section-subtitle">Beyond technical expertise, I've excelled in competitions and pursue diverse interests that enhance my strategic thinking.</p>
+        <!-- Experience Section -->
+        <section id="experience" class="experience-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Professional Experience</h2>
+                    <p class="section-subtitle">My journey in data and technology</p>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h3>Associate Consultant - Data Governance</h3>
+                                <span class="timeline-company">Infosys Limited, Bangalore, India</span>
+                                <span class="timeline-date">May 2025 – Present</span>
+                            </div>
+                            <ul class="timeline-responsibilities">
+                                <li>Facilitated technical POVs that demonstrated a 25% improvement in data governance efficiency through the integration of IBM Knowledge Catalog and Ataccama for metadata discovery and lineage tracking.</li>
+                                <li>Developed RFIs and RFPs for metadata management and data lineage solutions.</li>
+                                <li>Aligned internal product backlog to enterprise data strategy using the Data-as-a-Product framework; enabled better cross-functional clarity and delivery velocity.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h3>Associate</h3>
+                                <span class="timeline-company">Cognizant Technology Solutions, Pune</span>
+                                <span class="timeline-date">Oct 2023 - Apr 2024</span>
+                            </div>
+                            <ul class="timeline-responsibilities">
+                                <li>Led end-to-end data engineering initiatives for Fortune 500 insurance client</li>
+                                <li>Spearheaded migration of on-premises data infrastructure to AWS Cloud</li>
+                                <li>Developed and maintained detailed documentation for ETL processes</li>
+                                <li>Collaborated with cross-functional teams to design data validation procedures</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h3>Programmer Analyst</h3>
+                                <span class="timeline-company">Cognizant Technology Solutions, Pune</span>
+                                <span class="timeline-date">Jun 2021 - Sep 2023</span>
+                            </div>
+                            <ul class="timeline-responsibilities">
+                                <li>Executed ETL Data Analyst role, designing and optimizing Informatica jobs</li>
+                                <li>Developed complex SQL queries that enhanced data retrieval efficiency by 60%</li>
+                                <li>Implemented and maintained DevOps scripts and CI/CD pipelines</li>
+                                <li>Created comprehensive data quality dashboards using Power BI</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="achievements-grid">
-                <div class="case-competitions animate-on-scroll">
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Skills & Technologies</h2>
+                    <p class="section-subtitle">Technologies I work with</p>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="fab fa-python"></i>
+                        </div>
+                        <h3>Python</h3>
+                        <div class="skill-level">
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-level="90"></div>
+                            </div>
+                            <span>Advanced</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3>SQL</h3>
+                        <div class="skill-level">
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-level="95"></div>
+                            </div>
+                            <span>Expert</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="fab fa-aws"></i>
+                        </div>
+                        <h3>AWS</h3>
+                        <div class="skill-level">
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-level="80"></div>
+                            </div>
+                            <span>Intermediate</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="fab fa-microsoft"></i>
+                        </div>
+                        <h3>Azure</h3>
+                        <div class="skill-level">
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-level="75"></div>
+                            </div>
+                            <span>Intermediate</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <h3>ETL</h3>
+                        <div class="skill-level">
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-level="90"></div>
+                            </div>
+                            <span>Expert</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Power BI</h3>
+                        <div class="skill-level">
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-level="85"></div>
+                            </div>
+                            <span>Advanced</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h3>Tableau</h3>
+                        <div class="skill-level">
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-level="70"></div>
+                            </div>
+                            <span>Intermediate</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="fab fa-git-alt"></i>
+                        </div>
+                        <h3>Git</h3>
+                        <div class="skill-level">
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-level="85"></div>
+                            </div>
+                            <span>Advanced</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Featured Projects</h2>
+                    <p class="section-subtitle">Some of my recent work</p>
+                </div>
+                <div class="projects-grid" id="projectsGrid">
+                    <!-- Projects will be loaded dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section id="achievements" class="achievements-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Achievements & Interests</h2>
+                    <p class="section-subtitle">Beyond technical expertise</p>
+                </div>
+                <div class="achievements-content">
                     <div class="achievement-card">
-                        <div class="achievement-icon"><i class="fas fa-award"></i></div>
-                        <h3>🏆 Case Competition Champion</h3>
+                        <div class="achievement-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h3>Case Competition Champion</h3>
                         <p>Secured multiple podium finishes at prestigious institutions including IIT Delhi, Masters Union, IIM Lucknow, BITS Pilani - Goa, and IIT BHU in analytics, consulting, strategy, and marketing competitions.</p>
                     </div>
-                    <div class="case-image">
-                        <img src="case.jpg" alt="Mayur winning case competitions">
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-running"></i>
+                        </div>
+                        <h3>Sports Enthusiast & Strategist</h3>
+                        <p>Active in badminton, table tennis, volleyball, and football. Chess enthusiast with an Elo rating of 2000 in bullet chess - proving strategic thinking extends beyond the board.</p>
+                        <div class="sports-grid">
+                            <div class="sport-item">
+                                <span class="sport-emoji">🏸</span>
+                                <span>Badminton</span>
+                            </div>
+                            <div class="sport-item">
+                                <span class="sport-emoji">♟️</span>
+                                <span>Chess</span>
+                            </div>
+                            <div class="sport-item">
+                                <span class="sport-emoji">🏓</span>
+                                <span>Table Tennis</span>
+                            </div>
+                            <div class="sport-item">
+                                <span class="sport-emoji">⚽</span>
+                                <span>Football</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="animate-on-scroll">
-                    <div class="achievement-card">
-                        <div class="achievement-icon"><i class="fas fa-running"></i></div>
-                        <h3>🎾 Sports Enthusiast & Strategist</h3>
-                        <p>Active in badminton, table tennis, volleyball, and football. Chess enthusiast with an Elo rating of 2000 in bullet chess - proving strategic thinking extends beyond the board.</p>
-                    </div>
-                    <div class="sports-list">
-                        <div class="sport-item">
-                            <div class="sport-icon">🏸</div>
-                            <h4>Badminton</h4>
-                            <p>Competitive player</p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Get In Touch</h2>
+                    <p class="section-subtitle">Let's work together on your next project</p>
+                </div>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h3>Email</h3>
+                                <p>mkhekare@gmail.com</p>
+                            </div>
                         </div>
-                        <div class="sport-item
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h3>Location</h3>
+                                <p>Bangalore, India</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h3>Phone</h3>
+                                <p>+91 98765 43210</p>
+                            </div>
+                        </div>
+                        <div class="social-links">
+                            <a href="https://github.com/mkhekare" target="_blank" class="social-link">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://linkedin.com/in/mayurkhekare" target="_blank" class="social-link">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="https://twitter.com/mayurkhekare" target="_blank" class="social-link">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <input type="text" id="name" name="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" name="email" placeholder="Your Email" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <span>Send Message</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <span>MK</span>
+                        <span>Mayur Khekare</span>
+                    </div>
+                    <p>Data Analytics Consultant passionate about transforming data into actionable insights.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <div class="footer-social">
+                        <a href="https://github.com/mkhekare" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/mayurkhekare" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://twitter.com/mayurkhekare" target="_blank"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Mayur Khekare. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="assets/js/scripts.js"></script>
+    <script src="assets/motion/background.js"></script>
+</body>
+</html>
