@@ -150,22 +150,73 @@ function init3DBackground() {
 
 // Add tech elements overlay
 function addTechElements() {
-    const techIcons = ['⚡', '🔧', '💻', '🌐', '📊', '🔬', '⚙️', '🎯'];
+    // Create geometric tech elements instead of emojis
     const techElementsContainer = document.createElement('div');
     techElementsContainer.className = 'tech-elements';
     
-    techIcons.forEach((icon, index) => {
+    // Create 6 geometric tech elements
+    for (let i = 0; i < 6; i++) {
         const element = document.createElement('div');
         element.className = 'tech-element';
-        element.textContent = icon;
-        element.style.animationDelay = `${index * 2}s`;
+        element.style.animationDelay = `${i * 3}s`;
         techElementsContainer.appendChild(element);
-    });
+    }
     
     document.body.appendChild(techElementsContainer);
     
+    // Add wave animations
+    addTechWaves();
+    
+    // Add graph lines
+    addTechGraphs();
+    
+    // Add floating dots
+    addTechDots();
+    
     // Add floating tech particles
     addTechParticles();
+}
+
+// Add tech waves
+function addTechWaves() {
+    const wavesContainer = document.createElement('div');
+    wavesContainer.className = 'tech-waves';
+    
+    for (let i = 0; i < 3; i++) {
+        const wave = document.createElement('div');
+        wave.className = 'wave';
+        wavesContainer.appendChild(wave);
+    }
+    
+    document.body.appendChild(wavesContainer);
+}
+
+// Add tech graphs
+function addTechGraphs() {
+    const graphsContainer = document.createElement('div');
+    graphsContainer.className = 'tech-graphs';
+    
+    for (let i = 0; i < 3; i++) {
+        const graphLine = document.createElement('div');
+        graphLine.className = 'graph-line';
+        graphsContainer.appendChild(graphLine);
+    }
+    
+    document.body.appendChild(graphsContainer);
+}
+
+// Add tech dots
+function addTechDots() {
+    const dotsContainer = document.createElement('div');
+    dotsContainer.className = 'tech-dots';
+    
+    for (let i = 0; i < 8; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'tech-dot';
+        dotsContainer.appendChild(dot);
+    }
+    
+    document.body.appendChild(dotsContainer);
 }
 
 // Add floating tech particles
@@ -196,10 +247,16 @@ function initMouseFollower() {
     let followerY = 0;
     let isMoving = false;
     let moveTimeout;
+    let velocity = 0;
     
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
+        
+        // Calculate velocity for dynamic effects
+        const deltaX = mouseX - followerX;
+        const deltaY = mouseY - followerY;
+        velocity = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
         
         if (!isMoving) {
             mouseFollower.classList.add('active');
@@ -213,7 +270,12 @@ function initMouseFollower() {
         moveTimeout = setTimeout(() => {
             mouseFollower.classList.remove('active');
             isMoving = false;
-        }, 100);
+        }, 150);
+        
+        // Add ripple effect on fast movement
+        if (velocity > 10) {
+            createRippleEffect(e.clientX, e.clientY);
+        }
     });
     
     document.addEventListener('mouseleave', () => {
@@ -224,25 +286,67 @@ function initMouseFollower() {
     // Enhanced smooth following animation with tech effects
     function animateFollower() {
         // Smooth following with enhanced responsiveness
-        followerX += (mouseX - followerX) * 0.15;
-        followerY += (mouseY - followerY) * 0.15;
+        followerX += (mouseX - followerX) * 0.12;
+        followerY += (mouseY - followerY) * 0.12;
         
         mouseFollower.style.left = followerX + 'px';
         mouseFollower.style.top = followerY + 'px';
         
-        // Add tech effect based on movement speed
-        const speed = Math.sqrt((mouseX - followerX) ** 2 + (mouseY - followerY) ** 2);
-        if (speed > 5) {
-            mouseFollower.style.transform = `translate(-50%, -50%) scale(${1 + speed * 0.001})`;
-        } else {
-            mouseFollower.style.transform = 'translate(-50%, -50%) scale(1)';
-        }
+        // Dynamic scaling based on movement speed
+        const scale = 1 + Math.min(velocity * 0.001, 0.3);
+        mouseFollower.style.transform = `translate(-50%, -50%) scale(${scale})`;
+        
+        // Color intensity based on movement
+        const intensity = Math.min(velocity * 0.01, 1);
+        mouseFollower.style.filter = `brightness(${1 + intensity * 0.2})`;
         
         requestAnimationFrame(animateFollower);
     }
     
     animateFollower();
 }
+
+// Create ripple effect
+function createRippleEffect(x, y) {
+    const ripple = document.createElement('div');
+    ripple.style.cssText = `
+        position: fixed;
+        left: ${x}px;
+        top: ${y}px;
+        width: 20px;
+        height: 20px;
+        background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9998;
+        transform: translate(-50%, -50%);
+        animation: rippleExpand 0.6s ease-out forwards;
+    `;
+    
+    document.body.appendChild(ripple);
+    
+    setTimeout(() => {
+        if (document.body.contains(ripple)) {
+            document.body.removeChild(ripple);
+        }
+    }, 600);
+}
+
+// Add CSS for ripple animation
+const rippleStyle = document.createElement('style');
+rippleStyle.textContent = `
+    @keyframes rippleExpand {
+        0% {
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 1;
+        }
+        100% {
+            transform: translate(-50%, -50%) scale(3);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(rippleStyle);
 
 // ===== NAVIGATION =====
 function initNavigation() {
@@ -316,13 +420,73 @@ function initAnimations() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('animate-fade-in-up');
+                
+                // Add staggered animations for cards
+                if (entry.target.classList.contains('service-card') || 
+                    entry.target.classList.contains('skill-card') || 
+                    entry.target.classList.contains('achievement-card')) {
+                    entry.target.style.animationDelay = `${Math.random() * 0.5}s`;
+                }
+                
+                // Special animation for timeline items
+                if (entry.target.classList.contains('timeline-item')) {
+                    entry.target.classList.add('animate');
+                }
+                
+                // Animate section headers
+                if (entry.target.classList.contains('section-header')) {
+                    entry.target.classList.add('animate');
+                }
             }
         });
     }, observerOptions);
     
     // Observe elements for animation
-    const animateElements = document.querySelectorAll('.service-card, .skill-card, .achievement-card, .timeline-item');
+    const animateElements = document.querySelectorAll('.service-card, .skill-card, .achievement-card, .timeline-item, .section-header');
     animateElements.forEach(el => observer.observe(el));
+    
+    // Add hover effects for interactive elements
+    addHoverEffects();
+}
+
+// Add sophisticated hover effects
+function addHoverEffects() {
+    // Add magnetic effect to cards
+    const cards = document.querySelectorAll('.service-card, .skill-card, .achievement-card, .project-card');
+    
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = (y - centerY) / 10;
+            const rotateY = (centerX - x) / 10;
+            
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
+        });
+    });
+    
+    // Add glow effect to buttons
+    const buttons = document.querySelectorAll('.btn');
+    
+    buttons.forEach(button => {
+        button.addEventListener('mousemove', (e) => {
+            const rect = button.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            button.style.setProperty('--mouse-x', `${x}px`);
+            button.style.setProperty('--mouse-y', `${y}px`);
+        });
+    });
 }
 
 // ===== SKILL BARS =====
