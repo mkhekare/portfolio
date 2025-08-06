@@ -4,9 +4,9 @@
 
 /* Root Variables */
 :root {
-  --primary-color: #2563eb;
-  --secondary-color: #4b5563;
-  --accent-color: #10b981;
+  --primary-color: #4f46e5;
+  --secondary-color: #3b82f6;
+  --accent-color: #06b6d4;
   --text-color: #1f2937;
   --background-color: #f9fafb;
   --white: #ffffff;
@@ -299,12 +299,14 @@ nav a:hover::after {
 }
 
 .timeline-content {
-  background: var(--white);
+  background: rgba(255, 255, 255, 0.95);
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: var(--shadow-md);
   position: relative;
   transition: var(--transition);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .timeline-content:hover {
@@ -389,7 +391,7 @@ nav a:hover::after {
 
 .project-info h3 {
   margin-bottom: 0.5rem;
-  color: var(--primary-color);
+  color: var (--primary-color);
 }
 
 .project-info p {
@@ -592,13 +594,13 @@ footer {
   }
 
   .timeline::before {
-    left: 31px;
+    left: 20px;
   }
 
   .timeline-item:nth-child(odd),
   .timeline-item:nth-child(even) {
-    padding-left: 70px;
-    padding-right: 0;
+    padding-left: 50px !important;
+    padding-right: 0 !important;
     text-align: left;
   }
 
@@ -615,5 +617,37 @@ footer {
   .hero-buttons {
     flex-direction: column;
     align-items: center;
+  }
+}
+
+/* 3D Background Enhancement */
+.background-3d {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: linear-gradient(
+    45deg,
+    rgba(79, 70, 229, 0.05) 0%,
+    rgba(59, 130, 246, 0.05) 100%
+  );
+}
+
+/* Accessibility Improvements */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  :root {
+    --primary-color: #0000EE;
+    --secondary-color: #551A8B;
+    --accent-color: #008000;
   }
 }

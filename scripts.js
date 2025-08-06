@@ -123,10 +123,43 @@ if (contactForm) {
     });
 }
 
+// New 3D background animation
+class Background3D {
+    constructor() {
+        this.canvas = document.createElement('canvas');
+        this.canvas.classList.add('background-3d');
+        document.body.appendChild(this.canvas);
+        this.ctx = this.canvas.getContext('2d');
+        this.points = [];
+        this.init();
+    }
+
+    init() {
+        // Setup canvas size
+        this.resize();
+        window.addEventListener('resize', () => this.resize());
+        
+        // Create points
+        for(let i = 0; i < 100; i++) {
+            this.points.push({
+                x: Math.random() * this.width,
+                y: Math.random() * this.height,
+                z: Math.random() * 10,
+                speed: Math.random() * 0.5 + 0.1
+            });
+        }
+        
+        this.animate();
+    }
+    
+    // ...existing code...
+}
+
 // Initialize on DOM load
 document.addEventListener('DOMContentLoaded', () => {
     loadProjects();
     loadSkills();
+    new Background3D();
     
     // Add animation to elements when they come into view
     const animateOnScroll = () => {
@@ -152,4 +185,15 @@ document.addEventListener('DOMContentLoaded', () => {
     
     window.addEventListener('scroll', animateOnScroll);
     animateOnScroll(); // Run once on load
+});
+
+// Enhanced interaction feedback
+document.querySelectorAll('.timeline-content').forEach(item => {
+    item.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-5px) scale(1.02)';
+    });
+    
+    item.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) scale(1)';
+    });
 });
