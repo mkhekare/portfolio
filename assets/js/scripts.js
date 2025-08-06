@@ -61,49 +61,79 @@ function init3DBackground() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     
-    // Create particles
+    // Create Matrix-style particles
     const particlesGeometry = new THREE.BufferGeometry();
-    const particlesCount = 1000;
+    const particlesCount = 1500;
     const posArray = new Float32Array(particlesCount * 3);
+    const colorArray = new Float32Array(particlesCount * 3);
     
-    for (let i = 0; i < particlesCount * 3; i++) {
-        posArray[i] = (Math.random() - 0.5) * 5;
+    for (let i = 0; i < particlesCount * 3; i += 3) {
+        // Position
+        posArray[i] = (Math.random() - 0.5) * 10;
+        posArray[i + 1] = (Math.random() - 0.5) * 10;
+        posArray[i + 2] = (Math.random() - 0.5) * 10;
+        
+        // Color - Blue tech theme
+        const colorIntensity = Math.random() * 0.5 + 0.5;
+        colorArray[i] = 0.2 + colorIntensity * 0.3; // Blue
+        colorArray[i + 1] = 0.6 + colorIntensity * 0.4; // Cyan
+        colorArray[i + 2] = 0.8 + colorIntensity * 0.2; // Light blue
     }
     
     particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+    particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorArray, 3));
     
     const particlesMaterial = new THREE.PointsMaterial({
-        size: 0.005,
-        color: '#6366f1',
+        size: 0.02,
+        vertexColors: true,
         transparent: true,
         opacity: 0.8,
-        blending: THREE.AdditiveBlending
+        blending: THREE.AdditiveBlending,
+        sizeAttenuation: true
     });
     
     const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
     scene.add(particlesMesh);
     
-    camera.position.z = 2;
+    // Add tech elements overlay
+    addTechElements();
     
-    // Mouse movement effect
+    camera.position.z = 3;
+    
+    // Enhanced mouse movement effect
     let mouseX = 0;
     let mouseY = 0;
+    let targetX = 0;
+    let targetY = 0;
     
     document.addEventListener('mousemove', (event) => {
         mouseX = event.clientX / window.innerWidth - 0.5;
         mouseY = event.clientY / window.innerHeight - 0.5;
     });
     
-    // Animation loop
+    // Animation loop with enhanced effects
     function animate() {
         requestAnimationFrame(animate);
         
-        particlesMesh.rotation.y += 0.001;
+        // Smooth mouse tracking
+        targetX += (mouseX - targetX) * 0.05;
+        targetY += (mouseY - targetY) * 0.05;
+        
+        // Matrix-style rotation
+        particlesMesh.rotation.y += 0.002;
         particlesMesh.rotation.x += 0.001;
         
-        // Mouse interaction
-        particlesMesh.rotation.x += mouseY * 0.001;
-        particlesMesh.rotation.y += mouseX * 0.001;
+        // Mouse interaction with enhanced responsiveness
+        particlesMesh.rotation.x += targetY * 0.002;
+        particlesMesh.rotation.y += targetX * 0.002;
+        
+        // Particle movement
+        const positions = particlesMesh.geometry.attributes.position.array;
+        for (let i = 1; i < positions.length; i += 3) {
+            positions[i] -= 0.01; // Falling effect
+            if (positions[i] < -5) positions[i] = 5;
+        }
+        particlesMesh.geometry.attributes.position.needsUpdate = true;
         
         renderer.render(scene, camera);
     }
@@ -118,6 +148,43 @@ function init3DBackground() {
     });
 }
 
+// Add tech elements overlay
+function addTechElements() {
+    const techIcons = ['⚡', '🔧', '💻', '🌐', '📊', '🔬', '⚙️', '🎯'];
+    const techElementsContainer = document.createElement('div');
+    techElementsContainer.className = 'tech-elements';
+    
+    techIcons.forEach((icon, index) => {
+        const element = document.createElement('div');
+        element.className = 'tech-element';
+        element.textContent = icon;
+        element.style.animationDelay = `${index * 2}s`;
+        techElementsContainer.appendChild(element);
+    });
+    
+    document.body.appendChild(techElementsContainer);
+    
+    // Add floating tech particles
+    addTechParticles();
+}
+
+// Add floating tech particles
+function addTechParticles() {
+    const particlesContainer = document.createElement('div');
+    particlesContainer.className = 'floating-tech-particles';
+    
+    for (let i = 0; i < 20; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'tech-particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 8 + 's';
+        particle.style.animationDuration = (Math.random() * 4 + 6) + 's';
+        particlesContainer.appendChild(particle);
+    }
+    
+    document.body.appendChild(particlesContainer);
+}
+
 // ===== MOUSE FOLLOWER =====
 function initMouseFollower() {
     const mouseFollower = document.getElementById('mouseFollower');
@@ -127,24 +194,49 @@ function initMouseFollower() {
     let mouseY = 0;
     let followerX = 0;
     let followerY = 0;
+    let isMoving = false;
+    let moveTimeout;
     
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
-        mouseFollower.classList.add('active');
+        
+        if (!isMoving) {
+            mouseFollower.classList.add('active');
+            isMoving = true;
+        }
+        
+        // Clear existing timeout
+        clearTimeout(moveTimeout);
+        
+        // Set timeout to hide follower when mouse stops
+        moveTimeout = setTimeout(() => {
+            mouseFollower.classList.remove('active');
+            isMoving = false;
+        }, 100);
     });
     
     document.addEventListener('mouseleave', () => {
         mouseFollower.classList.remove('active');
+        isMoving = false;
     });
     
-    // Smooth following animation
+    // Enhanced smooth following animation with tech effects
     function animateFollower() {
-        followerX += (mouseX - followerX) * 0.1;
-        followerY += (mouseY - followerY) * 0.1;
+        // Smooth following with enhanced responsiveness
+        followerX += (mouseX - followerX) * 0.15;
+        followerY += (mouseY - followerY) * 0.15;
         
         mouseFollower.style.left = followerX + 'px';
         mouseFollower.style.top = followerY + 'px';
+        
+        // Add tech effect based on movement speed
+        const speed = Math.sqrt((mouseX - followerX) ** 2 + (mouseY - followerY) ** 2);
+        if (speed > 5) {
+            mouseFollower.style.transform = `translate(-50%, -50%) scale(${1 + speed * 0.001})`;
+        } else {
+            mouseFollower.style.transform = 'translate(-50%, -50%) scale(1)';
+        }
         
         requestAnimationFrame(animateFollower);
     }
