@@ -2949,45 +2949,53 @@ body.dark-mode .theme-toggle::after {
 /* ===== LOCATION WIDGET - COMPACT ===== */
 .location-widget-compact {
     position: fixed;
-    left: -350px;
+    left: 10px;
     top: 50%;
     transform: translateY(-50%);
-    width: 400px;
-    background: var(--gradient-primary);
-    border-radius: 0 12px 12px 0;
-    box-shadow: 2px 8px 24px rgba(59, 130, 246, 0.25);
+    width: 60px;
+    background: transparent;
     z-index: 999;
     overflow: visible;
     pointer-events: auto;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: stretch;
+    gap: 0;
 }
 
 .location-widget-compact:hover {
-    left: 0;
-    box-shadow: 2px 12px 32px rgba(59, 130, 246, 0.35);
+    width: 420px;
 }
 
 .location-compact-header {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 50px;
-    padding: 1rem 0.5rem;
+    width: 60px;
+    height: 60px;
     color: var(--white);
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-weight: 700;
     background: var(--gradient-primary);
-    border-radius: 0 12px 12px 0;
-    position: absolute;
-    left: -50px;
-    top: 0;
-    bottom: 0;
+    border-radius: 12px;
+    box-shadow: 2px 8px 24px rgba(59, 130, 246, 0.25);
     cursor: pointer;
-    box-shadow: -2px 8px 24px rgba(59, 130, 246, 0.25);
+    flex-shrink: 0;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .location-compact-info {
+    padding: 1.5rem 1rem 0.75rem;
+    background: var(--gradient-primary);
+    border-radius: 0 12px 12px 0;
+    width: 0;
+    overflow: hidden;
+    box-shadow: 2px 8px 24px rgba(59, 130, 246, 0.25);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.location-widget-compact:hover .location-compact-info {
+    width: 360px;
     padding: 1.5rem 1rem 0.75rem;
 }
 
@@ -3103,13 +3111,22 @@ body.dark-mode .theme-toggle::after {
     }
 
     .location-widget-compact {
-        left: -330px;
-        width: 380px;
+        left: 10px;
+        width: 55px;
+    }
+
+    .location-widget-compact:hover {
+        width: 400px;
     }
 
     .location-compact-header {
-        width: 50px;
-        left: -50px;
+        width: 55px;
+        height: 55px;
+        font-size: 1.3rem;
+    }
+
+    .location-widget-compact:hover .location-compact-info {
+        width: 345px;
     }
 
     .location-spotify-container iframe {
@@ -3500,13 +3517,22 @@ body.dark-mode .theme-toggle::after {
 
 @media (max-width: 480px) {
     .location-widget-compact {
-        left: -310px;
-        width: 360px;
+        left: 5px;
+        width: 50px;
+    }
+
+    .location-widget-compact:hover {
+        width: 330px;
     }
 
     .location-compact-header {
         width: 50px;
-        left: -50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+
+    .location-widget-compact:hover .location-compact-info {
+        width: 280px;
     }
 
     .location-widget-compact:hover {
