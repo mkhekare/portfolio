@@ -2949,7 +2949,7 @@ body.dark-mode .theme-toggle::after {
 /* ===== LOCATION WIDGET - COMPACT ===== */
 .location-widget-compact {
     position: fixed;
-    left: -420px;
+    left: -350px;
     top: 50%;
     transform: translateY(-50%);
     width: 400px;
@@ -2957,7 +2957,7 @@ body.dark-mode .theme-toggle::after {
     border-radius: 0 12px 12px 0;
     box-shadow: 2px 8px 24px rgba(59, 130, 246, 0.25);
     z-index: 999;
-    overflow: hidden;
+    overflow: visible;
     pointer-events: auto;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -2971,15 +2971,24 @@ body.dark-mode .theme-toggle::after {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    padding: 1rem;
+    width: 50px;
+    padding: 1rem 0.5rem;
     color: var(--white);
     font-size: 1.2rem;
     font-weight: 700;
+    background: var(--gradient-primary);
+    border-radius: 0 12px 12px 0;
+    position: absolute;
+    left: -50px;
+    top: 0;
+    bottom: 0;
+    cursor: pointer;
+    box-shadow: -2px 8px 24px rgba(59, 130, 246, 0.25);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .location-compact-info {
-    padding: 0.75rem 1rem;
+    padding: 1.5rem 1rem 0.75rem;
 }
 
 .location-compact-top {
@@ -3094,8 +3103,13 @@ body.dark-mode .theme-toggle::after {
     }
 
     .location-widget-compact {
-        left: -400px;
+        left: -330px;
         width: 380px;
+    }
+
+    .location-compact-header {
+        width: 50px;
+        left: -50px;
     }
 
     .location-spotify-container iframe {
@@ -3486,8 +3500,13 @@ body.dark-mode .theme-toggle::after {
 
 @media (max-width: 480px) {
     .location-widget-compact {
-        left: -390px;
+        left: -310px;
         width: 360px;
+    }
+
+    .location-compact-header {
+        width: 50px;
+        left: -50px;
     }
 
     .location-widget-compact:hover {
