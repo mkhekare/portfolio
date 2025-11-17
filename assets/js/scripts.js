@@ -1145,6 +1145,9 @@ function initChatBot() {
         const message = chatInput.value.trim();
         if (!message) return;
         
+        // Store last user message for follow-up prompts
+        window.lastUserMessage = message;
+        
         // Add user message
         addChatMessage(message, 'user');
         chatInput.value = '';
@@ -1178,7 +1181,66 @@ function initChatBot() {
         messageEl.className = `chat-message ${sender}-message`;
         messageEl.innerHTML = `<p>${text}</p>`;
         chatMessages.appendChild(messageEl);
+        
+        // Add redirect prompts for bot messages
+        if (sender === 'bot') {
+            setTimeout(() => {
+                const promptsEl = document.createElement('div');
+                promptsEl.className = 'chat-prompts';
+                
+                // Get related follow-up questions based on last user message
+                const followUps = getFollowUpPrompts(window.lastUserMessage || '');
+                
+                if (followUps.length > 0) {
+                    promptsEl.innerHTML = followUps
+                        .slice(0, 3)
+                        .map(q => `<button class="chat-prompt-btn" data-prompt="${q}">${q}</button>`)
+                        .join('');
+                    
+                    chatMessages.appendChild(promptsEl);
+                    
+                    // Add click handlers to prompt buttons
+                    promptsEl.querySelectorAll('.chat-prompt-btn').forEach(btn => {
+                        btn.addEventListener('click', () => {
+                            const prompt = btn.getAttribute('data-prompt');
+                            chatInput.value = prompt;
+                            chatInput.focus();
+                        });
+                    });
+                }
+            }, 100);
+        }
+        
         chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+    
+    function getFollowUpPrompts(lastMessage) {
+        const prompts = {
+            'experience': ['What technologies do you use?', 'Tell me about your projects', 'What services do you offer?'],
+            'skills': ['Show me your projects', 'What about work experience?', 'Can I hire you?'],
+            'projects': ['Tell me more about your skills', 'What experiences do you have?', 'Any achievements?'],
+            'services': ['What technologies do you use?', 'Can you work with AWS/Azure?', 'What\'s your experience?'],
+            'achievements': ['Tell me about your projects', 'What services do you offer?', 'How can I contact you?'],
+            'contact': ['What services do you provide?', 'Tell me about your experience', 'Show me your projects'],
+            'education': ['What are your achievements?', 'Tell me about your skills', 'What\'s your experience?'],
+            'location': ['What\'s your background?', 'Are you available for opportunities?', 'How can I contact you?'],
+            'hobbies': ['Tell me about your professional side', 'What projects have you done?', 'Are you open to opportunities?'],
+            'opportunities': ['What skills do you have?', 'Show me your projects', 'How can I contact you?']
+        };
+        
+        const msgLower = lastMessage.toLowerCase();
+        for (let category in prompts) {
+            if (msgLower.includes(category.split('')[0])) {
+                return prompts[category];
+            }
+        }
+        
+        // Default prompts
+        return [
+            'Tell me about your experience',
+            'What projects have you done?',
+            'How can I contact you?'
+        ];
     }
     
     function getBotResponse(input, data) {
@@ -1209,6 +1271,53 @@ function initChatBot() {
 function initLocationWidget() {
     const locationWidget = document.getElementById('locationWidget');
     if (!locationWidget) return;
+    
+    // Make widget draggable
+    let isDragging = false;
+    let currentX;
+    let currentY;
+    let initialX;
+    let initialY;
+    
+    // Convert pixel values to consider any existing transforms
+    let xOffset = 0;
+    let yOffset = 0;
+    
+    locationWidget.addEventListener('mousedown', dragStart);
+    document.addEventListener('mousemove', drag);
+    document.addEventListener('mouseup', dragEnd);
+    
+    function dragStart(e) {
+        // Only drag from header area
+        if (e.target.closest('.location-header')) {
+            isDragging = true;
+            initialX = e.clientX - xOffset;
+            initialY = e.clientY - yOffset;
+            locationWidget.style.cursor = 'grabbing';
+            locationWidget.style.zIndex = '10000';
+        }
+    }
+    
+    function drag(e) {
+        if (isDragging) {
+            e.preventDefault();
+            currentX = e.clientX - initialX;
+            currentY = e.clientY - initialY;
+            
+            xOffset = currentX;
+            yOffset = currentY;
+            
+            locationWidget.style.transform = `translate(${currentX}px, ${currentY}px)`;
+        }
+    }
+    
+    function dragEnd() {
+        if (isDragging) {
+            isDragging = false;
+            locationWidget.style.cursor = 'grab';
+            locationWidget.style.zIndex = '999';
+        }
+    }
     
     // Update time
     function updateTime() {
