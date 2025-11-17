@@ -1287,9 +1287,11 @@ function initLocationWidget() {
     function getWeather() {
         const mockWeather = {
             temp: Math.floor(Math.random() * (35 - 22) + 22), // Random between 22-35°C
+            aqi: Math.floor(Math.random() * (200 - 50) + 50) // Random AQI between 50-200
         };
         
         document.getElementById('temperature').textContent = mockWeather.temp;
+        document.getElementById('aqi').textContent = mockWeather.aqi;
     }
     
     // Initialize

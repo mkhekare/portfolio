@@ -676,14 +676,6 @@
                         </p>
                     </div>
                 </div>
-
-                <!-- Chillin Section -->
-                <div class="chillin-section">
-                    <h3 class="chillin-title">Chillin' ♪</h3>
-                    <div class="spotify-embed-container">
-                        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/4oWDaJpusSH1lqIQQkEHsS?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -802,9 +794,25 @@
         <div class="location-compact-header">
             <i class="fas fa-map-pin"></i>
         </div>
-        <div class="location-compact-city">BLR</div>
-        <div class="location-compact-temp"><span id="temperature">--</span>°</div>
-        <div class="location-compact-time" id="currentTime">--:--</div>
+        <div class="location-compact-info">
+            <div class="location-compact-top">
+                <div class="location-info-item">
+                    <div class="location-label">CHILLIN' IN</div>
+                    <div class="location-compact-city">BLR</div>
+                </div>
+                <div class="location-info-item">
+                    <div class="location-compact-temp"><span id="temperature">--</span>°</div>
+                    <div class="location-compact-time" id="currentTime">--:--</div>
+                </div>
+                <div class="location-info-item">
+                    <div class="location-label">AQI</div>
+                    <div class="location-compact-aqi"><span id="aqi">--</span></div>
+                </div>
+            </div>
+            <div class="location-spotify-container">
+                <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6ZCuxKpq1RROMaxqby5gC2?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+        </div>
     </div>
 
     <!-- Footer -->
