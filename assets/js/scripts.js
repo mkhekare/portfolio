@@ -15,6 +15,10 @@ document.addEventListener('DOMContentLoaded', function() {
     initMobileMenu();
     initStatsCounter();
     initProjects();
+    initThemeToggle();
+    initChatBot();
+    initLocationWidget();
+    initProjectFilter();
 });
 
 // ===== LOADING SCREEN =====
@@ -687,52 +691,100 @@ function initProjects() {
     
     const projects = [
         {
-            title: 'Data Pipeline Automation',
-            description: 'Built an automated ETL pipeline using Python and Apache Airflow that processes 1M+ records daily.',
-            tags: ['Python', 'Apache Airflow', 'PostgreSQL', 'AWS'],
-            github: 'https://github.com/mkhekare/data-pipeline',
-            demo: '#'
+            title: 'Data Analyst Space',
+            description: 'AI app for intuitive dataset exploration, analysis, and visualization.',
+            tags: ['Python', 'Streamlit', 'Pandas', 'Plotly'],
+            link: 'https://huggingface.co/spaces/mkhekare/DataAnalyst',
+            category: 'ai'
         },
         {
-            title: 'Business Intelligence Dashboard',
-            description: 'Created interactive dashboards using Power BI for executive decision-making and KPI tracking.',
-            tags: ['Power BI', 'SQL', 'Data Visualization', 'ETL'],
-            github: 'https://github.com/mkhekare/bi-dashboard',
-            demo: '#'
+            title: 'WealthWise AI',
+            description: 'Personalized financial advisor with AI-powered budgeting, investment tracking, and portfolio management.',
+            tags: ['Python', 'Gemini API', 'Streamlit', 'Finance'],
+            link: 'https://huggingface.co/spaces/mkhekare/investment_advisor',
+            category: 'ai'
         },
         {
-            title: 'Cloud Migration Solution',
-            description: 'Led migration of on-premises data infrastructure to AWS with 99.9% uptime and 40% cost reduction.',
-            tags: ['AWS', 'Terraform', 'Docker', 'Kubernetes'],
-            github: 'https://github.com/mkhekare/cloud-migration',
-            demo: '#'
+            title: 'AI-Powered Technical Data Lineage Generator',
+            description: 'Visualize and analyze data lineage in codebases using AI to extract meaningful insights from code.',
+            tags: ['Python', 'AI', 'Graph Database', 'LLM'],
+            link: 'https://huggingface.co/spaces/mkhekare/Lineage',
+            category: 'data'
         },
         {
-            title: 'Data Quality Framework',
-            description: 'Developed comprehensive data quality monitoring system with automated alerts and reporting.',
-            tags: ['Python', 'Great Expectations', 'Apache Kafka', 'MongoDB'],
-            github: 'https://github.com/mkhekare/data-quality',
-            demo: '#'
+            title: 'Data Strategy & Governance Roadmap Generator',
+            description: 'Customized data strategy roadmaps with AI recommendations, cost estimation, and tool suggestions.',
+            tags: ['Gemini AI', 'Python', 'Plotly', 'Enterprise'],
+            link: 'https://huggingface.co/spaces/mkhekare/DataStrategyRoadmap',
+            category: 'data'
         },
         {
-            title: 'Real-time Analytics Platform',
-            description: 'Built real-time analytics platform using Apache Spark and Kafka for streaming data processing.',
-            tags: ['Apache Spark', 'Kafka', 'Scala', 'Redis'],
-            github: 'https://github.com/mkhekare/realtime-analytics',
-            demo: '#'
+            title: 'Bike Sharing Dataset Exploratory Analysis',
+            description: 'Comprehensive analysis of bike sharing trends based on seasonal, temporal, and weather factors.',
+            tags: ['Python', 'Pandas', 'Visualization', 'ML'],
+            link: 'https://github.com/mkhekare/bikesharing_ml',
+            category: 'data'
         },
         {
-            title: 'Machine Learning Pipeline',
-            description: 'End-to-end ML pipeline for predictive analytics with automated model training and deployment.',
-            tags: ['Python', 'Scikit-learn', 'MLflow', 'Docker'],
-            github: 'https://github.com/mkhekare/ml-pipeline',
-            demo: '#'
+            title: 'RuPay Luxe Rewards Program',
+            description: 'Interactive platform for exploring card tiers and eligibility based on financial profiles.',
+            tags: ['Python', 'Web App', 'Finance', 'Algorithm'],
+            link: 'https://github.com/mkhekare/iiml_npci',
+            category: 'web'
+        },
+        {
+            title: 'Investment Analysis Application',
+            description: 'Evaluate investment opportunities with investability index calculation and fund allocation.',
+            tags: ['Python', 'Finance', 'Analysis', 'Web'],
+            link: 'https://github.com/mkhekare/midas_invest_iitd',
+            category: 'data'
+        },
+        {
+            title: 'Wine Quality Prediction',
+            description: 'ML model predicting wine quality from chemical properties, addressing class imbalance issues.',
+            tags: ['Python', 'Scikit-learn', 'ML', 'Classification'],
+            link: 'https://github.com/mkhekare/wine_ml',
+            category: 'ai'
+        },
+        {
+            title: 'Titanic Survival Prediction',
+            description: 'Predict passenger survival using machine learning on historical Titanic dataset.',
+            tags: ['Python', 'ML', 'Pandas', 'Classification'],
+            link: 'https://github.com/mkhekare/titanic_ml',
+            category: 'ai'
+        },
+        {
+            title: 'Topic Modeling with LDA on Reviews',
+            description: 'Extract meaningful topics from text reviews using Latent Dirichlet Allocation.',
+            tags: ['Python', 'NLP', 'LDA', 'Text Analysis'],
+            link: 'https://github.com/mkhekare/web_social_media_analysis',
+            category: 'ai'
+        },
+        {
+            title: 'Predicting 10-Year Coronary Heart Disease Risk',
+            description: 'Analyze and predict CHD risk using Framingham Heart Study data with feature engineering.',
+            tags: ['Python', 'Pandas', 'ML', 'Healthcare'],
+            link: 'https://github.com/mkhekare/heart_ml',
+            category: 'ai'
         }
     ];
     
-    projects.forEach(project => {
+    renderProjects(projects, 'all');
+    
+    // Store projects globally for filtering
+    window.allProjects = projects;
+}
+
+function renderProjects(projects, filter = 'all') {
+    const projectsGrid = document.getElementById('projectsGrid');
+    projectsGrid.innerHTML = '';
+    
+    const filtered = filter === 'all' ? projects : projects.filter(p => p.category === filter);
+    
+    filtered.forEach((project, index) => {
         const projectCard = document.createElement('div');
         projectCard.className = 'project-card';
+        projectCard.style.animationDelay = `${index * 0.1}s`;
         projectCard.innerHTML = `
             <div class="project-info">
                 <h3>${project.title}</h3>
@@ -741,15 +793,28 @@ function initProjects() {
                     ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
                 </div>
                 <div class="project-links">
-                    <a href="${project.github}" target="_blank">
-                        <i class="fab fa-github"></i> Code
+                    <a href="${project.link}" target="_blank">
+                        <i class="fas fa-external-link-alt"></i> View Project
                     </a>
-                    ${project.demo !== '#' ? `<a href="${project.demo}" target="_blank"><i class="fas fa-external-link-alt"></i> Demo</a>` : ''}
                 </div>
             </div>
         `;
         
         projectsGrid.appendChild(projectCard);
+    });
+}
+
+function initProjectFilter() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            const filter = btn.getAttribute('data-filter');
+            renderProjects(window.allProjects, filter);
+        });
     });
 }
 
@@ -846,4 +911,339 @@ function trapFocus(element) {
 const mobileMenu = document.getElementById('mobileMenu');
 if (mobileMenu) {
     trapFocus(mobileMenu);
+}
+
+// ===== THEME TOGGLE =====
+function initThemeToggle() {
+    const themeToggle = document.getElementById('themeToggle');
+    if (!themeToggle) return;
+    
+    // Check for saved theme preference or default to light mode
+    const currentTheme = localStorage.getItem('theme') || 'light-mode';
+    if (currentTheme === 'dark-mode') {
+        document.body.classList.add('dark-mode');
+        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+    }
+    
+    themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        
+        if (document.body.classList.contains('dark-mode')) {
+            localStorage.setItem('theme', 'dark-mode');
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+            localStorage.setItem('theme', 'light-mode');
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+        
+        // Add rotation animation
+        themeToggle.style.transform = 'rotate(360deg)';
+        setTimeout(() => {
+            themeToggle.style.transform = 'rotate(0deg)';
+        }, 300);
+    });
+}
+
+// ===== CHAT BOT =====
+function initChatBot() {
+    const chatToggle = document.getElementById('chatToggle');
+    const chatWidget = document.getElementById('chatWidget');
+    const chatClose = document.getElementById('chatClose');
+    const chatSend = document.getElementById('chatSend');
+    const chatInput = document.getElementById('chatInput');
+    const chatMessages = document.getElementById('chatMessages');
+    const suggestionBtns = document.querySelectorAll('.suggestion-btn');
+    
+    if (!chatToggle || !chatWidget) return;
+    
+    // Chat data - 40 predefined Q&As
+    const chatData = [
+        {
+            keywords: ['hello', 'hi', 'hey', 'greetings'],
+            response: 'Hey there! 👋 I\'m Mayur\'s AI assistant. How can I help you today?',
+            category: 'greeting'
+        },
+        {
+            keywords: ['tech stack', 'technologies', 'tools', 'skills'],
+            response: 'I work with:\n• Languages: Python, SQL, JavaScript\n• Cloud: AWS, Azure\n• Platforms: Informatica IICS, Databricks, Snowflake\n• Tools: Power BI, Tableau, Git\n• ML: Scikit-learn, TensorFlow, Hugging Face',
+            category: 'skills'
+        },
+        {
+            keywords: ['experience', 'work', 'background', 'career'],
+            response: 'I have 3+ years in data engineering, business intelligence, and cloud platforms:\n• Infosys: Data Governance (2025-Present)\n• Cognizant: Data Engineering & Automation (2023-2024)\n• Cognizant: ETL Development (2021-2023)',
+            category: 'experience'
+        },
+        {
+            keywords: ['services', 'offer', 'help', 'do you do'],
+            response: 'I provide:\n🔧 Data Engineering - Pipelines, ETL, cloud infrastructure\n📊 Business Intelligence - Dashboards, analytics\n🤖 AI/ML Solutions - Models, predictions, automation\n☁️ Cloud Migration - AWS, Azure implementation\n📈 Data Strategy - Governance, architecture consulting',
+            category: 'services'
+        },
+        {
+            keywords: ['contact', 'email', 'phone', 'reach', 'get in touch'],
+            response: 'You can reach me at:\n📧 mkhekare@gmail.com\n📱 +91-7768924686\n💼 linkedin.com/in/mayur-khekare\n💻 github.com/mkhekare',
+            category: 'contact'
+        },
+        {
+            keywords: ['projects', 'work', 'portfolio', 'showcase'],
+            response: 'I\'ve worked on awesome projects:\n✨ Data Analyst Space (AI dataset exploration)\n💰 WealthWise AI (Financial advisor)\n📊 Data Lineage Generator\n🏆 Data Strategy Roadmap Generator\n🧬 ML models (Wine, Titanic, Heart Disease)\nCheck the projects section for more!',
+            category: 'projects'
+        },
+        {
+            keywords: ['awards', 'achievements', 'recognition', 'accomplishments'],
+            response: '🏆 Star Employee of the Quarter (Cognizant)\n🥇 Top 20 National Rank - Business & International Finance Olympiad, BSE Mumbai\n🎖️ 3rd Place - MuLytics Analytics Case Competition\n📜 AWS Cloud Practitioner & Azure Fundamentals Certified',
+            category: 'achievements'
+        },
+        {
+            keywords: ['education', 'degree', 'college', 'university'],
+            response: 'My education:\n🎓 PGPM - Great Lakes Institute of Management, Gurgaon (2025)\n🎓 B.Tech Electronics & Communication - MIT-WPU, Pune (2021)\nCGPA: 8.42/10',
+            category: 'education'
+        },
+        {
+            keywords: ['location', 'where', 'city', 'based'],
+            response: 'CHILLIN\' IN Bengaluru 🌆 Currently working at Infosys in Bangalore!',
+            category: 'location'
+        },
+        {
+            keywords: ['hobbies', 'interests', 'hobby', 'free time'],
+            response: 'When I\'m not working, I:\n♟️ Play chess (Elo: 2000+ in bullet)\n🏸 Play badminton & table tennis\n📚 Read blogs & listen to podcasts\n💡 Tinker with side projects\n🎮 Explore new tech on the internet',
+            category: 'hobbies'
+        },
+        {
+            keywords: ['hire', 'job', 'opportunity', 'work with'],
+            response: 'I\'m exploring roles in AI/ML and Product! If you\'re building something interesting in data platforms, AI systems, or decision tools, I\'d love to chat. Let me know! 🚀',
+            category: 'opportunities'
+        },
+        {
+            keywords: ['data engineering', 'pipelines', 'etl'],
+            response: 'I build cloud-native pipelines using AWS, Python, and SQL. My focus:\n✅ Reliability & automation\n✅ Performance optimization\n✅ Scalability & maintainability\nEnsuring data reaches the right place in the right shape, every single time!',
+            category: 'services'
+        },
+        {
+            keywords: ['analytics', 'business intelligence', 'dashboards'],
+            response: 'I translate business problems into structured analyses:\n📊 Pipeline KPIs\n👥 Customer metrics\n🧠 ML-driven insights\nBreaking down the noise to surface what actually matters for your business.',
+            category: 'services'
+        },
+        {
+            keywords: ['ai', 'machine learning', 'models', 'neural'],
+            response: 'I work with:\n🤖 Language Models & embeddings\n📦 Vector databases\n🏷️ Classification models\n🔮 Prediction models\nBuilt end-to-end AI utilities: wrappers, Streamlit apps, Hugging Face deployments!',
+            category: 'services'
+        },
+        {
+            keywords: ['cloud', 'aws', 'azure', 'migration'],
+            response: 'Cloud expertise:\n☁️ AWS: EC2, S3, Lambda, RDS, Redshift\n☁️ Azure: VMs, Functions, Synapse\n☁️ Large-scale migrations\n☁️ Metadata governance (Atlan, OpenMetadata)\n☁️ Infrastructure as Code',
+            category: 'services'
+        },
+        {
+            keywords: ['python', 'coding', 'programming'],
+            response: 'Python is my go-to for:\n🐍 Data processing (Pandas, NumPy)\n🤖 ML (Scikit-learn, TensorFlow)\n⚙️ Automation & scripting\n📱 Web apps (Streamlit, Flask)\n✅ Also work with SQL, JavaScript, Java',
+            category: 'skills'
+        },
+        {
+            keywords: ['sql', 'database', 'query'],
+            response: 'SQL expert! Specialized in:\n🗄️ Complex query optimization\n📊 Data modeling\n🔄 ETL workflows\n🎯 Performance tuning\n🔐 Data security & governance\nWorked with PostgreSQL, MySQL, Teradata, Vertica, Snowflake',
+            category: 'skills'
+        },
+        {
+            keywords: ['power bi', 'tableau', 'visualization'],
+            response: 'Dashboard & visualization expertise:\n📊 Power BI: Advanced DAX, custom visuals\n📈 Tableau: Interactive dashboards\n🎨 Beautiful, insight-driven visualizations\n👥 Executive-ready reports\n🎯 KPI tracking & real-time monitoring',
+            category: 'skills'
+        },
+        {
+            keywords: ['automation', 'process', 'efficiency'],
+            response: 'I\'ve built automation frameworks that delivered:\n🚀 170% efficiency gains\n✅ 30% fewer defects\n⏱️ Reduced manual processes by 70%\nStar Employee of the Quarter recognition at Cognizant! 🌟',
+            category: 'achievements'
+        },
+        {
+            keywords: ['what can you do', 'capabilities', 'features'],
+            response: 'I can help with:\n🤔 Questions about Mayur & his work\n📋 Career & experience details\n💼 Services & expertise\n🏆 Achievements & awards\n🔗 Contact information\n📚 Projects & skills\n🎯 Opportunities & collaborations\nJust ask anything! 😊',
+            category: 'info'
+        },
+        {
+            keywords: ['time', 'what time', 'current time'],
+            response: `The current time is ${new Date().toLocaleTimeString()}. What else can I help with?`,
+            category: 'info'
+        },
+        {
+            keywords: ['weather', 'temperature', 'bengaluru'],
+            response: 'You can check real-time weather info for Bengaluru in the location widget at the bottom left! 🌤️',
+            category: 'info'
+        },
+        {
+            keywords: ['thank', 'thanks', 'awesome', 'great'],
+            response: 'You\'re welcome! 😊 Feel free to ask if you have more questions!',
+            category: 'greeting'
+        },
+        {
+            keywords: ['bye', 'goodbye', 'see you', 'later'],
+            response: 'Take care! Feel free to reach out anytime. Have a great day! 👋',
+            category: 'greeting'
+        },
+        {
+            keywords: ['impressed', 'cool', 'nice', 'amazing'],
+            response: 'Thanks for the kind words! 🙌 If you\'d like to work together or discuss anything, don\'t hesitate to reach out!',
+            category: 'greeting'
+        },
+        {
+            keywords: ['help', 'assist', 'support'],
+            response: 'Of course! I\'m here to help. Ask me about:\n✅ Mayur\'s skills & experience\n✅ Projects & portfolio\n✅ Services offered\n✅ Contact information\n✅ Or just say hi! 👋',
+            category: 'info'
+        },
+        {
+            keywords: ['case competition', 'competition', 'finalist'],
+            response: '🏆 Multiple achievements:\n🥇 Finalist in competitions at: IIM Lucknow, IIT Delhi, IIT Kharagpur, IIT BHU\n🎖️ 3rd Place - MuLytics Analytics Case Competition\nStrong in strategy, analytics & problem-solving!',
+            category: 'achievements'
+        },
+        {
+            keywords: ['chess', 'game', 'sport', 'badminton'],
+            response: '♟️ Chess enthusiast with 2000+ Elo in bullet chess!\n🏸 Also play badminton, table tennis, volleyball & football\n💪 Strategic thinking & competitive spirit in everything I do!',
+            category: 'hobbies'
+        },
+        {
+            keywords: ['governance', 'metadata', 'lineage'],
+            response: 'Data governance expertise:\n📊 Metadata architecture\n🔍 Data lineage tracking\n🏷️ Data cataloging\n📋 Quality monitoring\n🔐 Compliance & regulations\nImplemented frameworks at Infosys & major clients',
+            category: 'skills'
+        },
+        {
+            keywords: ['hugging face', 'streamlit', 'deployment'],
+            response: 'I\'ve deployed multiple apps:\n🤖 Data Analyst Space (Hugging Face)\n💰 WealthWise AI (Hugging Face)\n📊 Data Lineage Generator\n🛣️ Data Strategy Roadmap Generator\nAll with interactive UIs & real-time insights!',
+            category: 'projects'
+        },
+        {
+            keywords: ['informatics', 'iics', 'idmc', 'etl tool'],
+            response: 'Informatica IICS expert:\n⚙️ Complex mapping & transformations\n🔄 CI/CD automation with Jenkins & GitHub\n📈 Processed 5M+ records daily\n✅ 99.9% deployment accuracy\nOptimized performance for enterprise clients',
+            category: 'skills'
+        },
+        {
+            keywords: ['cognizant', 'infosys', 'company', 'employer'],
+            response: '💼 Current: Infosys - Data Governance (2025-present)\n💼 Previous: Cognizant - Data Engineering & ETL (2021-2024)\n🌐 Worked on BFSI, Insurance, and Enterprise clients\nCognizant Star Employee of the Quarter! ⭐',
+            category: 'experience'
+        },
+        {
+            keywords: ['startups', 'venture', 'scale-up'],
+            response: 'I\'m especially interested in roles where I can:\n🚀 Build & scale data platforms\n🤖 Develop AI/ML products\n📊 Shape both product & strategy\n💡 Make visible business impact\nIf you\'re building something interesting, let\'s talk!',
+            category: 'opportunities'
+        }
+    ];
+    
+    // Toggle chat widget
+    chatToggle.addEventListener('click', () => {
+        chatWidget.classList.toggle('active');
+        
+        if (chatWidget.classList.contains('active')) {
+            chatInput.focus();
+            chatToggle.querySelector('.chat-badge').style.display = 'none';
+        }
+    });
+    
+    // Close chat
+    chatClose.addEventListener('click', () => {
+        chatWidget.classList.remove('active');
+    });
+    
+    // Send message
+    function sendMessage() {
+        const message = chatInput.value.trim();
+        if (!message) return;
+        
+        // Add user message
+        addChatMessage(message, 'user');
+        chatInput.value = '';
+        
+        // Hide suggestions after first message
+        document.getElementById('chatSuggestions').style.display = 'none';
+        
+        // Get bot response
+        setTimeout(() => {
+            const response = getBotResponse(message, chatData);
+            addChatMessage(response, 'bot');
+        }, 300);
+    }
+    
+    chatSend.addEventListener('click', sendMessage);
+    chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendMessage();
+    });
+    
+    // Suggestion buttons
+    suggestionBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const question = btn.getAttribute('data-question');
+            chatInput.value = question;
+            chatInput.focus();
+        });
+    });
+    
+    function addChatMessage(text, sender) {
+        const messageEl = document.createElement('div');
+        messageEl.className = `chat-message ${sender}-message`;
+        messageEl.innerHTML = `<p>${text}</p>`;
+        chatMessages.appendChild(messageEl);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+    
+    function getBotResponse(input, data) {
+        const inputLower = input.toLowerCase();
+        
+        for (let item of data) {
+            for (let keyword of item.keywords) {
+                if (inputLower.includes(keyword)) {
+                    return item.response;
+                }
+            }
+        }
+        
+        // Default response for unknown questions
+        const wittyResponses = [
+            'Hmm, that\'s an interesting question! I might not have the answer right now, but Mayur will get back to you EoD (or maybe by next Monday 😄)',
+            'That\'s a great question! I\'ll have to loop Mayur in on this one. He\'ll reach back soon! 🚀',
+            'Not sure about that one! But Mayur probably is. He\'ll get back to you ASAP! ⚡',
+            'Ooh, you\'re testing my limits! 😅 Let me connect you with Mayur directly for this. EoD response guaranteed!',
+            'I don\'t have the juice on that one, but Mayur definitely does! Will circle back soon! 💪'
+        ];
+        
+        return wittyResponses[Math.floor(Math.random() * wittyResponses.length)];
+    }
+}
+
+// ===== LOCATION WIDGET =====
+function initLocationWidget() {
+    const locationWidget = document.getElementById('locationWidget');
+    if (!locationWidget) return;
+    
+    // Update time
+    function updateTime() {
+        const now = new Date();
+        const timeString = now.toLocaleTimeString('en-US', { 
+            hour: '2-digit', 
+            minute: '2-digit',
+            hour12: true 
+        });
+        document.getElementById('currentTime').textContent = timeString;
+    }
+    
+    // Get weather data (using OpenWeatherMap API - requires key or fallback)
+    function getWeather() {
+        // Note: Using mock data for demo. In production, use actual weather API
+        // Example: OpenWeatherMap API or similar
+        
+        const mockWeather = {
+            temp: Math.floor(Math.random() * (35 - 22) + 22), // Random between 22-35°C
+            humidity: Math.floor(Math.random() * (80 - 40) + 40), // Random between 40-80%
+            windSpeed: Math.floor(Math.random() * (30 - 5) + 5) // Random between 5-30 km/h
+        };
+        
+        document.getElementById('temperature').textContent = mockWeather.temp;
+        document.getElementById('humidity').textContent = mockWeather.humidity;
+        document.getElementById('windSpeed').textContent = mockWeather.windSpeed;
+    }
+    
+    // Initialize
+    updateTime();
+    getWeather();
+    
+    // Update every minute
+    setInterval(updateTime, 60000);
+    
+    // Update weather every 10 minutes (in production, use API)
+    setInterval(getWeather, 600000);
 }
