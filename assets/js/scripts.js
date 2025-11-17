@@ -1272,53 +1272,6 @@ function initLocationWidget() {
     const locationWidget = document.getElementById('locationWidget');
     if (!locationWidget) return;
     
-    // Make widget draggable
-    let isDragging = false;
-    let currentX;
-    let currentY;
-    let initialX;
-    let initialY;
-    
-    // Convert pixel values to consider any existing transforms
-    let xOffset = 0;
-    let yOffset = 0;
-    
-    locationWidget.addEventListener('mousedown', dragStart);
-    document.addEventListener('mousemove', drag);
-    document.addEventListener('mouseup', dragEnd);
-    
-    function dragStart(e) {
-        // Only drag from header area
-        if (e.target.closest('.location-header')) {
-            isDragging = true;
-            initialX = e.clientX - xOffset;
-            initialY = e.clientY - yOffset;
-            locationWidget.style.cursor = 'grabbing';
-            locationWidget.style.zIndex = '10000';
-        }
-    }
-    
-    function drag(e) {
-        if (isDragging) {
-            e.preventDefault();
-            currentX = e.clientX - initialX;
-            currentY = e.clientY - initialY;
-            
-            xOffset = currentX;
-            yOffset = currentY;
-            
-            locationWidget.style.transform = `translate(${currentX}px, ${currentY}px)`;
-        }
-    }
-    
-    function dragEnd() {
-        if (isDragging) {
-            isDragging = false;
-            locationWidget.style.cursor = 'grab';
-            locationWidget.style.zIndex = '999';
-        }
-    }
-    
     // Update time
     function updateTime() {
         const now = new Date();
@@ -1330,20 +1283,13 @@ function initLocationWidget() {
         document.getElementById('currentTime').textContent = timeString;
     }
     
-    // Get weather data (using OpenWeatherMap API - requires key or fallback)
+    // Get weather data (using mock data for demo)
     function getWeather() {
-        // Note: Using mock data for demo. In production, use actual weather API
-        // Example: OpenWeatherMap API or similar
-        
         const mockWeather = {
             temp: Math.floor(Math.random() * (35 - 22) + 22), // Random between 22-35°C
-            humidity: Math.floor(Math.random() * (80 - 40) + 40), // Random between 40-80%
-            windSpeed: Math.floor(Math.random() * (30 - 5) + 5) // Random between 5-30 km/h
         };
         
         document.getElementById('temperature').textContent = mockWeather.temp;
-        document.getElementById('humidity').textContent = mockWeather.humidity;
-        document.getElementById('windSpeed').textContent = mockWeather.windSpeed;
     }
     
     // Initialize
@@ -1353,6 +1299,6 @@ function initLocationWidget() {
     // Update every minute
     setInterval(updateTime, 60000);
     
-    // Update weather every 10 minutes (in production, use API)
+    // Update weather every 10 minutes
     setInterval(getWeather, 600000);
 }
